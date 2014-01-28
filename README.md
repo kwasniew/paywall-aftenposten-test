@@ -1,5 +1,5 @@
-Example Paywall 
-===============
+Paywall 
+=======
 
 Used by core application
 
