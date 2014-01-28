@@ -1,4 +1,4 @@
-Example Paywall for IVYEngine
-=============================
+Example Paywall 
+===============
 
 Used by core application
