@@ -1,6 +1,4 @@
-drmobile-integration
-====================
+Example Paywall for IVYEngine
+=============================
 
-DrMobile integration example
-
-http://hfossli.github.io/drmobile-integration/
+Used by core application
