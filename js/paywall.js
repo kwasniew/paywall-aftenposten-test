@@ -124,13 +124,18 @@ define('paywall', ['main'], function(app)
     // Paywall asks for info when clicking a button
     app.event.on('purchaseInfo', function(data)
     {
-        $.each(data.products, function(product)
+        if(data.products.length)
         {
+            var $buttons = $('<div class="purchase-options"></div>');
+            $.each(data.products, function(i, product)
+            {
+                console.log(product);
+                var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.priceFormattedLocale + '</span>');
+                $buttons.append($button);
+            });
 
-        });
-
-        // Loop through list of products, generate DOM
-        // Add DOM to the document
+            $('#paywall-products header').after($buttons)
+        }
     });
 
 
