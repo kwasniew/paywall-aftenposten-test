@@ -35,7 +35,7 @@ define('paywall', ['main'], function(app)
         $('#paywall-content').css('height', Math.max.apply(Math, arr));
 
         // Set paywall height
-        var paywallHeight = $('#paywallInner').height();
+        var paywallHeight = $('.paywall-inner').height();
         app.bridge.trigger('paywallLoaded', {
             'height': paywallHeight
         });
