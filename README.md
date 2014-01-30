@@ -7,7 +7,7 @@ Used by core application
 
 ## SASS/CSS
 ### Making changes
-In order to make changes, you absolutely must do them in the `.scss` source files. Grunt will then [compile](#Compiling) them into normal `.css`.There is a [Grunt](http://gruntjs.com/) `watch` task in this project that will automate this for you.
+In order to make changes, you absolutely must do them in the `.scss` source files. Grunt will then [compile](#compiling) them into normal `.css`.There is a [Grunt](http://gruntjs.com/) `watch` task in this project that will automate this for you.
 
 ### Compiling
 If you’re unfamiliar with Grunt, read the [Getting started](http://gruntjs.com/getting-started) guide.
