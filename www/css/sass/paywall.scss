@@ -14,48 +14,11 @@ body {
 ::selection { background: transparent; }
 ::-moz-selection { background: transparent; }
 
-/* line 6, /Users/peter/Web/aptoma/alf/src/sass/layout/_base.scss */
-.no-margin {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.clearfix:after {
-    clear: both;
-    content: ' ';
-    display: block;
-    font-size: 0;
-    line-height: 0;
-    visibility: hidden;
-    width: 0;
-    height: 0;
-}
+.clearfix { @include clearfix; }
 
 .clear {
     clear: both;
     display: block;
-}
-
-.button,
-.button * { text-shadow: none !important; }
-
-.aftenposten-logo {
-    position: absolute;
-    bottom: 20px;
-    width: 47px;
-    height: 47px;
-    right: 20px;
-    background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat center -42px;
-    background-size: 47px;
-}
-
-.colored-border {
-    position: absolute;
-    height: 3px;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: url(/gfx/paywall/colored_border.jpg) no-repeat left center;
 }
 
 .overflowHidden {
@@ -64,7 +27,7 @@ body {
     width: 100%;
 }
 
-.paywall {
+#paywall {
     opacity: 1;
     overflow: hidden;
     display: block;
@@ -73,15 +36,56 @@ body {
     position: relative;
     width: 100%;
 
+    &.android-beta {
+        h1 { font-size: 28px; }
+
+        .products .paywall-buy-product {
+            float: none;
+            width: inherit;
+        }
+    }
+
     * {
         user-select: none;
         -webkit-tap-highlight-color: transparent;
         text-shadow: 0px 1px 0px rgba(255,255,255,1)
     }
 
+    .paywall-inner {
+        color: #fff;
+        text-align: center;
+        opacity:1;
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        @include clearfix;
+    }
+
+    .customer-logo {
+        position: absolute;
+        bottom: 20px;
+        width: 47px;
+        height: 47px;
+        right: 20px;
+        background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat center -42px;
+        background-size: 47px;
+    }
+
+    .colored-border {
+        position: absolute;
+        height: 3px;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: url(/gfx/paywall/colored_border.jpg) no-repeat left center;
+    }
+
     h1 {
         font-size: 30px;
         margin: 0;
+
+        @media #{$screen-mobile-big} { font-size: 20px; }
     }
 
     h2,
@@ -94,6 +98,11 @@ body {
         font-style: normal;
         color: #333;
         text-transform: uppercase;
+
+        @media #{$screen-mobile-big} {
+            margin: 0 0 5px;
+            line-height: 1em;
+        }
     }
 
     p {
@@ -101,7 +110,13 @@ body {
         line-height: 1.5em;
         margin: 0 0 1em;
         font-weight: 100;
+        color: #333;
         user-select: text;
+
+        @media #{$screen-mobile-big} {
+            font-size: 14px;
+            text-align: center;
+        }
     }
 
     .button {
@@ -116,11 +131,19 @@ body {
         text-transform: uppercase;
         font-style: normal;
         border-radius: 4px;
+        text-shadow: none !important;
 
         &.blue-button {
             border: 1px solid $color-blue;
             background: $color-blue;
             color: #fff !important;
+        }
+
+        * { text-shadow: none !important; }
+
+        @media #{$screen-mobile-big} {
+            padding: 7px 20px 9px;
+            box-sizing: border-box;
         }
     }
 
@@ -161,6 +184,14 @@ body {
             right: 20px;
             top: 20px;
             z-index: 9999;
+
+            @media #{$screen-mobile-big} {
+                display: none;
+                bottom: 10px;
+                right: 10px;
+                top: auto;
+                z-index: 9999;
+            }
         }
 
         &.icon,
@@ -196,6 +227,10 @@ body {
         }
     }
 
+    @media #{$screen-mobile-big} {
+        .paywall-tab a.more-info-trigger { display: block; }
+    }
+
     b { font-weight: 600; }
 
     .blue { color: $color-blue !important; }
@@ -213,9 +248,24 @@ body {
         padding: 0 20px;
         width: 70%;
         margin: 10px auto;
+        @include clearfix;
+
+        @media #{$screen-mobile-big} {
+            width: 100%;
+            margin: auto;
+            box-sizing: border-box;
+        }
     }
 
-    .paywall-tab a.more-info-trigger { display: none; }
+    #paywall-buy .paywallHeader:first-child {
+        width: 80%;
+        margin: 10px auto;
+
+        @media #{$screen-mobile-big} {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
 
     input {
         background: none;
@@ -254,6 +304,32 @@ body {
 
             &:focus { background: #1081b1; }
         }
+
+        @media #{$screen-mobile-big} {
+            width: 100%;
+            padding: 8px 10px;
+            float: left;
+            box-sizing: border-box;
+            margin-top: -1px;
+
+            &:focus {
+                z-index: 99;
+                position: relative;
+            }
+
+            &[type="password"] { margin: 0; }
+
+            &[type="submit"] {
+                background: $color-blue;
+                border: 1px solid $color-blue;
+                font-weight: bold;
+                width: 14%;
+                padding: 0;
+                margin: 0;
+                float: right;
+                height: 37px;
+            }
+        }
     }
 
     .halfWidth {
@@ -262,20 +338,12 @@ body {
         text-align: center;
 
         &:first-child { float: left; }
-    }
 
-    &.android-beta {
-        h1 { font-size: 28px; }
-
-        .products .paywall-buy-product {
-            float: none;
-            width: inherit;
+        @media #{$screen-mobile-big} {
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
-    }
-
-    #paywall-buy .paywallHeader:first-child {
-        width: 80%;
-        margin: 10px auto;
     }
 
     footer {
@@ -290,12 +358,134 @@ body {
             font-weight: 600 !important;
 
             &:active { color: $color-blue !important; }
+            @media #{$screen-mobile-small} { display: inline-block; }
+            @media #{$screen-mobile-big} { text-align: center; }
+        }
+
+        @media #{$screen-mobile-small} { text-align: center; }
+
+        @media #{$screen-mobile-big} {
+            display: block;
+            width: 90%;
+            padding: 0;
+            margin: 5px auto 0;
+        }
+    }
+
+    #paywall-content { position: relative; }
+
+    .paywall-tab {
+        width: 100%;
+        padding: 20px 0;
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        opacity: 0;
+        @include transition((left, opacity));
+        pointer-events: none;
+
+        &.open {
+            left: 0;
+            opacity: 1;
+            pointer-events: inherit;
+        }
+
+        header { @include transition(padding-top); }
+        a.more-info-trigger { display: none; }
+
+        @media #{$screen-mobile-big} { padding-bottom: 15px; }
+    }
+
+    .paywall-tab-trigger { cursor: pointer; }
+
+    #paywall-products .paywall-buy-product {
+        display: inline-block;
+        margin: auto 5px;
+
+        @media #{$screen-mobile-big} {
+            margin: 5px auto;
+            width: 90%;
+        }
+    }
+
+    .input {
+        display: inline-block;
+        margin: 0 2px;
+        position: relative;
+
+        &:before {
+            content: "";
+            width: 20px;
+            height: 16px;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            margin-top: -8px;
+            z-index: 999;
+        }
+
+        @media #{$screen-mobile-big} {
+            width: 100%;
+            margin: 0 0 2px;
+        }
+    }
+
+    .input_username:before {
+        background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat -0px -22px;
+        background-size: 47px;
+    }
+
+    .input_password {
+        &:before {
+            content: "•••";
+            line-height: 18px;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        @media #{$screen-mobile-big} {
+            width: 84%;
+            float: left;
+            margin-right: 1%;
+        }
+    }
+
+    .no-tablet {
+        display: none !important;
+        @media #{$screen-mobile-big} { display: inline-block !important; }
+    }
+
+    @media #{$screen-mobile-big} {
+        .paywall-buy-product .button { width: 80%; }
+        .paywall-buy-product .button:active { width: 80%; }
+
+        form {
+            margin: 5px auto;
+            width: 90%;
+        }
+
+        .no-mobile { display: none !important; }
+        .button-bottom.round-button { left: 10px; }
+    }
+
+    @media #{$screen-mobile-small} {
+        .button-bottom.round-button {
+            top: auto;
+            bottom: 10px;
+            left: 10px;
+            float: none;
+            margin-top: 0;
+        }
+
+        .focus {
+            .hide-on-focus { display: none; }
+            header { padding-top: 45px !important; }
         }
     }
 }
 
 .light {
-    .paywall {
+    #paywall {
         border-color: #fafafa;
         .round-button { color: #333; }
         nav { border: none; }
@@ -322,217 +512,12 @@ body {
     .paywall-inner { color: #333; }
 }
 
-.paywall-inner {
-    color: #fff;
-    text-align: center;
-    opacity:1;
-    display: block;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-}
-
-#paywall-content { position: relative; }
-
-.paywall-tab {
-    width: 100%;
-    padding: 20px 0;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    opacity: 0;
-    @include transition((left, opacity));
-    pointer-events: none;
-
-    &.open {
-        left: 0;
-        opacity: 1;
-        pointer-events: inherit;
-    }
-
-    header { @include transition(padding-top); }
-}
-
-.paywall-tab-trigger { cursor: pointer; }
-
-#paywall-products .paywall-buy-product {
-    display: inline-block;
-    margin: auto 5px;
-}
-
-.input {
-    display: inline-block;
-    margin: 0 2px;
-    position: relative;
-
-    &:before {
-        content: "";
-        width: 20px;
-        height: 16px;
-        position: absolute;
-        top: 50%;
-        left: 10px;
-        margin-top: -8px;
-        z-index: 999;
-    }
-}
-
-.input_username:before {
-    background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat -0px -22px;
-    background-size: 47px;
-}
-
-.input_password:before {
-    content: "•••";
-    line-height: 18px;
-    font-weight: 400;
-    font-size: 14px;
-}
-
 .android {
-    .paywall .halfWidth:first-child {
+    #paywall .halfWidth:first-child {
         float: none;
         margin: auto;
     }
 
     a.paywall-restore,
     .promotingAppStore { display: none !important; }
-}
-
-.no-tablet { display: none !important; }
-
-@media only screen and (max-width: 768px) {
-    .no-mobile { display: none !important; }
-    .no-tablet { display: inline-block !important; }
-
-    .paywall h1 { font-size: 20px; }
-
-    .paywall h2, .paywall h2 a, .paywall h2 .paywall-tab-trigger {
-        margin: 0 0 5px;
-        line-height: 1em;
-    }
-
-    .paywall p {
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .paywall .halfWidth {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    .paywall #paywall-buy .paywallHeader:first-child {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .paywall .paywallHeader {
-        width: 100%;
-        padding: 0 20px;
-        margin: auto;
-        -moz-box-sizing:border-box;
-        box-sizing:border-box;
-    }
-
-    .paywall .input {
-        width: 100%;
-        margin: 0 0 2px;
-    }
-
-    .paywall .input_password {
-        width: 84%;
-        float: left;
-        margin-right: 1%;
-    }
-
-    .paywall input {
-        padding: 8px 10px;
-        width: 100%;
-        -moz-box-sizing:border-box;
-        box-sizing:border-box;
-        margin-top: -1px;
-        float: left;
-    }
-
-    .paywall input:focus {
-        z-index: 99;
-        position: relative;
-    }
-
-    .paywall input[type="password"] { margin: 0; }
-
-    #paywall-products .paywall-buy-product,
-    .paywall form {
-        margin: 5px auto;
-        width: 90%;
-    }
-
-    .paywall .button {
-        padding: 7px 20px 9px;
-        -moz-box-sizing:border-box;
-        box-sizing:border-box;
-    }
-
-    .paywall .paywall-buy-product .button { width: 80%; }
-    .paywall .paywall-buy-product .button:active { width: 80%; }
-
-    .paywall input[type="submit"] {
-        background: $color-blue;
-        border: 1px solid $color-blue;
-        font-weight: bold;
-        width: 14%;
-        padding: 0;
-        margin: 0;
-        float: right;
-        height: 37px;
-    }
-
-    .paywall a.more-info-trigger {
-        bottom: 10px;
-        right: 10px;
-        top: auto;
-        z-index: 9999;
-        display: none;
-    }
-
-    .paywall .paywall-tab a.more-info-trigger { display: block; }
-
-    .button-bottom.round-button { left: 10px; }
-
-    .paywall footer {
-        display: block;
-        width: 90%;
-        padding: 0;
-        margin: 5px auto 0;
-        /* border-top: 1px solid #ddd; */
-        /* border-bottom: 1px solid #ddd; */
-    }
-
-    .paywall footer a { text-align: center; }
-    .paywall-tab { padding-bottom: 15px; }
-}
-
-@media only screen and (max-width: 480px) {
-    .paywall footer { text-align: center; }
-
-    .paywall footer a { display: inline-block; }
-
-    .button-bottom.round-button {
-        top: auto;
-        bottom: 10px;
-        left: 10px;
-        float: none;
-        margin-top: 0;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-
-}
-
-@media (max-device-width: 482px) {
-    .focus .hide-on-focus { display: none; }
-    .focus header { padding-top: 45px !important; }
 }

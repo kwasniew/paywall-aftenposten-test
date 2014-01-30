@@ -82,17 +82,15 @@ define('paywall', ['main'], function(app)
     app.event.on('updatePaywall', function(args)
     {
         // Cache DOM elements
-        var $loginOrSignupWall = $('#login-or-signup-wall');
-        var $purchaseWithProductsWall = $('#purchase-with-products-wall');
+        var $paywall = $('#paywall');
 
         var gotProducts = typeof args.products !== 'undefined' && args.products.length > 0;
-        var wall = gotProducts ? $purchaseWithProductsWall : $loginOrSignupWall;
-        var otherWall = !gotProducts ? $purchaseWithProductsWall : $loginOrSignupWall;
+        var otherWall = !gotProducts ? $paywall : $loginOrSignupWall;
         var animDuration = args.animated ? 300 : 0;
         var fullName = args.userInfo.spid.displayName;
         var isLoggedIn = fullName || fullName === '' ? true : false;
         var $activePaywallElement = isLoggedIn ? $('#paywall-logged-in') : $('#paywall-login');
-        var paywallHeight = $('#paywallInner').height();
+        var paywallHeight = $('.paywall-inner').height();
 
         $('.paywall-tab.open').removeClass('open');
         $activePaywallElement.addClass('open');

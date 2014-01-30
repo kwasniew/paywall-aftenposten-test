@@ -19,22 +19,18 @@ body.android.light {
 	background: transparent;
 }
 
-/* line 6, /Users/peter/Web/aptoma/alf/src/sass/layout/_base.scss */
+.clearfix {
+	zoom: 1;
+}
 
-.no-margin {
-	margin: 0 !important;
-	padding: 0 !important;
+.clearfix:before,
+.clearfix:after {
+	content: "";
+	display: table;
 }
 
 .clearfix:after {
 	clear: both;
-	content: ' ';
-	display: block;
-	font-size: 0;
-	line-height: 0;
-	visibility: hidden;
-	width: 0;
-	height: 0;
 }
 
 .clear {
@@ -42,12 +38,62 @@ body.android.light {
 	display: block;
 }
 
-.button,
-.button * {
-	text-shadow: none !important;
+.overflowHidden {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
 }
 
-.aftenposten-logo {
+#paywall {
+	opacity: 1;
+	overflow: hidden;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	pointer-events: inherit;
+	position: relative;
+	width: 100%;
+}
+
+#paywall.android-beta h1 {
+	font-size: 28px;
+}
+
+#paywall.android-beta .products .paywall-buy-product {
+	float: none;
+	width: inherit;
+}
+
+#paywall * {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	text-shadow: 0px 1px 0px white;
+}
+
+#paywall .paywall-inner {
+	color: white;
+	text-align: center;
+	opacity: 1;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+	zoom: 1;
+}
+
+#paywall .paywall-inner:before,
+#paywall .paywall-inner:after {
+	content: "";
+	display: table;
+}
+
+#paywall .paywall-inner:after {
+	clear: both;
+}
+
+#paywall .customer-logo {
 	position: absolute;
 	bottom: 20px;
 	width: 47px;
@@ -58,7 +104,7 @@ body.android.light {
 	background-size: 47px;
 }
 
-.colored-border {
+#paywall .colored-border {
 	position: absolute;
 	height: 3px;
 	top: 0;
@@ -67,39 +113,14 @@ body.android.light {
 	background: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wgARCAAECAADAREAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQIABv/EABkBAQEBAQEBAAAAAAAAAAAAAAECAAMEBf/aAAwDAQACEAMQAAAB5v2ffdzrQ6Hc1itzdzrQvOtzdzrc3c6edbm6KIrQ6KJSXajYUcOKC8WFh0Doaw6h0k6B1DoHUOmOunoHTT0Tpp6VNpTNVKjUtGQqdQVhCiaCsJNYcOHC7I5zspWFKopKZWaopmmaZpmkpmqmsOmsVhxQJmcm07S6HSkUSkURRKRRFTKRRKQkpOJwbTsGJ2NpWcystTrhqW4anXFXLUa5amqjVNJqlw4QTaczmHc1hebudbm7lTzrc63Ktzrc7OdbnWiiK0UShQJk2FHFBeKC9ugXJ0DoHU3QOodA6E9Q6Y6h009E6aejNpbNVNI1ORqdQUCaiaCsUS4oHTWzhTbZy7OFylJTKlUUzTNM0zVTTNJTNM1hxWHTWyDOQZdO0Ol04hJSKJSElJSUhJSaJSUl0pKT/8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgBAQABBQIAf//EABgRAQEBAQEAAAAAAAAAAAAAAAEAMGAQ/9oACAEDAQE/AWZmZmZmZmZ8Z0IiIiIiIiIiIjoGZmZmZmZmZnUiIiIiIiIiIjhv/8QAFBEBAAAAAAAAAAAAAAAAAAAAgP/aAAgBAgEBPwEAf//EABQQAQAAAAAAAAAAAAAAAAAAAID/2gAIAQEABj8CAH//xAAaEAEBAQADAQAAAAAAAAAAAAABABAgMFBA/9oACAEBAAE/Ie08U4mmnyPkszjMzMzj3mGkR4phEcD4nxf/2gAMAwEAAgADAAAAEF2vD1T3yZlF4ICaCkQbvqHecjHUrkJeO9vKmr4D8m32s+UYQNZ1+qV0SfqT3MauK4ez6unWoyYvZZFxi8ku3vwb9QCurynKo5ud/HV0joDUj82XllLy4moORd03t/22S//EABkRAQEAAwEAAAAAAAAAAAAAAAEAECAwQP/aAAgBAwEBPxDuAAHIzM6kR4wCACObo8DciIiOTMzMzMzMzMzMzMzsRERERERERGrM+EAAGdiIiPEAAAiN2cuGeZERgwcnDMzMzMzMzMzMzMzN/8QAGhEBAQEAAwEAAAAAAAAAAAAAAQAQIDBAUP/aAAgBAgEBPxD5LwZmZnGcfARERERERERERER3voOB8B63XHWZmZmccfCREREREREREREer//EABgQAQEBAQEAAAAAAAAAAAAAAAEAECAw/9oACAEBAAE/ECIiIiIiIjBEREcERrjMzOs49ERGCIjBGCMEREcuOszM4ZmZmZnoiIiIiIiIjwZmZ4D4EHDOvJERGDBHAIiIjp1xmZmZnkwiIiMHAIjBERHgzMzhmZmZmZmZ7IiIwiMIiIiL/9k=) no-repeat left center;
 }
 
-.overflowHidden {
-	overflow: hidden;
-	height: 100%;
-	width: 100%;
-}
-
-.paywall {
-	opacity: 1;
-	overflow: hidden;
-	display: block;
-	font-family: 'Open Sans', sans-serif;
-	pointer-events: inherit;
-	position: relative;
-	width: 100%;
-}
-
-.paywall * {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-tap-highlight-color: transparent;
-	text-shadow: 0px 1px 0px white;
-}
-
-.paywall h1 {
+#paywall h1 {
 	font-size: 30px;
 	margin: 0;
 }
 
-.paywall h2,
-.paywall h2 a,
-.paywall h2 .paywall-tab-trigger {
+#paywall h2,
+#paywall h2 a,
+#paywall h2 .paywall-tab-trigger {
 	font-size: 16px;
 	margin: 0 0 0.3em;
 	text-decoration: none;
@@ -109,18 +130,19 @@ body.android.light {
 	text-transform: uppercase;
 }
 
-.paywall p {
+#paywall p {
 	font-size: 16px;
 	line-height: 1.5em;
 	margin: 0 0 1em;
 	font-weight: 100;
+	color: #333333;
 	-webkit-user-select: text;
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
 }
 
-.paywall .button {
+#paywall .button {
 	background: transparent;
 	padding: 8px 20px;
 	display: inline-block;
@@ -132,28 +154,33 @@ body.android.light {
 	text-transform: uppercase;
 	font-style: normal;
 	border-radius: 4px;
+	text-shadow: none !important;
 }
 
-.paywall .button.blue-button {
+#paywall .button.blue-button {
 	border: 1px solid #2bb4ed;
 	background: #2bb4ed;
 	color: white !important;
 }
 
-.paywall a {
+#paywall .button * {
+	text-shadow: none !important;
+}
+
+#paywall a {
 	color: #333333;
 	text-decoration: none;
 	font-weight: 600;
 	font-style: normal;
 }
 
-.paywall a:active .button,
-.paywall a.button:active {
+#paywall a:active .button,
+#paywall a.button:active {
 	border: 1px solid #1081b1;
 	background: #1081b1;
 }
 
-.paywall a.round-button {
+#paywall a.round-button {
 	display: inline-block;
 	width: 30px;
 	height: 30px;
@@ -167,12 +194,12 @@ body.android.light {
 	text-shadow: none !important;
 }
 
-.paywall a.round-button:active {
+#paywall a.round-button:active {
 	color: white !important;
 	background: #2bb4ed;
 }
 
-.paywall a.more-info-trigger {
+#paywall a.more-info-trigger {
 	line-height: 30px;
 	position: absolute;
 	right: 20px;
@@ -180,8 +207,8 @@ body.android.light {
 	z-index: 9999;
 }
 
-.paywall a.icon,
-.paywall a.spid-logo {
+#paywall a.icon,
+#paywall a.spid-logo {
 	display: inline-block;
 	width: 50px;
 	height: 22px;
@@ -193,12 +220,12 @@ body.android.light {
 	background-size: 53px;
 }
 
-.paywall a.icon {
+#paywall a.icon {
 	padding-left: 36px;
 	margin-left: 10px !important;
 }
 
-.paywall a.icon:before {
+#paywall a.icon:before {
 	content: "";
 	width: 21px;
 	height: 21px;
@@ -209,21 +236,21 @@ body.android.light {
 	background-size: 47px;
 }
 
-.paywall a.icon.paywall-logout:before {
+#paywall a.icon.paywall-logout:before {
 	background: -25px -19px url(data:image/png;base64,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) no-repeat;
 	-webkit-background-size: 47px;
 	background-size: 47px;
 }
 
-.paywall b {
+#paywall b {
 	font-weight: 600;
 }
 
-.paywall .blue {
+#paywall .blue {
 	color: #2bb4ed !important;
 }
 
-.paywall .go-back-button {
+#paywall .go-back-button {
 	position: absolute;
 	top: 50%;
 	left: 20px;
@@ -232,17 +259,29 @@ body.android.light {
 	line-height: 24px;
 }
 
-.paywall .paywallHeader {
+#paywall .paywallHeader {
 	padding: 0 20px;
 	width: 70%;
 	margin: 10px auto;
+	zoom: 1;
 }
 
-.paywall .paywall-tab a.more-info-trigger {
-	display: none;
+#paywall .paywallHeader:before,
+#paywall .paywallHeader:after {
+	content: "";
+	display: table;
 }
 
-.paywall input {
+#paywall .paywallHeader:after {
+	clear: both;
+}
+
+#paywall #paywall-buy .paywallHeader:first-child {
+	width: 80%;
+	margin: 10px auto;
+}
+
+#paywall input {
 	background: none;
 	border: 1px solid rgba(255, 255, 255, 0.5);
 	padding: 12px 15px;
@@ -269,58 +308,58 @@ body.android.light {
 	-webkit-backface-visibility: hidden;
 }
 
-.paywall input ::-webkit-input-placeholder {
+#paywall input ::-webkit-input-placeholder {
 	color: #666666;
 	font-style: normal;
 }
 
-.paywall input :-moz-placeholder {
+#paywall input :-moz-placeholder {
 	color: #666666;
 	font-style: normal;
 }
 
-.paywall input ::-moz-placeholder {
+#paywall input ::-moz-placeholder {
 	color: #666666;
 	font-style: normal;
 }
 
-.paywall input :-ms-input-placeholder {
+#paywall input :-ms-input-placeholder {
 	color: #666666;
 	font-style: normal;
 }
 
-.paywall input:focus {
+#paywall input:focus {
 	color: white;
 	outline-width: 0;
 	border-radius: 5px 5px 0 0;
 }
 
-.paywall input:focus ::-webkit-input-placeholder {
+#paywall input:focus ::-webkit-input-placeholder {
 	color: #2bb4ed;
 	font-style: normal;
 }
 
-.paywall input:focus :-moz-placeholder {
+#paywall input:focus :-moz-placeholder {
 	color: #2bb4ed;
 	font-style: normal;
 }
 
-.paywall input:focus ::-moz-placeholder {
+#paywall input:focus ::-moz-placeholder {
 	color: #2bb4ed;
 	font-style: normal;
 }
 
-.paywall input:focus :-ms-input-placeholder {
+#paywall input:focus :-ms-input-placeholder {
 	color: #2bb4ed;
 	font-style: normal;
 }
 
-.paywall input[type="text"],
-.paywall input[type="password"] {
+#paywall input[type="text"],
+#paywall input[type="password"] {
 	padding-left: 40px;
 }
 
-.paywall input[type="submit"] {
+#paywall input[type="submit"] {
 	background: #2bb4ed;
 	font-weight: 600;
 	color: white;
@@ -330,105 +369,44 @@ body.android.light {
 	margin: 0 2px;
 }
 
-.paywall input[type="submit"]:focus {
+#paywall input[type="submit"]:focus {
 	background: #1081b1;
 }
 
-.paywall .halfWidth {
+#paywall .halfWidth {
 	width: 45%;
 	float: right;
 	text-align: center;
 }
 
-.paywall .halfWidth:first-child {
+#paywall .halfWidth:first-child {
 	float: left;
 }
 
-.paywall.android-beta h1 {
-	font-size: 28px;
-}
-
-.paywall.android-beta .products .paywall-buy-product {
-	float: none;
-	width: inherit;
-}
-
-.paywall #paywall-buy .paywallHeader:first-child {
-	width: 80%;
-	margin: 10px auto;
-}
-
-.paywall footer {
+#paywall footer {
 	padding: 15px 25px;
 	clear: both;
 }
 
-.paywall footer p {
+#paywall footer p {
 	line-height: 1em;
 }
 
-.paywall footer a {
+#paywall footer a {
 	font-size: 14px;
 	margin: 10px !important;
 	font-weight: 600 !important;
 }
 
-.paywall footer a:active {
+#paywall footer a:active {
 	color: #2bb4ed !important;
 }
 
-.light .paywall {
-	border-color: #fafafa;
-}
-
-.light .paywall .round-button {
-	color: #333333;
-}
-
-.light .paywall nav {
-	border: none;
-}
-
-.light .paywall .button {
-	border-color: #2bb4ed;
-}
-
-.light .paywall .button.blue-button:active {
-	color: white !important;
-}
-
-.light .paywall input {
-	color: #333333;
-	background: white;
-	border-color: transparent;
-}
-
-.light .paywall input[type="text"]:focus,
-.light .paywall input[type="password"]:focus {
-	color: #2bb4ed;
-	border-color: transparent;
-	border-bottom-color: #2bb4ed;
-}
-
-.light .paywall-inner {
-	color: #333333;
-}
-
-.paywall-inner {
-	color: white;
-	text-align: center;
-	opacity: 1;
-	display: block;
-	overflow: hidden;
-	width: 100%;
+#paywall #paywall-content {
 	position: relative;
 }
 
-#paywall-content {
-	position: relative;
-}
-
-.paywall-tab {
+#paywall .paywall-tab {
 	width: 100%;
 	padding: 20px 0;
 	position: absolute;
@@ -447,13 +425,13 @@ body.android.light {
 	pointer-events: none;
 }
 
-.paywall-tab.open {
+#paywall .paywall-tab.open {
 	left: 0;
 	opacity: 1;
 	pointer-events: inherit;
 }
 
-.paywall-tab header {
+#paywall .paywall-tab header {
 	-webkit-transition: padding-top 0.3s ease-out;
 	transition: padding-top 0.3s ease-out;
 	-webkit-transform: translate3d(0, 0, 0);
@@ -461,22 +439,26 @@ body.android.light {
 	-webkit-backface-visibility: hidden;
 }
 
-.paywall-tab-trigger {
+#paywall .paywall-tab a.more-info-trigger {
+	display: none;
+}
+
+#paywall .paywall-tab-trigger {
 	cursor: pointer;
 }
 
-#paywall-products .paywall-buy-product {
+#paywall #paywall-products .paywall-buy-product {
 	display: inline-block;
 	margin: auto 5px;
 }
 
-.input {
+#paywall .input {
 	display: inline-block;
 	margin: 0 2px;
 	position: relative;
 }
 
-.input:before {
+#paywall .input:before {
 	content: "";
 	width: 20px;
 	height: 16px;
@@ -487,20 +469,61 @@ body.android.light {
 	z-index: 999;
 }
 
-.input_username:before {
+#paywall .input_username:before {
 	background: url(data:image/png;base64,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) no-repeat -0px -22px;
 	-webkit-background-size: 47px;
 	background-size: 47px;
 }
 
-.input_password:before {
+#paywall .input_password:before {
 	content: "•••";
 	line-height: 18px;
 	font-weight: 400;
 	font-size: 14px;
 }
 
-.android .paywall .halfWidth:first-child {
+#paywall .no-tablet {
+	display: none !important;
+}
+
+.light #paywall {
+	border-color: #fafafa;
+}
+
+.light #paywall .round-button {
+	color: #333333;
+}
+
+.light #paywall nav {
+	border: none;
+}
+
+.light #paywall .button {
+	border-color: #2bb4ed;
+}
+
+.light #paywall .button.blue-button:active {
+	color: white !important;
+}
+
+.light #paywall input {
+	color: #333333;
+	background: white;
+	border-color: transparent;
+}
+
+.light #paywall input[type="text"]:focus,
+.light #paywall input[type="password"]:focus {
+	color: #2bb4ed;
+	border-color: transparent;
+	border-bottom-color: #2bb4ed;
+}
+
+.light .paywall-inner {
+	color: #333333;
+}
+
+.android #paywall .halfWidth:first-child {
 	float: none;
 	margin: auto;
 }
@@ -510,120 +533,76 @@ body.android.light {
 	display: none !important;
 }
 
-.no-tablet {
-	display: none !important;
-}
+@media only screen and (max-width: 767px) {
 
-@media (max-device-width: 482px) {
-
-.focus .hide-on-focus {
-	display: none;
-}
-
-.focus header {
-	padding-top: 45px !important;
-}
-
-}
-
-@media only screen and (max-width: 768px) {
-
-.no-mobile {
-	display: none !important;
-}
-
-.no-tablet {
-	display: inline-block !important;
-}
-
-.paywall h1 {
+#paywall h1 {
 	font-size: 20px;
 }
 
-.paywall h2,
-.paywall h2 a,
-.paywall h2 .paywall-tab-trigger {
+#paywall h2,
+#paywall h2 a,
+#paywall h2 .paywall-tab-trigger {
 	margin: 0 0 5px;
 	line-height: 1em;
 }
 
-.paywall p {
+#paywall p {
 	font-size: 14px;
 	text-align: center;
 }
 
-.paywall .halfWidth {
-	width: 100%;
-	margin: 0;
-	padding: 0;
+#paywall .button {
+	padding: 7px 20px 9px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.paywall #paywall-buy .paywallHeader:first-child {
+#paywall a.more-info-trigger {
+	display: none;
+	bottom: 10px;
+	right: 10px;
+	top: auto;
+	z-index: 9999;
+}
+
+#paywall .paywall-tab a.more-info-trigger {
+	display: block;
+}
+
+#paywall .paywallHeader {
+	width: 100%;
+	margin: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#paywall #paywall-buy .paywallHeader:first-child {
 	width: 100%;
 	margin: 0 auto;
 }
 
-.paywall .paywallHeader {
+#paywall input {
 	width: 100%;
-	padding: 0 20px;
-	margin: auto;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.paywall .input {
-	width: 100%;
-	margin: 0 0 2px;
-}
-
-.paywall .input_password {
-	width: 84%;
-	float: left;
-	margin-right: 1%;
-}
-
-.paywall input {
 	padding: 8px 10px;
-	width: 100%;
-	-moz-box-sizing: border-box;
+	float: left;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	margin-top: -1px;
-	float: left;
 }
 
-.paywall input:focus {
+#paywall input:focus {
 	z-index: 99;
 	position: relative;
 }
 
-.paywall input[type="password"] {
+#paywall input[type="password"] {
 	margin: 0;
 }
 
-#paywall-products .paywall-buy-product,
-.paywall form {
-	margin: 5px auto;
-	width: 90%;
-}
-
-.paywall .button {
-	padding: 7px 20px 9px;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.paywall .paywall-buy-product .button {
-	width: 80%;
-}
-
-.paywall .paywall-buy-product .button:active {
-	width: 80%;
-}
-
-.paywall input[type="submit"] {
+#paywall input[type="submit"] {
 	background: #2bb4ed;
 	border: 1px solid #2bb4ed;
 	font-weight: bold;
@@ -634,50 +613,81 @@ body.android.light {
 	height: 37px;
 }
 
-.paywall a.more-info-trigger {
-	bottom: 10px;
-	right: 10px;
-	top: auto;
-	z-index: 9999;
-	display: none;
+#paywall .halfWidth {
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
-.paywall .paywall-tab a.more-info-trigger {
-	display: block;
+#paywall footer a {
+	text-align: center;
 }
 
-.button-bottom.round-button {
-	left: 10px;
-}
-
-.paywall footer {
+#paywall footer {
 	display: block;
 	width: 90%;
 	padding: 0;
-	margin: 5px auto 0; /* border-top: 1px solid #ddd; */ /* border-bottom: 1px solid #ddd; */
+	margin: 5px auto 0;
 }
 
-.paywall footer a {
-	text-align: center;
-}
-
-.paywall-tab {
+#paywall .paywall-tab {
 	padding-bottom: 15px;
 }
 
+#paywall #paywall-products .paywall-buy-product {
+	margin: 5px auto;
+	width: 90%;
 }
 
-@media only screen and (max-width: 480px) {
-
-.paywall footer {
-	text-align: center;
+#paywall .input {
+	width: 100%;
+	margin: 0 0 2px;
 }
 
-.paywall footer a {
+#paywall .input_password {
+	width: 84%;
+	float: left;
+	margin-right: 1%;
+}
+
+#paywall .no-tablet {
+	display: inline-block !important;
+}
+
+#paywall .paywall-buy-product .button {
+	width: 80%;
+}
+
+#paywall .paywall-buy-product .button:active {
+	width: 80%;
+}
+
+#paywall form {
+	margin: 5px auto;
+	width: 90%;
+}
+
+#paywall .no-mobile {
+	display: none !important;
+}
+
+#paywall .button-bottom.round-button {
+	left: 10px;
+}
+
+}
+
+@media only screen and (max-width: 479px) {
+
+#paywall footer a {
 	display: inline-block;
 }
 
-.button-bottom.round-button {
+#paywall footer {
+	text-align: center;
+}
+
+#paywall .button-bottom.round-button {
 	top: auto;
 	bottom: 10px;
 	left: 10px;
@@ -685,9 +695,13 @@ body.android.light {
 	margin-top: 0;
 }
 
+#paywall .focus .hide-on-focus {
+	display: none;
 }
 
-@media only screen and (max-width: 320px) {
+#paywall .focus header {
+	padding-top: 45px !important;
+}
 
 }
 
