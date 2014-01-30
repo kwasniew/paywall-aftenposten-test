@@ -452,6 +452,10 @@ body.android.light {
 	margin: auto 5px;
 }
 
+#paywall .purchase-options {
+	height: 36px;
+}
+
 #paywall .input {
 	display: inline-block;
 	margin: 0 2px;

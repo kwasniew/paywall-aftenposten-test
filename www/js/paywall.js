@@ -39,8 +39,6 @@ define('paywall', ['main'], function(app)
         app.bridge.trigger('paywallLoaded', {
             'height': paywallHeight
         });
-
-        console.log('Paywall height = ' + paywallHeight);
     }
 
     function checkDeviceHeightAndAdjustInputIfNeeded()
@@ -65,7 +63,6 @@ define('paywall', ['main'], function(app)
     {
         updatePaywallHeight();
         checkDeviceHeightAndAdjustInputIfNeeded();
-        console.log('Device height = ' + deviceHeight);
     });
 
 
@@ -100,10 +97,10 @@ define('paywall', ['main'], function(app)
         if(isLoggedIn)
         {
             $('.getSpidUserName').text(fullName);
-            $subscriberLink.attr('intern', '#paywall-logged-in');
+            $subscriberLink.attr('internal', '#paywall-logged-in');
         }
         else
-            $subscriberLink.attr('intern', '#paywall-login');
+            $subscriberLink.attr('internal', '#paywall-login');
 
         if(gotProducts)
         {
@@ -119,24 +116,74 @@ define('paywall', ['main'], function(app)
     });
 
 
-    // Paywall asks for info when clicking a button
-    app.event.on('purchaseInfo', function(data)
+
+
+
+
+
+
+
+
+    // Choose a provider to buy from, ask its purchase alternatives
+    $('#paywall-buy').on('click', 'button.in-app-purchase', function()
     {
-        if(data.products.length)
+        app.bridge.trigger('getPurchaseInfo',
+        {
+            provider: $(this).data('provider'),
+            successEventName: 'getPurchaseInfoSuccess',
+            errorEventName: 'getPurchaseInfoError'
+        });
+    });
+
+    // Populate the view with purchase alternatives
+    app.event.on('getPurchaseInfoSuccess', function(data)
+    {
+        if('products' in data && data.products.length)
         {
             var $buttons = $('<div class="purchase-options"></div>');
             $.each(data.products, function(i, product)
             {
-                console.log(product);
                 var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.priceFormattedLocale + '</span>');
                 $buttons.append($button);
             });
 
-            $('#paywall-products header').after($buttons)
+            $('#paywall-products .purchase-options').append($buttons.html());
         }
     });
 
+    // Something went wrong
+    app.event.on('getPurchaseInfoError', function(data)
+    {
+        console.log(data);
+    });
 
+    // Choose one of the provider’s purchase alternatives
+    $('#paywall-products').on('click', '.purchase-options button', function()
+    {
+        var $button = $(this);
+        var provider = $button.closest('.purchase-options').data('provider');
+        var productIdentifier = $button.data('identifier');
+
+        app.bridge.trigger('purchase',
+        {
+            provider: provider,
+            productIdentifier: productIdentifier,
+            successEventName: 'purchaseSuccess',
+            errorEventName: 'purchaseError'
+        });
+    });
+
+    // Display purchase success message
+    app.event.on('purchaseSuccess', function()
+    {
+        // Log out..?
+    });
+
+    // Display purchase failure message
+    app.event.on('purchaseError', function(data)
+    {
+        console.log('purchase failed', data);
+    });
 
 
 
@@ -215,7 +262,7 @@ define('paywall', ['main'], function(app)
 
     $('.paywall-tab-trigger').click(function()
     {
-        var $toShow = $($(this).attr('intern'));
+        var $toShow = $($(this).attr('internal'));
 
         $('.paywall-tab.open').removeClass('open');
         $('.paywall-tab-trigger.open').removeClass('open');

@@ -61,7 +61,7 @@ define('main', ['alf'], function (Alf) {
                  * @return {void}
                  */
                 eventTriggered: function () {
-                    console.log([].slice.call(arguments));
+                    //console.log([].slice.call(arguments));
                     var eventInfo = JSON.stringify([].slice.call(arguments));
 
                     this.frameIndex = (this.frameIndex + 1) % this.eventFrames.length;
