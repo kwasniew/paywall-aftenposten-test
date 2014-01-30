@@ -125,7 +125,7 @@ define('paywall', ['main'], function(app)
 
 
     // Choose a provider to buy from, ask its purchase alternatives
-    $('#paywall-buy').on('click', 'button.in-app-purchase', function()
+    $('#paywall-buy').on('click', 'a.in-app-purchase', function(e)
     {
         app.bridge.trigger('getPurchaseInfo',
         {
@@ -133,6 +133,8 @@ define('paywall', ['main'], function(app)
             successEventName: 'getPurchaseInfoSuccess',
             errorEventName: 'getPurchaseInfoError'
         });
+
+        e.preventDefault();
     });
 
     // Populate the view with purchase alternatives
