@@ -4,6 +4,7 @@
 body {
     margin: 0;
     padding: 0;
+    @include optimize-font-rendering;
 
     &.android {
         background: #333;

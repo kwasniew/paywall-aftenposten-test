@@ -127,25 +127,26 @@ define('paywall', ['main'], function(app)
     // Choose a provider to buy from, ask its purchase alternatives
     $('#paywall-buy').on('click', 'a.in-app-purchase', function(e)
     {
-        app.bridge.trigger('getPurchaseInfo',
-        {
-            provider: $(this).data('provider'),
+        var parameters = {
+            provider: 'spid',//$(this).data('provider'),
             successEventName: 'getPurchaseInfoSuccess',
             errorEventName: 'getPurchaseInfoError'
-        });
+        };
 
+        app.bridge.trigger('getPurchaseInfo', parameters);
         e.preventDefault();
     });
 
     // Populate the view with purchase alternatives
     app.event.on('getPurchaseInfoSuccess', function(data)
     {
+        console.log('getPurchaseInfoSuccess', data);
         if('products' in data && data.products.length)
         {
             var $buttons = $('<div class="purchase-options"></div>');
             $.each(data.products, function(i, product)
             {
-                var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.priceFormattedLocale + '</span>');
+                var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.localeFormattedPrice + '</span>');
                 $buttons.append($button);
             });
 
@@ -156,7 +157,7 @@ define('paywall', ['main'], function(app)
     // Something went wrong
     app.event.on('getPurchaseInfoError', function(data)
     {
-        console.log(data);
+        console.log('getPurchaseInfoError', data);
     });
 
     // Choose one of the provider’s purchase alternatives
