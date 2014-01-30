@@ -1,0 +1,48 @@
+@mixin clearfix {
+    zoom: 1;
+
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after { clear:both; }
+}
+
+@mixin optimize-font-rendering {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+@mixin button {
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+@mixin transition($properties: all, $duration: .3s, $easing: ease-out, $performance: 'true') {
+    @if length($properties) > 1 {
+        transition-property: $properties;
+        transition-duration: $duration;
+        transition-timing-function: $easing;
+    } @else {
+        transition: $properties $duration $easing;
+    }
+
+    @if $performance == 'true' {
+        // http://davidwalsh.name/translate3d
+        -webkit-transform: translate3d(0, 0, 0);
+
+        // http://stackoverflow.com/questions/2946748/iphone-webkit-css-animations-cause-flicker
+        -webkit-perspective: 1000;
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+@mixin placeholder-text($color, $font-style: normal) {
+    ::-webkit-input-placeholder { color: $color; font-style: $font-style; }
+    :-moz-placeholder { color: $color; font-style: $font-style; }
+    ::-moz-placeholder { color: $color; font-style: $font-style; }
+    :-ms-input-placeholder { color: $color; font-style: $font-style; }
+}
