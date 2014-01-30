@@ -18,7 +18,7 @@ Then navigate to the project folder in your terminal:
 This will continuously watch for changes in the `.scss` files. Once a change is detected, it will compile the SASS and update the `admin-interface.css` file which is already referenced in the HTML.
 
 #### Stuff you don’t have to worry about:
-- [x] Vendor prefixing; [grunt-autoprefixer](https://github.com/nDmitry/grunt-autoprefixer) does this for you
-- [x] Graphics optimalization; [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) takes care of it
-- [x] Graphics inlining; [grunt-image-embed](https://github.com/ehynds/grunt-image-embed) helps us speed up the paywall by putting graphics files into the CSS as base64-encoded data URI strings, thus reducing the number of requests made to the server
-- [x] Write your `@media` queries in-context (nested); [grunt-combine-media-queries](https://github.com/buildingblocks/grunt-combine-media-queries) will combine matching blocks into one to reduce the load for the client
+- *Vendor prefixing*; [grunt-autoprefixer](https://github.com/nDmitry/grunt-autoprefixer) does this for you
+- *Graphics optimalization*; [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) takes care of it
+- *Graphics inlining*; [grunt-image-embed](https://github.com/ehynds/grunt-image-embed) helps us speed up the paywall by putting graphics files into the CSS as base64-encoded data URI strings, thus reducing the number of requests made to the server
+- *Optimizing @media queries*; Write them in-context (nested), and have [grunt-combine-media-queries](https://github.com/buildingblocks/grunt-combine-media-queries) combine matching blocks to reduce the load on the client
