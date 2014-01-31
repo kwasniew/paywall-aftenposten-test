@@ -59,8 +59,34 @@ define('paywall', ['main'], function(app)
         }
     }
 
+    var getNativeContext = function()
+    {
+        var nativeContext = {};
+
+        var search = window.location.search;
+
+        // https://github.com/sindresorhus/query-string
+        if(typeof search === 'string')
+        {
+            search = search.trim().replace(/^\?/, '');
+            if(!search) return {};
+
+            return search.trim().split('&').reduce(function(result, param)
+            {
+                var parts = param.replace(/\+/g, ' ').split('=');
+                // missing `=` should be `null`:
+                // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+                result[parts[0]] = parts[1] === undefined ? null : decodeURIComponent(parts[1]);
+                return result;
+            }, {});
+        }
+
+        return nativeContext;
+    };
+
     $(document).ready(function()
     {
+        window.nativeContext = getNativeContext();
         updatePaywallHeight();
         checkDeviceHeightAndAdjustInputIfNeeded();
     });
@@ -127,19 +153,31 @@ define('paywall', ['main'], function(app)
     // Choose a provider to buy from, ask its purchase alternatives
     $('#paywall-buy').on('click', 'a.in-app-purchase', function(e)
     {
-        var parameters = {
-            provider: 'spid',//$(this).data('provider'),
-            successEventName: 'getPurchaseInfoSuccess',
-            errorEventName: 'getPurchaseInfoError'
-        };
+        var provider = 'spid'; //$(this).data('provider');
+        var successEventName = 'getPurchaseInfoSuccess';
 
-        app.bridge.trigger('getPurchaseInfo', parameters);
+        if(false) // If cache this and that
+        {
+            app.event.trigger(successEventName, cached);
+        }
+        else
+        {
+            var parameters = {
+                provider: provider,
+                successEventName: successEventName,
+                errorEventName: 'getPurchaseInfoError'
+            };
+
+            app.bridge.trigger('getPurchaseInfo', parameters);
+        }
+
         e.preventDefault();
     });
 
     // Populate the view with purchase alternatives
     app.event.on('getPurchaseInfoSuccess', function(data)
     {
+        // Cache somehow
         console.log('getPurchaseInfoSuccess', data);
         if('products' in data && data.products.length)
         {
@@ -150,7 +188,7 @@ define('paywall', ['main'], function(app)
                 $buttons.append($button);
             });
 
-            $('#paywall-products .purchase-options').append($buttons.html());
+            $('#paywall-products .purchase-options').html($buttons.html());
         }
     });
 
