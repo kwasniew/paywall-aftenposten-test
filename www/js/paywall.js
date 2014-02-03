@@ -142,61 +142,37 @@ define('paywall', ['main'], function(app)
     });
 
 
-
-
-
-
-
-
-
-
     // Choose a provider to buy from, ask its purchase alternatives
-    $('#paywall-buy').on('click', 'a.in-app-purchase', function(e)
+    $('#paywall-buy').on('click', 'button.in-app-purchase', function(e)
     {
-        var provider = 'spid'; //$(this).data('provider');
-        var successEventName = 'getPurchaseInfoSuccess';
-
-        if(false) // If cache this and that
+        console.log('click itunes button');
+        app.bridge.trigger('getPurchaseInfo',
         {
-            app.event.trigger(successEventName, cached);
-        }
-        else
-        {
-            var parameters = {
-                provider: provider,
-                successEventName: successEventName,
-                errorEventName: 'getPurchaseInfoError'
-            };
+            provider: $(this).data('provider'),
+            doneEvent: app.callbackHelper.create(function(data)
+            {
+                console.log('getPurchaseInfoSuccess', data);
+                if('products' in data && data.products.length)
+                {
+                    var $buttons = $('<div class="purchase-options"></div>');
+                    $.each(data.products, function(i, product)
+                    {
+                        var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '" class="button blue-button no-mobile">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.priceFormattedLocale + '</span>');
+                        $buttons.append($button);
+                    });
 
-            app.bridge.trigger('getPurchaseInfo', parameters);
-        }
+                    $('#paywall-products .purchase-options').html($buttons.html());
+                }
+            }),
+            failEvent: app.callbackHelper.create(function(data)
+            {
+                console.log('getPurchaseInfoError', data);
+            })
+        });
 
         e.preventDefault();
     });
 
-    // Populate the view with purchase alternatives
-    app.event.on('getPurchaseInfoSuccess', function(data)
-    {
-        // Cache somehow
-        console.log('getPurchaseInfoSuccess', data);
-        if('products' in data && data.products.length)
-        {
-            var $buttons = $('<div class="purchase-options"></div>');
-            $.each(data.products, function(i, product)
-            {
-                var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.localeFormattedPrice + '</span>');
-                $buttons.append($button);
-            });
-
-            $('#paywall-products .purchase-options').html($buttons.html());
-        }
-    });
-
-    // Something went wrong
-    app.event.on('getPurchaseInfoError', function(data)
-    {
-        console.log('getPurchaseInfoError', data);
-    });
 
     // Choose one of the provider’s purchase alternatives
     $('#paywall-products').on('click', '.purchase-options button', function()
@@ -207,31 +183,19 @@ define('paywall', ['main'], function(app)
 
         app.bridge.trigger('purchase',
         {
-            provider: provider,
+            provider: $(this).data('provider'),
             productIdentifier: productIdentifier,
-            successEventName: 'purchaseSuccess',
-            errorEventName: 'purchaseError'
+            doneEvent: app.callbackHelper.create(function()
+            {
+                // Display purchase success message
+                // Log out..?
+            }),
+            failEvent: app.callbackHelper.create(function(data)
+            {
+                console.log('purchase failed', data);
+            })
         });
     });
-
-    // Display purchase success message
-    app.event.on('purchaseSuccess', function()
-    {
-        // Log out..?
-    });
-
-    // Display purchase failure message
-    app.event.on('purchaseError', function(data)
-    {
-        console.log('purchase failed', data);
-    });
-
-
-
-
-
-
-
 
 
 

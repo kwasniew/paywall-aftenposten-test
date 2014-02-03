@@ -93,30 +93,6 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
         });
     };
 
-    app.bridge.trigger('getPurchaseInfo', {
-        provider: 'spid',
-        doneEvent: app.callbackHelper.create(function(args) {
-            console.log('getPurchaseInfo Callback - success');
-            console.log(args);
-        }),
-        failEvent: app.callbackHelper.create(function(args) {
-            console.log('getPurchaseInfo Callback - failure');
-            console.log(args);
-        })
-    });
-
-    app.bridge.trigger('getUserInfo', {
-        provider: 'spid',
-        doneEvent: app.callbackHelper.create(function(args) {
-            console.log('getUserInfo Callback - success');
-            console.log(args);
-        }),
-        failEvent: app.callbackHelper.create(function(args) {
-            console.log('getUserInfo Callback - failure');
-            console.log(args);
-        })
-    });
-
     Alf.hub.on('fullscreenWillAppear', function()
     {
         app.bridge.trigger('displayState', { 'event': 'fullscreenWillAppear' });
