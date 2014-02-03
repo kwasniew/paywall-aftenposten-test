@@ -69,8 +69,8 @@ body {
         width: 47px;
         height: 47px;
         right: 20px;
-        background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat center -42px;
-        background-size: 47px;
+        background: url(/gfx/paywall-sprite@2x.png) no-repeat center -42px;
+        background-size: 47px 90px;
     }
 
     .colored-border {
@@ -79,7 +79,7 @@ body {
         top: 0;
         left: 0;
         right: 0;
-        background: url(/gfx/paywall/colored_border.jpg) no-repeat left center;
+        background: url(/gfx/colored_border.jpg) no-repeat left center;
     }
 
     h1 {
@@ -181,13 +181,12 @@ body {
 
         &.more-info-trigger {
             line-height: 30px;
-            position: absolute;
+            position: fixed;
             right: 20px;
             top: 20px;
             z-index: 9999;
 
             @media #{$screen-mobile-big} {
-                display: none;
                 bottom: 10px;
                 right: 10px;
                 top: auto;
@@ -203,8 +202,8 @@ body {
             padding: 0;
             margin: 0 20px -5px 3px !important;
             position: relative;
-            background: 0 0 url(/gfx/paywall/paywall-sprite@2x.png) no-repeat;
-            background-size: 53px;
+            background: 0 0 url(/gfx/paywall-sprite@2x.png) no-repeat;
+            background-size: 47px 90px;
         }
 
         &.icon {
@@ -217,13 +216,13 @@ body {
                 height: 21px;
                 position: absolute;
                 left: 8px;
-                background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat left -19px;
+                background: url(/gfx/paywall-sprite@2x.png) no-repeat left -19px;
                 background-size: 47px;
             }
 
             &.paywall-logout:before {
-                background: -25px -19px url(/gfx/paywall/paywall-sprite@2x.png) no-repeat;
-                background-size: 47px;
+                background: -25px -19px url(/gfx/paywall-sprite@2x.png) no-repeat;
+                background-size: 47px 90px;
             }
         }
     }
@@ -237,12 +236,13 @@ body {
     .blue { color: $color-blue !important; }
 
     .go-back-button {
-        position: absolute;
-        top: 50%;
-        left: 20px;
-        margin-top: -20px;
-        font-size: 22px;
-        line-height: 24px;
+    	&.round-button {
+	        position: fixed;
+	        top: 50%;
+	        left: 20px;
+	        margin-top: -20px;
+	        font-size: 22px;
+	    }
     }
 
     .paywallHeader {
@@ -329,6 +329,7 @@ body {
                 margin: 0;
                 float: right;
                 height: 37px;
+				color: #fff;
             }
         }
     }
@@ -382,7 +383,7 @@ body {
         top: 50%;
         left: 25%;
         opacity: 0;
-        @include transition((left, opacity));
+        @include transition((left, opacity), $performance: false);
         pointer-events: none;
 
         &.open {
@@ -392,7 +393,6 @@ body {
         }
 
         header { @include transition(padding-top); }
-        a.more-info-trigger { display: none; }
 
         @media #{$screen-mobile-big} { padding-bottom: 15px; }
     }
@@ -419,7 +419,7 @@ body {
         &:before {
             content: "";
             width: 20px;
-            height: 16px;
+            height: 20px;
             position: absolute;
             top: 50%;
             left: 10px;
@@ -434,16 +434,14 @@ body {
     }
 
     .input_username:before {
-        background: url(/gfx/paywall/paywall-sprite@2x.png) no-repeat -0px -22px;
-        background-size: 47px;
+        background: url(/gfx/paywall-sprite@2x.png) no-repeat -0px -22px;
+        background-size: 47px 90px;
     }
 
     .input_password {
         &:before {
-            content: "•••";
-            line-height: 18px;
-            font-weight: 400;
-            font-size: 14px;
+	        background: url(/gfx/paywall-sprite@2x.png) no-repeat -25px -22px;
+	        background-size: 47px 90px;
         }
 
         @media #{$screen-mobile-big} {
@@ -473,11 +471,16 @@ body {
 
     @media #{$screen-mobile-small} {
         .button-bottom.round-button {
-            top: auto;
             bottom: 10px;
-            left: 10px;
-            float: none;
+            top: auto;
+            left: 25%;
+            opacity: 0;
+			@include transition((left, opacity), $performance: false, $delay: 0.1s);
             margin-top: 0;
+        }
+        .open .button-bottom.round-button {
+			left: 10px;
+			opacity: 1;
         }
 
         .focus {
@@ -489,7 +492,6 @@ body {
 
 .light {
     #paywall {
-        border-color: #fafafa;
         .round-button { color: #333; }
         nav { border: none; }
 

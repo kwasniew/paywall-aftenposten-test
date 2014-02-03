@@ -21,13 +21,14 @@
     cursor: pointer;
 }
 
-@mixin transition($properties: all, $duration: .3s, $easing: ease-out, $performance: 'true') {
+@mixin transition($properties: all, $duration: .3s, $easing: ease-out, $delay: 0, $performance: 'true') {
     @if length($properties) > 1 {
         transition-property: $properties;
         transition-duration: $duration;
         transition-timing-function: $easing;
+        transition-delay: $delay;
     } @else {
-        transition: $properties $duration $easing;
+        transition: $properties $duration $easing $delay;
     }
 
     @if $performance == 'true' {
