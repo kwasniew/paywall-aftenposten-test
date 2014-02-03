@@ -1,6 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 }
 
 body.android {
@@ -142,6 +144,22 @@ body.android.light {
 	user-select: text;
 }
 
+#paywall button {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0 5px;
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+#paywall button:focus {
+	outline-width: 0;
+}
+
 #paywall .button {
 	background: transparent;
 	padding: 8px 20px;
@@ -158,9 +176,14 @@ body.android.light {
 }
 
 #paywall .button.blue-button {
-	border: 1px solid #2bb4ed;
+	border: 1px solid transparent;
 	background: #2bb4ed;
 	color: white !important;
+}
+
+#paywall .button:active {
+	border: 1px solid #1081b1;
+	background: #1081b1;
 }
 
 #paywall .button * {
@@ -172,12 +195,6 @@ body.android.light {
 	text-decoration: none;
 	font-weight: 600;
 	font-style: normal;
-}
-
-#paywall a:active .button,
-#paywall a.button:active {
-	border: 1px solid #1081b1;
-	background: #1081b1;
 }
 
 #paywall a.round-button {
@@ -261,7 +278,7 @@ body.android.light {
 #paywall .paywallHeader {
 	padding: 0 20px;
 	width: 70%;
-	margin: 10px auto;
+	margin: 10px auto 0;
 	zoom: 1;
 }
 
@@ -277,7 +294,6 @@ body.android.light {
 
 #paywall #paywall-buy .paywallHeader:first-child {
 	width: 80%;
-	margin: 10px auto;
 }
 
 #paywall input {
@@ -446,10 +462,6 @@ body.android.light {
 #paywall #paywall-products .paywall-buy-product {
 	display: inline-block;
 	margin: auto 5px;
-}
-
-#paywall .purchase-options {
-	height: 36px;
 }
 
 #paywall .input {

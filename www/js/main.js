@@ -1,5 +1,6 @@
-define('main', ['alf'], function (Alf) {
-    "use strict";
+define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
+{
+    'use strict';
     var $ = Alf.dom;
 
     var app = {
@@ -8,6 +9,8 @@ define('main', ['alf'], function (Alf) {
             this.event = null;
             this.bridge = null;
             this.initBridge();
+
+            this.callbackHelper = new CallbackHelper({ namespace: 'app.callbackHelper'});
         },
 
         getURLParameter: function(name, fallbackValue) {
@@ -78,7 +81,6 @@ define('main', ['alf'], function (Alf) {
 
             this.bridge.initialize();
         }
-
     };
 
     app.initialize();
@@ -91,32 +93,62 @@ define('main', ['alf'], function (Alf) {
         });
     };
 
-
-    Alf.hub.on('fullscreenWillAppear', function () {
-        app.bridge.trigger('displayState', {"event":'fullscreenWillAppear'});
-    }, this);
-
-    Alf.hub.on('fullscreenWillDisappear', function () {
-        app.bridge.trigger('displayState', {"event":'fullscreenWillDisappear'});
-    }, this);
-
-    Alf.hub.on('fullscreenDidAppear', function() {
-        app.bridge.trigger('displayState', {"event":'fullscreenDidAppear'});
+    app.bridge.trigger('getPurchaseInfo', {
+        provider: 'spid',
+        doneEvent: app.callbackHelper.create(function(args) {
+            console.log('getPurchaseInfo Callback - success');
+            console.log(args);
+        }),
+        failEvent: app.callbackHelper.create(function(args) {
+            console.log('getPurchaseInfo Callback - failure');
+            console.log(args);
+        })
     });
 
-    Alf.hub.on('fullscreenDidDisappear', function() {
-        app.bridge.trigger('displayState', {"event":'fullscreenDidDisappear'});
+    app.bridge.trigger('getUserInfo', {
+        provider: 'spid',
+        doneEvent: app.callbackHelper.create(function(args) {
+            console.log('getUserInfo Callback - success');
+            console.log(args);
+        }),
+        failEvent: app.callbackHelper.create(function(args) {
+            console.log('getUserInfo Callback - failure');
+            console.log(args);
+        })
     });
 
-    app.event.on('clientInfo', function (info) {
+    Alf.hub.on('fullscreenWillAppear', function()
+    {
+        app.bridge.trigger('displayState', { 'event': 'fullscreenWillAppear' });
+    }, this);
+
+    Alf.hub.on('fullscreenWillDisappear', function()
+    {
+        app.bridge.trigger('displayState', { 'event': 'fullscreenWillDisappear' });
+    }, this);
+
+    Alf.hub.on('fullscreenDidAppear', function()
+    {
+        app.bridge.trigger('displayState', { 'event': 'fullscreenDidAppear' });
+    });
+
+    Alf.hub.on('fullscreenDidDisappear', function()
+    {
+        app.bridge.trigger('displayState', { 'event': 'fullscreenDidDisappear' });
+    });
+
+    app.event.on('clientInfo', function(info)
+    {
         app.logToAll('Got clientInfo:');
     });
 
-    app.event.on('networkReachability', function (state) {
+    app.event.on('networkReachability', function(state)
+    {
         app.logToAll('Got networkReachability:');
     });
 
-    app.event.on('applicationState', function(state) {
+    app.event.on('applicationState', function(state)
+    {
         app.logToAll('Got applicationState: ' + state);
     });
 
@@ -125,5 +157,4 @@ define('main', ['alf'], function (Alf) {
     });
 
     return app;
-
 });

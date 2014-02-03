@@ -114,10 +114,12 @@
         <script type="text/javascript" src="vendor/aptoma/alf/alf.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/paywall.js"></script>
+        <script type="text/javascript" src="js/callback-helper.js"></script>
         <script type="text/javascript">
-            require(['main', 'paywall'], function(app, paywall){
-              "use strict";
-              //runs main(app) just by referencing it
+            require(['main', 'paywall'], function(app, paywall)
+            {
+                'use strict';
+                //runs main(app) just by referencing it
             });
 
             //allow :active styles to work in your CSS on a page in Mobile Safari
