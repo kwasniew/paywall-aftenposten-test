@@ -164,8 +164,8 @@ define('main', ['alf'], function (Alf) {
 				setTimeout(function() { that._cleanUpExpiredCallbacks }, timeOut);
 
 				return { 
-					functionPath: this.nameSpace + ".trigger",
-					eventName: identifier,
+					"function": this.nameSpace + ".trigger",
+					"event": identifier,
 				};
 			};
 
@@ -201,11 +201,11 @@ define('main', ['alf'], function (Alf) {
 
 	app.bridge.trigger('getPurchaseInfo', {
 		provider: "spid", 
-		successEvent: app.callbackHelper.create(function(args) {
+		doneEvent: app.callbackHelper.create(function(args) {
 			console.log("getPurchaseInfo Callback - success");
 			console.log(args);
 		}), 
-		errorEvent: app.callbackHelper.create(function(args) {
+		failEvent: app.callbackHelper.create(function(args) {
 			console.log("getPurchaseInfo Callback - fail");
 			console.log(args);
 		})
@@ -213,11 +213,11 @@ define('main', ['alf'], function (Alf) {
 
 	app.bridge.trigger('getUserInfo', {
 		provider: "spid", 
-		successEvent: app.callbackHelper.create(function(args) {
+		doneEvent: app.callbackHelper.create(function(args) {
 			console.log("getUserInfo Callback - success");
 			console.log(args);
 		}), 
-		errorEvent: app.callbackHelper.create(function(args) {
+		failEvent: app.callbackHelper.create(function(args) {
 			console.log("getUserInfo Callback - fail");
 			console.log(args);
 		})
