@@ -1,0 +1,14 @@
+{
+  "name": "ivy-paywall",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-sass": "~0.7.x",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-autoprefixer": "~0.4.0",
+    "grunt-image-embed": "~0.3.1",
+    "css-parse": "~1.5.3",
+    "grunt-combine-media-queries": "~1.0.8",
+    "grunt-contrib-imagemin": "~0.4.0"
+  }
+}
