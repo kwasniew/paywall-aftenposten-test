@@ -145,20 +145,27 @@ define('paywall', ['main'], function(app)
     // Choose a provider to buy from, ask its purchase alternatives
     $('#paywall-buy').on('click', 'button.in-app-purchase', function(e)
     {
-        console.log('click itunes button');
+        var $button = $(this);
+
         app.bridge.trigger('getPurchaseInfo',
         {
-            provider: $(this).data('provider'),
+            provider: $button.data('provider'),
             doneEvent: app.callbackHelper.create(function(data)
             {
-                console.log('getPurchaseInfoSuccess', data);
                 if('products' in data && data.products.length)
                 {
                     var $buttons = $('<div class="purchase-options"></div>');
                     $.each(data.products, function(i, product)
                     {
-                        var $button = $('<button type="button" data-identifier="' + product.productIdentifier + '" class="button blue-button no-mobile">Kjøp <span class="title">' + product.title + '</span> for <span class="price">' + product.priceFormattedLocale + '</span>');
-                        $buttons.append($button);
+                        var $productbutton = $(
+                        [
+                            '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + $button.data('provider') + '" class="button blue-button no-mobile">',
+                                'Kjøp <span class="title">' + product.title + '</span> ',
+                                'for <span class="price">' + product.priceFormattedLocale + '</span>',
+                            '</button>'
+                        ].join(''));
+
+                        $buttons.append($productbutton);
                     });
 
                     $('#paywall-products .purchase-options').html($buttons.html());
@@ -178,13 +185,11 @@ define('paywall', ['main'], function(app)
     $('#paywall-products').on('click', '.purchase-options button', function()
     {
         var $button = $(this);
-        var provider = $button.closest('.purchase-options').data('provider');
-        var productIdentifier = $button.data('identifier');
 
         app.bridge.trigger('purchase',
         {
-            provider: $(this).data('provider'),
-            productIdentifier: productIdentifier,
+            provider: $button.data('provider'),
+            productIdentifier: $button.data('product-identifier'),
             doneEvent: app.callbackHelper.create(function()
             {
                 // Display purchase success message
