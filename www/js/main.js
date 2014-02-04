@@ -13,26 +13,29 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
             this.callbackHelper = new CallbackHelper({ namespace: 'app.callbackHelper'});
         },
 
-        getURLParameter: function(name, fallbackValue) {
+        getURLParameter: function(name, fallbackValue)
+        {
             return decodeURI(
                 (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,fallbackValue])[1]
-                );
+            );
         },
 
-        logToApp: function(data) {
+        logToApp: function(data)
+        {
             this.bridge.trigger('log', {
                 "message": data,
                 "level": 1
             });
         },
 
-        logToConsole: function(data) {
-            if (typeof console == "object") {
+        logToConsole: function(data)
+        {
+            if(typeof console === 'object')
                 console.log(data);
-            }
         },
 
-        logToAll: function(data) {
+        logToAll: function(data)
+        {
             this.logToConsole(data);
             this.logToApp(data);
         },
@@ -85,7 +88,8 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
 
     app.initialize();
     window.app = app;
-    window.onerror = function(message, url, linenumber) {
+    window.onerror = function(message, url, linenumber)
+    {
         var error = url + ':' + linenumber + ' - ' + message;
         app.logToConsole(error);
         app.bridge.trigger('error', {

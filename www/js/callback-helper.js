@@ -4,10 +4,10 @@ define('callback-helper', function()
 
     var CallbackHelper = function(args)
     {
-        this._initialize(args);
+        this.init(args);
     };
 
-    CallbackHelper.prototype._initialize = function(args)
+    CallbackHelper.prototype.init = function(args)
     {
         this.args = args;
         this.namespace = args.namespace;
@@ -15,54 +15,55 @@ define('callback-helper', function()
         this.register = {};
     };
 
-    CallbackHelper.prototype._currentUnixTimeStampInSeconds = function()
+    CallbackHelper.prototype._currentUnixTimestampInSeconds = function()
     {
-        return Math.round(+new Date()/1000);
+        return parseInt(+new Date() / 1000, 10);
     };
 
     CallbackHelper.prototype._createUniqueCallbackIdentifier = function()
     {
-        this.uniqueCallbackIndex++;
-        return 'tmp'+'_'+this.uniqueCallbackIndex;
+        return 'callback_' + ++this.uniqueCallbackIndex;
     };
 
-    CallbackHelper.prototype._addEntry = function(identifier, callback, timeOut)
+    CallbackHelper.prototype._addEntry = function(identifier, callback, timeout)
     {
-        var now = this._currentUnixTimeStampInSeconds();
-        var entry = {
-            expireDate: now + timeOut,
+        var now = this._currentUnixTimestampInSeconds();
+
+        this.register[identifier] = {
+            expireDate: now + timeout,
             callback: callback,
             identifier: identifier
         };
-        this.register[identifier] = entry;
     };
 
     CallbackHelper.prototype._removeEntry = function(entry)
     {
-        var identifier = entry.identifier;
-        delete this.register[identifier];
+        delete this.register[entry.identifier];
     };
 
     CallbackHelper.prototype._removeEntries = function(entriesToRemove)
     {
-        for(var index in entriesToRemove) {
-            var entry = entriesToRemove[index];
-            this._removeEntry(entry);
+        for(var index in entriesToRemove)
+        {
+            this._removeEntry(entriesToRemove[index]);
         }
     };
 
-    CallbackHelper.prototype._cleanUpExpiredCallbacks = function()
+    CallbackHelper.prototype._cleanupExpiredCallbacks = function()
     {
-        var now = this._currentUnixTimeStampInSeconds();
+        var now = this._currentUnixTimestampInSeconds();
+
         var entriesToRemove = [];
-        for(var identifier in this.register) {
-            if (this.register.hasOwnProperty(identifier)) {
+        for(var identifier in this.register)
+        {
+            if(this.register.hasOwnProperty(identifier))
+            {
                 var entry = this.register[identifier];
-                if(now >= entry.expireDate) {
+                if(now >= entry.expireDate)
                     entriesToRemove.push(entry);
-                }
             }
         }
+
         this._removeEntries(entriesToRemove);
     };
 
@@ -71,18 +72,22 @@ define('callback-helper', function()
      *
      * @return {string} Identifier of callback
      */
-    CallbackHelper.prototype.create = function(callback, timeOut)
+    CallbackHelper.prototype.create = function(callback, timeout)
     {
-        var defaultTimeOut = 60;
-        var timeOut = timeOut > 0 ? timeOut : defaultTimeOut;
+        var defaultTimeout = 60;
+        var timeout = timeout > 0 ? timeout : defaultTimeout;
         var identifier = this._createUniqueCallbackIdentifier();
-        this._addEntry(identifier, callback, timeOut);
-        var that = this;
-        setTimeout(function() { that._cleanUpExpiredCallbacks }, timeOut);
+        this._addEntry(identifier, callback, timeout);
+
+        var self = this;
+        window.setTimeout(function()
+        {
+            self._cleanupExpiredCallbacks.call(self);
+        }, timeout);
 
         return {
-            "function": this.namespace + ".trigger",
-            "event": identifier,
+            'function': this.namespace + '.trigger',
+            'event': identifier,
         };
     };
 
@@ -94,11 +99,12 @@ define('callback-helper', function()
     CallbackHelper.prototype.trigger = function(identifier, args)
     {
         var entry = this.register[identifier];
-        if(entry) {
-            entry.callback.apply(this, [].slice.call(arguments,1));
+        if(entry)
+        {
+            entry.callback.apply(this, [].slice.call(arguments, 1));
             this._removeEntry(entry);
         }
-        this._cleanUpExpiredCallbacks();
+        this._cleanupExpiredCallbacks();
     };
 
     return CallbackHelper;

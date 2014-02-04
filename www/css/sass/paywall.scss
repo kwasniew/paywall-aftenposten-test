@@ -256,7 +256,7 @@ body {
 	    }
     }
 
-    .paywallHeader {
+    header {
         padding: 0 20px;
         width: 70%;
         margin: 10px auto 0;
@@ -269,7 +269,7 @@ body {
         }
     }
 
-    #paywall-buy .paywallHeader:first-child {
+    #paywall-buy header:first-child {
         width: 80%;
 
         @media #{$screen-mobile-big} {

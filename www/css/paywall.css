@@ -275,24 +275,24 @@ body.android.light {
 	font-size: 22px;
 }
 
-#paywall .paywallHeader {
+#paywall header {
 	padding: 0 20px;
 	width: 70%;
 	margin: 10px auto 0;
 	zoom: 1;
 }
 
-#paywall .paywallHeader:before,
-#paywall .paywallHeader:after {
+#paywall header:before,
+#paywall header:after {
 	content: "";
 	display: table;
 }
 
-#paywall .paywallHeader:after {
+#paywall header:after {
 	clear: both;
 }
 
-#paywall #paywall-buy .paywallHeader:first-child {
+#paywall #paywall-buy header:first-child {
 	width: 80%;
 }
 
@@ -580,7 +580,7 @@ body.android.light {
 	display: block;
 }
 
-#paywall .paywallHeader {
+#paywall header {
 	width: 100%;
 	margin: auto;
 	-webkit-box-sizing: border-box;
@@ -588,7 +588,7 @@ body.android.light {
 	box-sizing: border-box;
 }
 
-#paywall #paywall-buy .paywallHeader:first-child {
+#paywall #paywall-buy header:first-child {
 	width: 100%;
 	margin: 0 auto;
 }
