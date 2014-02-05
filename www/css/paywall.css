@@ -650,6 +650,11 @@ body.android.light {
 	width: 90%;
 }
 
+#paywall .purchase-options {
+	height: 72px;
+	outline: 1px solid #dddddd;
+}
+
 #paywall .input {
 	width: 100%;
 	margin: 0 0 2px;

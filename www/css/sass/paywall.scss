@@ -419,7 +419,14 @@ body {
         }
     }
 
-    .purchase-options { height: 36px; }
+    .purchase-options {
+        height: 36px;
+
+        @media #{$screen-mobile-big} {
+            height: 72px;
+            outline: 1px solid #ddd;
+        }
+    }
 
     .input {
         display: inline-block;
