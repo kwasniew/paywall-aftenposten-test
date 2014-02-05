@@ -43,7 +43,7 @@
                                 <div class="input_password input"><input type="password" name="password" placeholder="SPiD-passord" value="paywall12" autocomplete="off"></div>
                                 <input type="submit" value=" › ">
                             </form>
-                            <footer class="paywallFooter">
+                            <footer>
                                 <a href="https://payment.schibsted.no/auth/forgotPassword?redirect=aftenposten.no" class="externalBrowser forgotPassword">Glemt passord?</a>
                                 <a href="#" internal="#paywall-buy" class="paywall-tab-trigger hide-on-focus">Bli abonnent ›</a>
                                 <a href="#" class="restore-purchases hide-on-focus">Gjenopprette iTunes-kjøp</a>
@@ -57,7 +57,7 @@
                                 <div class="input_username input"><input type="text" name="username" value="snd.web2@gmail.com" placeholder="SPiD-brukernavn" autocomplete="off"></div>
                                 <input type="submit" value=" › ">
                             </form>
-                            <footer class="paywallFooter">
+                            <footer>
                                 <a href="https://kundesenter.aftenposten.no/" class="externalBrowser spid-logo"></a>
                                 <a href="#" class="restore-purchases">Gjenopprette iTunes-kjøp</a>
                             </footer>
@@ -68,7 +68,7 @@
                                 <p>Du er logget inn, men brukeren din har ingen abonnement som gir tilgang til dette innholdet. På <a href="https://kundesenter.aftenposten.no/" class="blue externalBrowser">ap.no/produkter</a> finner du en oversikt over tilgjengelige produktpakker og mulighet for utvidelse av ditt abonnement.</p>
                                 <a href="https://kundesenter.aftenposten.no/" class="externalBrowser button blue-button"> <b>Les mer ›</b></a>
                             </header>
-                            <footer class="paywallFooter">
+                            <footer>
                                 <a href="#" class="paywall-logout">Logg ut</a>
                                 <a href="#" internal="#paywall-buy" class="paywall-tab-trigger">Bli abonnent ›</a>
                             </footer>
@@ -82,8 +82,8 @@
                                 </div>
                                 <div class="halfWidth promotingAppStore">
                                     <h2>Kjøp abonnement via iTunes</h2>
-                                    <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto. <a href="#" internal="#paywall-products" class="paywall-tab-trigger blue no-tablet">Kjøp tilgang nå ›</a></p>
-                                    <button type="button" internal="#paywall-products" class="button blue-button paywall-tab-trigger no-mobile in-app-purchase" data-provider="spid">Kjøp tilgang nå</button><!--itunes-->
+                                    <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto. <a href="#" internal="#paywall-products" class="paywall-tab-trigger blue no-tablet in-app-purchase" data-provider="itunes">Kjøp tilgang nå ›</a></p>
+                                    <button type="button" internal="#paywall-products" class="button blue-button paywall-tab-trigger no-mobile in-app-purchase" data-provider="itunes">Kjøp tilgang nå</button>
                                 </div>
                             </header>
                             <a href="#" internal="#paywall-login" id="subscriber-link" class="subscriber-link paywall-tab-trigger go-back-button round-button button-bottom">‹</a>
@@ -93,9 +93,8 @@
                                 <h2>Kjøp abonnement via iTunes</h2>
                                 <p>Du administrerer ditt abonnement via din iTunes-konto.<br />Abonnementet løper til det sies opp.</p>
                             </header>
-                            <div class="purchase-options" data-provider="itunes"></div>
-
-                            <footer class="paywallFooter">
+                            <div class="purchase-options"></div>
+                            <footer>
                                 <a href="#" class="restore-purchases">Gjenopprette iTunes-kjøp</a>
                             </footer>
                             <a href="#" internal="#paywall-buy" class="paywall-tab-trigger go-back-button round-button button-bottom">‹</a>
