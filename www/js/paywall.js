@@ -18,7 +18,6 @@ define('paywall', ['main'], function(app)
         $('body').addClass('android');
 
 
-
     /*
      *      P A Y W A L L
      */
@@ -36,7 +35,9 @@ define('paywall', ['main'], function(app)
             window.nativeContext = this.getNativeContext();
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
+            this.registerCommonEventListeners();
             this.registerPurchaseEventListeners();
+            this.registerUserEventListeners();
         },
 
         updateHeight: function()
@@ -52,13 +53,11 @@ define('paywall', ['main'], function(app)
                 $tab.css('margin-top',  -thisMarginTop);
             });
 
-            $('#paywall-content').css('height', Math.max.apply(Math, arr));
+            var totalHeight = Math.max.apply(Math, arr);
+            $('#paywall-content').css('height', totalHeight);
 
-            // Set paywall height
-            var paywallHeight = $('.paywall-inner').height();
-            app.bridge.trigger('paywallLoaded', {
-                'height': paywallHeight
-            });
+            // Notify native about the paywall’s height
+            app.bridge.trigger('paywallLoaded', { 'height': totalHeight });
         },
 
         adjustLoginInputsIfMobile: function()
@@ -104,6 +103,15 @@ define('paywall', ['main'], function(app)
             return nativeContext;
         },
 
+        addSpinner: function($target)
+        {
+            $target.append('<div class="spinner"></div>');
+        },
+
+        /*
+         *      Purchase related
+         */
+
         purchaseInfoDone: function(data, provider)
         {
             if('products' in data && data.products.length)
@@ -123,15 +131,13 @@ define('paywall', ['main'], function(app)
                     $buttons.append($productbutton);
                 });
 
-                console.log($buttons);
-
                 $target.html($buttons.html());
             }
         },
 
         purchaseInfoFail: function(data)
         {
-            console.log('getPurchaseInfoError', data);
+            console.log('purchaseInfoFail', data);
         },
 
         purchaseDone: function(provider)
@@ -139,6 +145,7 @@ define('paywall', ['main'], function(app)
             app.bridge.trigger('getUserInfo',
             {
                 provider: provider,
+
                 doneEvent: app.callbackHelper.create(),
                 failEvent: app.callbackHelper.create()
             });
@@ -150,14 +157,24 @@ define('paywall', ['main'], function(app)
         purchaseFail: function(data)
         {
             // remove spinner
-            console.log('purchase failed', data);
+            console.log('purchaseFail', data);
         },
 
-        // Choose a provider to buy from, ask its purchase alternatives
+        restorePurchasesDone: function(provider)
+        {
+
+        },
+
+        restorePurchasesFail: function(data)
+        {
+            console.log('restorePurchasesFail', data);
+        },
+
         registerPurchaseEventListeners: function()
         {
             var self = this;
 
+            // Choose a provider to buy from, ask its purchase alternatives
             $('#paywall-buy').on('click', '.in-app-purchase', function(e)
             {
                 var provider = $(this).data('provider');
@@ -165,10 +182,12 @@ define('paywall', ['main'], function(app)
                 app.bridge.trigger('getPurchaseInfo',
                 {
                     provider: provider,
+
                     doneEvent: app.callbackHelper.create(function(data)
                     {
                         self.purchaseInfoDone(data, provider);
                     }),
+
                     failEvent: app.callbackHelper.create(self.purchaseInfoFail)
                 });
 
@@ -187,87 +206,148 @@ define('paywall', ['main'], function(app)
                 app.bridge.trigger('purchase',
                 {
                     provider: provider,
+
                     productIdentifier: productIdentifier,
                     doneEvent: app.callbackHelper.create(function()
                     {
                         self.purchaseDone(provider);
                     }),
+
                     failEvent: app.callbackHelper.create(self.purchaseFail)
                 });
             });
+
+            // Restore purchases
+            $('#paywall-products').on('click', '.restore-purchases', function(e)
+            {
+                var provider = $(this).data('provider');
+
+                app.bridge.trigger('restorePurchases',
+                {
+                    provider: provider,
+
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        self.restorePurchasesDone(provider);
+                    }),
+
+                    failEvent: app.callbackHelper.create(self.restorePurchasesFail)
+                });
+
+                e.preventDefault();
+            });
         },
 
-        addSpinner: function($target)
+        /*
+         *      User related
+         */
+
+        loginDone: function(provider)
         {
-            $target.append('<div class="spinner"></div>');
+            // Re-fetch user info?
+        },
+
+        loginFail: function(data)
+        {
+            console.log('loginFail', data);
+        },
+
+        logoutDone: function()
+        {
+            // Re-fetch user info?
+        },
+
+        logoutFail: function(data)
+        {
+            console.log('logoutFail', data);
+        },
+
+        registerUserEventListeners: function()
+        {
+            var self = this;
+
+            // Register
+            // TBD
+
+            // Log in
+            $('#paywall-login').on('submit', 'form', function(e)
+            {
+                var $form = $(this);
+                var provider = $form.data('provider');
+                var username = $.trim($form.find('input[name="username"]').val());
+                var password = $(this).find('input[name="password"]').val();
+
+                app.bridge.trigger('login',
+                {
+                    provider: provider,
+                    username: username,
+                    password: password,
+
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        self.loginDone(provider);
+                    }),
+
+                    failEvent: app.callbackHelper.create(self.loginFail)
+                });
+
+                e.preventDefault();
+            });
+
+            // Forgot password
+
+
+            // Log out (not sure if this should be constrained to this tab only)
+            $('#paywall-logged-in').on('click', '.paywall-logout', function(doneEvent)
+            {
+                var provider = $(this).data('provider');
+                app.bridge.trigger('logout',
+                {
+                    provider: provider,
+
+                    doneEvent: app.callbackHelper.create(self.logoutDone),
+                    failEvent: app.callbackHelper.create(self.logoutFail)
+                });
+
+                e.preventDefault();
+            });
+        },
+
+        registerCommonEventListeners: function()
+        {
+            var $root = $('#chrome');
+
+            $root.on('click', '.external-browser', function(e)
+            {
+                var url = $(this).attr('href');
+                app.bridge.trigger('externalBrowser', { url: url });
+
+                e.preventDefault();
+            });
+
+            $root.on('click', '.paywall-tab-trigger', function(e)
+            {
+                $('.paywall-tab.open').removeClass('open');
+                $('.paywall-tab-trigger.open').removeClass('open');
+                $($(this).attr('internal')).addClass('open');
+                $(this).addClass('open');
+
+                e.preventDefault();
+            });
+
+            $root.on('click', '.active-tab', function(e)
+            {
+                $($(this).attr('active-tab')).addClass('open');
+
+                e.preventDefault();
+            });
+
+            $root.on('touchmove touchstart', function()
+            {
+                $('.layer-content').removeClass('overflowHidden');
+            });
         }
     };
 
-    $(document).ready(function()
-    {
-        var paywall = new Paywall();
-    });
-
-    $('#chrome').on('touchmove, touchstart', function()
-    {
-        $('.layer-content').removeClass('overflowHidden');
-    });
-
-    $('.restore-purchases').click(function()
-    {
-        app.bridge.trigger('login', { 'provider': 'itunes' });
-        return false;
-    });
-
-    $('.paywall-subscribe').click(function()
-    {
-        app.bridge.trigger('register', { 'provider': null });
-        return false;
-    });
-
-    $('.paywall-logout').click(function()
-    {
-        app.bridge.trigger('logout', { 'provider': 'spid' });
-        return false;
-    });
-
-    $('.externalBrowser').click(function()
-    {
-        app.bridge.trigger('externalBrowser', { 'url': $(this).attr('href') });
-        return false;
-    });
-
-    $('#paywall-login form').bind('submit', function()
-    {
-        app.bridge.trigger('login',
-        {
-            'provider': 'spid',
-            'username': $(this).find('input[name="username"]').val(),
-            'password': $(this).find('input[name="password"]').val()
-        });
-
-        return false;
-    });
-
-    $('.paywall-tab-trigger').click(function()
-    {
-        var $toShow = $($(this).attr('internal'));
-
-        $('.paywall-tab.open').removeClass('open');
-        $('.paywall-tab-trigger.open').removeClass('open');
-        $toShow.addClass('open');
-        $(this).addClass('open');
-
-        return false;
-    });
-
-    $('.active-tab').click(function()
-    {
-        var $activeTab = $($(this).attr('active-tab'));
-        $activeTab.addClass('open');
-
-        return false;
-    });
-
-    return {};
+    return Paywall;
 });

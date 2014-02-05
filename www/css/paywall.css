@@ -1,3 +1,7 @@
+.event-frame {
+	display: none;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -651,8 +655,17 @@ body.android.light {
 }
 
 #paywall .purchase-options {
-	height: 72px;
-	outline: 1px solid #dddddd;
+	height: 60px;
+}
+
+#paywall .purchase-options button.blue-button {
+	height: 30px;
+	padding: 0 20px;
+	line-height: 30px;
+	color: #2bb4ed !important;
+	background: none;
+	border: none !important;
+	text-transform: none;
 }
 
 #paywall .input {

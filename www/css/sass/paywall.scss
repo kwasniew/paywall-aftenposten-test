@@ -1,6 +1,8 @@
 @import 'base/variables';
 @import 'base/mixins';
 
+.event-frame { display: none; }
+
 body {
     margin: 0;
     padding: 0;
@@ -423,8 +425,17 @@ body {
         height: 36px;
 
         @media #{$screen-mobile-big} {
-            height: 72px;
-            outline: 1px solid #ddd;
+            height: 60px;
+
+            button.blue-button {
+                height: 30px;
+                padding: 0 20px;
+                line-height: 30px;
+                color: $color-blue !important;
+                background: none;
+                border: none !important;
+                text-transform: none;
+            }
         }
     }
 
