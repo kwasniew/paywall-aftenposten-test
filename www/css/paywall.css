@@ -160,6 +160,7 @@ body.android.light {
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
+	border: none;
 }
 
 #paywall button:focus {
@@ -173,8 +174,6 @@ body.android.light {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
 	font-size: 13px;
-	border: 1px solid #2bb4ed;
-	border: 1px solid rgba(255, 255, 255, 0.2);
 	text-transform: uppercase;
 	font-style: normal;
 	border-radius: 4px;
@@ -182,18 +181,21 @@ body.android.light {
 }
 
 #paywall .button.blue-button {
-	border: 1px solid transparent;
 	background: #2bb4ed;
 	color: white !important;
 }
 
 #paywall .button:active {
-	border: 1px solid #1081b1;
 	background: #1081b1;
 }
 
 #paywall .button * {
 	text-shadow: none !important;
+}
+
+#paywall #purchase .button {
+	display: block;
+	margin: 10px auto 0;
 }
 
 #paywall a {
@@ -516,10 +518,6 @@ body.android.light {
 	border: none;
 }
 
-.light #paywall .button {
-	border-color: #2bb4ed;
-}
-
 .light #paywall .button.blue-button:active {
 	color: white !important;
 }
@@ -533,7 +531,6 @@ body.android.light {
 .light #paywall input[type="text"]:focus,
 .light #paywall input[type="password"]:focus {
 	color: #2bb4ed;
-	border-color: transparent;
 	border-bottom-color: #2bb4ed;
 }
 
@@ -574,6 +571,19 @@ body.android.light {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+#paywall #purchase .button {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	background: none;
+	color: #2bb4ed !important;
+	text-transform: inherit;
+}
+
+#paywall #purchase .button:after {
+	content: ' ›';
 }
 
 #paywall a.more-info-trigger {
