@@ -121,7 +121,7 @@ define('paywall', ['main'], function(app)
         {
             var supportedMethods = ['html', 'append', 'prepend'];
 
-            if(!method || supportedMethods.indexOf(method) === -1)
+            if(supportedMethods.indexOf(method) === -1)
                 method = 'html'
 
             $target[method]('<div class="spinner"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>');
@@ -345,7 +345,7 @@ define('paywall', ['main'], function(app)
                     failEvent: app.callbackHelper.create(function()
                     {
                         always();
-                        self.purchaseFail();
+                        self.purchaseFail.apply(self, arguments);
                     })
                 });
             });
@@ -353,7 +353,6 @@ define('paywall', ['main'], function(app)
             // Restore purchases
             this.$chrome.on('click', '.restore-purchases', function(e)
             {
-                console.log('restore!');
                 var provider = $(this).data('provider');
 
                 app.bridge.trigger('restorePurchases',
