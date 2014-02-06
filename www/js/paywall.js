@@ -118,7 +118,7 @@ define('paywall', ['main'], function(app)
 
         addSpinner: function($target)
         {
-            $target.append('<div class="spinner"></div>');
+            $target.append('<div class="spinner"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>');
         },
 
         /*

@@ -1,3 +1,4 @@
+@import 'base/animations';
 @import 'base/variables';
 @import 'base/mixins';
 
@@ -53,18 +54,44 @@ body {
         -webkit-tap-highlight-color: transparent;
         text-shadow: 0px 1px 0px rgba(255,255,255,1)
     }
+    
+	$particles: 12;
+	$radius: 10;
+	$lapDuration: 1s;
+	
+	.spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 2;
 
-    .spinner {
-        $size: 32px;
+		i {
+			display: block;
+			position: absolute;
+			width: 7px;
+			height: 2px;
+			background: #000;
+			opacity: 0.2;
+			border-radius: 4px;
+			animation-name: spin;
+			animation-duration: $lapDuration;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease;
+		}
+	}
+	
+	@for $i from 1 through $particles {
+		i:nth-child(#{$i}) {
+		$angle: $i / $particles * 360;
+		
+		transform:
+			rotate( #{$angle}deg )
+			translateX( #{$radius}px );
+			
+			animation-delay: $i * ($lapDuration / $particles);
+		}
+	}
 
-        width: $size;
-        height: $size;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -($size / 2) 0 0 -($size / 2);
-        background: red;
-    }
 
     .inner {
         color: #fff;
