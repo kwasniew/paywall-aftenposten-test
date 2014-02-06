@@ -33,6 +33,7 @@ define('paywall', ['main'], function(app)
         $chrome: $('#chrome'),
 
         tab: {
+            $all: $('.tab'),
             $login: $('#login'),
             $forgotPassword: $('#forgot-password'),
             $loggedIn: $('#logged-in'),
@@ -54,7 +55,7 @@ define('paywall', ['main'], function(app)
         {
             // Find the highest tab
             var tabHeights = [];
-            $('.tab').each(function()
+            this.tab.$all.each(function()
             {
                 var $tab = $(this);
 
@@ -335,8 +336,9 @@ define('paywall', ['main'], function(app)
             });
 
             // Restore purchases
-            this.tab.$products.on('click', '.restore-purchases', function(e)
+            this.$chrome.on('click', '.restore-purchases', function(e)
             {
+                console.log('restore!');
                 var provider = $(this).data('provider');
 
                 app.bridge.trigger('restorePurchases',
