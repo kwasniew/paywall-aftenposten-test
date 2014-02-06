@@ -237,7 +237,7 @@ body {
                 background-size: 47px;
             }
 
-            &.paywall-logout:before {
+            &.logout:before {
                 background: -25px -19px url(/gfx/paywall-sprite@2x.png) no-repeat;
                 background-size: 47px 90px;
             }
@@ -275,7 +275,7 @@ body {
         }
     }
 
-    #paywall-buy header:first-child {
+    #purchase header:first-child {
         width: 80%;
 
         @media #{$screen-mobile-big} {
@@ -390,7 +390,7 @@ body {
         }
     }
 
-    #paywall-content { position: relative; }
+    #content { position: relative; }
 
     .tab {
         width: 100%;
@@ -415,7 +415,7 @@ body {
 
     .tab-trigger { cursor: pointer; }
 
-    #paywall-products .paywall-buy-product {
+    #products .buy-product {
         display: inline-block;
         margin: auto 5px;
 
@@ -490,8 +490,8 @@ body {
     }
 
     @media #{$screen-mobile-big} {
-        .paywall-buy-product .button { width: 80%; }
-        .paywall-buy-product .button:active { width: 80%; }
+        .buy-product .button { width: 80%; }
+        .buy-product .button:active { width: 80%; }
 
         form {
             margin: 5px auto;
@@ -556,6 +556,6 @@ body {
         margin: auto;
     }
 
-    a.paywall-restore,
+    a.restore-purchases,
     .promotingAppStore { display: none !important; }
 }

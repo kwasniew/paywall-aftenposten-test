@@ -215,7 +215,7 @@ define('paywall', ['main'], function(app)
 
 
             // Log out (not sure if this should be constrained to this tab only)
-            this.tab.$loggedIn.on('click', '.paywall-logout', function(doneEvent)
+            this.tab.$loggedIn.on('click', '.logout', function(doneEvent)
             {
                 var provider = $(this).data('provider');
                 app.bridge.trigger('logout',
