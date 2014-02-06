@@ -117,9 +117,19 @@ define('paywall', ['main'], function(app)
             return nativeContext;
         },
 
-        addSpinner: function($target)
+        addSpinner: function($target, method)
         {
-            $target.html('<div class="spinner"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>');
+            var supportedMethods = ['html', 'append', 'prepend'];
+
+            if(!method || supportedMethods.indexOf(method) === -1)
+                method = 'html'
+
+            $target[method]('<div class="spinner"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>');
+        },
+
+        removeSpinner: function($target)
+        {
+            $target.find('.spinner').remove();
         },
 
         /*
@@ -303,6 +313,7 @@ define('paywall', ['main'], function(app)
             {
                 var $button = $(this);
 
+                self.addSpinner($button, 'append');
                 $button
                     .addClass('active')
                 .siblings()
@@ -316,6 +327,7 @@ define('paywall', ['main'], function(app)
 
                 var always = function()
                 {
+                    self.removeSpinner($button);
                     $button.add($button.siblings())
                         .removeClass('active disabled')
                         .removeAttr('disabled');
