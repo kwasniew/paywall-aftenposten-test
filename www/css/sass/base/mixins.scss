@@ -41,9 +41,43 @@
     }
 }
 
+@mixin animation($name, $duration: 1s, $easing: linear, $iterations: infinite, $fill: forwards) {
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-timing-function: $easing;
+    animation-iteration-count: $iterations;
+    animation-fill-mode: $fill;
+}
+
 @mixin placeholder-text($color, $font-style: normal) {
     ::-webkit-input-placeholder { color: $color; font-style: $font-style; }
     :-moz-placeholder { color: $color; font-style: $font-style; }
     ::-moz-placeholder { color: $color; font-style: $font-style; }
     :-ms-input-placeholder { color: $color; font-style: $font-style; }
+}
+
+@mixin spinner($width: 6px, $height: 2px, $radius: 8px, $duration: 1s, $color: #333, $particles: 12) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+
+    i {
+        display: block;
+        position: absolute;
+        width: $width;
+        height: $height;
+        background: $color;
+        opacity: 0.2;
+        border-radius: $height;
+        @include animation(spin, $duration, ease);
+
+        @for $i from 1 through $particles {
+            &:nth-child(#{$i}) {
+                $angle: $i / $particles * 360;
+                transform: rotate(#{$angle}deg) translateX(#{$radius});
+                animation-delay: $i * ($duration / $particles);
+            }
+        }
+    }
 }

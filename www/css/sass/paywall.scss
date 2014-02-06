@@ -50,7 +50,7 @@ body {
     }
 
     .inner {
-        color: #fff;
+        color: #333;
         text-align: center;
         opacity:1;
         display: block;
@@ -132,19 +132,26 @@ body {
         font-style: normal;
         border-radius: 4px;
         text-shadow: none !important;
-        @include transition((padding-left));
+        @include transition((padding-left, background));
 
         &.blue-button {
-            background: $color-blue;
+            background: $color-primary;
             color: #fff !important;
+
+            &:active { color: #fff !important; }
         }
+
         &.active {
-	        padding-left: 40px;
+	        padding-left: 36px;
 	        position: relative;
         }
-        &:active {
-            background: #1081b1;
+
+        &.disabled {
+            background: rgba($color-primary, .5);
+            pointer-events: none;
         }
+
+        &:active { background: #1081b1; }
 
         * { text-shadow: none !important; }
 
@@ -163,7 +170,7 @@ body {
 			padding: 0;
 			display: inline-block;
 			background: none;
-			color: $color-blue !important;
+			color: $color-primary !important;
 			text-transform: inherit;
 
 			&:after {
@@ -185,15 +192,15 @@ body {
             padding: 0;
             margin: 0;
             border-radius: 100%;
-            border: 1px solid $color-blue;
+            border: 1px solid $color-primary;
             line-height: 24px;
-            color: #fff;
+            color: #333;
             cursor: pointer;
             text-shadow: none !important;
 
             &:active {
                 color: #fff !important;
-                background: $color-blue;
+                background: $color-primary;
             }
         }
 
@@ -256,7 +263,7 @@ body {
 
     b { font-weight: 600; }
 
-    .blue { color: $color-blue !important; }
+    .blue { color: $color-primary !important; }
 
     .go-back-button {
     	&.round-button {
@@ -291,15 +298,15 @@ body {
     }
 
     input {
-        background: none;
-        border: 1px solid rgba(#fff, .5);
+        background: #fff;
         padding: 12px 15px;
-        color: #fff;
+        color: #333;
         margin: 0;
         font-size: 15px;
         -webkit-appearance: none;
         appearance: none;
         border-radius: 5px;
+        border: none;
         font-weight: 400;
         font-family: 'Open Sans', sans-serif;
         @include transition((color, border-color));
@@ -309,17 +316,22 @@ body {
             color: #fff;
             outline-width: 0;
             border-radius: 5px 5px 0 0;
-            @include placeholder-text($color-blue);
+            @include placeholder-text($color-primary);
         }
 
         &[type="text"],
         &[type="password"] {
             padding-left: 40px;
             user-select: text;
+
+            &:focus {
+                color: $color-primary;
+                border-bottom-color: $color-primary;
+            }
         }
 
         &[type="submit"] {
-            background: $color-blue;
+            background: $color-primary;
             font-weight: 600;
             color: #fff;
             border: none;
@@ -345,8 +357,8 @@ body {
             &[type="password"] { margin: 0; }
 
             &[type="submit"] {
-                background: $color-blue;
-                border: 1px solid $color-blue;
+                background: $color-primary;
+                border: 1px solid $color-primary;
                 font-weight: bold;
                 width: 14%;
                 padding: 0;
@@ -383,7 +395,7 @@ body {
             margin: 10px !important;
             font-weight: 600 !important;
 
-            &:active { color: $color-blue !important; }
+            &:active { color: $color-primary !important; }
             @media #{$screen-mobile-small} { display: inline-block; }
             @media #{$screen-mobile-big} { text-align: center; }
         }
@@ -437,6 +449,11 @@ body {
         height: 36px;
         position: relative;
 
+        button {
+            opacity: 0;
+            @include animation(fade-in, .2s, ease-in-out, 1);
+        }
+
         @media #{$screen-mobile-big} {
             height: 60px;
 
@@ -444,7 +461,7 @@ body {
                 height: 30px;
                 padding: 0 20px;
                 line-height: 30px;
-                color: $color-blue !important;
+                color: $color-primary !important;
                 background: none;
                 border: none !important;
                 text-transform: none;
@@ -531,31 +548,6 @@ body {
     }
 }
 
-.light {
-    #paywall {
-        .round-button { color: #333; }
-        nav { border: none; }
-
-        .button {
-            &.blue-button:active { color: #fff !important; }
-        }
-
-        input {
-            color: #333;
-            background: #fff;
-            border-color: transparent;
-
-            &[type="text"]:focus,
-            &[type="password"]:focus {
-                color: $color-blue;
-                border-bottom-color: $color-blue;
-            }
-        }
-    }
-
-    .inner { color: #333; }
-}
-
 .android {
     #paywall .half-width:first-child {
         float: none;
@@ -566,4 +558,9 @@ body {
     .itunes-promotion { display: none !important; }
 }
 
-@import 'globals/spinner';
+.spinner { @include spinner; }
+button.active .spinner {
+    @include spinner(4px, 1px, 6px, $color: #fff);
+    left: 16px;
+    top: 16px;
+}

@@ -73,7 +73,7 @@ body.android.light {
 }
 
 #paywall .inner {
-	color: white;
+	color: #333333;
 	text-align: center;
 	opacity: 1;
 	display: block;
@@ -154,8 +154,14 @@ body.android.light {
 	font-style: normal;
 	border-radius: 4px;
 	text-shadow: none !important;
-	-webkit-transition: padding-left 0.3s ease-out 0;
-	transition: padding-left 0.3s ease-out 0;
+	-webkit-transition-property: padding-left, background;
+	transition-property: padding-left, background;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	-webkit-transition-delay: 0;
+	transition-delay: 0;
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
@@ -166,9 +172,18 @@ body.android.light {
 	color: white !important;
 }
 
+#paywall .button.blue-button:active {
+	color: white !important;
+}
+
 #paywall .button.active {
-	padding-left: 40px;
+	padding-left: 36px;
 	position: relative;
+}
+
+#paywall .button.disabled {
+	background: rgba(43, 180, 237, 0.5);
+	pointer-events: none;
 }
 
 #paywall .button:active {
@@ -200,7 +215,7 @@ body.android.light {
 	border-radius: 100%;
 	border: 1px solid #2bb4ed;
 	line-height: 24px;
-	color: white;
+	color: #333333;
 	cursor: pointer;
 	text-shadow: none !important;
 }
@@ -296,15 +311,15 @@ body.android.light {
 }
 
 #paywall input {
-	background: none;
-	border: 1px solid rgba(255, 255, 255, 0.5);
+	background: white;
 	padding: 12px 15px;
-	color: white;
+	color: #333333;
 	margin: 0;
 	font-size: 15px;
 	-webkit-appearance: none;
 	appearance: none;
 	border-radius: 5px;
+	border: none;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
 	-webkit-transition-property: color, border-color;
@@ -373,6 +388,12 @@ body.android.light {
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
+}
+
+#paywall input[type="text"]:focus,
+#paywall input[type="password"]:focus {
+	color: #2bb4ed;
+	border-bottom-color: #2bb4ed;
 }
 
 #paywall input[type="submit"] {
@@ -468,6 +489,20 @@ body.android.light {
 	position: relative;
 }
 
+#paywall .purchase-options button {
+	opacity: 0;
+	-webkit-animation-name: fade-in;
+	animation-name: fade-in;
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
 #paywall .input {
 	display: inline-block;
 	margin: 0 2px;
@@ -501,34 +536,6 @@ body.android.light {
 	display: none !important;
 }
 
-.light #paywall .round-button {
-	color: #333333;
-}
-
-.light #paywall nav {
-	border: none;
-}
-
-.light #paywall .button.blue-button:active {
-	color: white !important;
-}
-
-.light #paywall input {
-	color: #333333;
-	background: white;
-	border-color: transparent;
-}
-
-.light #paywall input[type="text"]:focus,
-.light #paywall input[type="password"]:focus {
-	color: #2bb4ed;
-	border-bottom-color: #2bb4ed;
-}
-
-.light .inner {
-	color: #333333;
-}
-
 .android #paywall .half-width:first-child {
 	float: none;
 	margin: auto;
@@ -549,19 +556,21 @@ body.android.light {
 .spinner i {
 	display: block;
 	position: absolute;
-	width: 5px;
+	width: 6px;
 	height: 2px;
-	background: black;
+	background: #333333;
 	opacity: 0.2;
-	border-radius: 4px;
+	border-radius: 2px;
 	-webkit-animation-name: spin;
 	animation-name: spin;
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
-	-webkit-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
 	-webkit-animation-timing-function: ease;
 	animation-timing-function: ease;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
 }
 
 .spinner i:nth-child(1) {
@@ -660,13 +669,129 @@ body.android.light {
 	animation-delay: 1s;
 }
 
-.active .spinner {
+button.active .spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
 	left: 16px;
 	top: 16px;
 }
 
-.active .spinner i {
+button.active .spinner i {
+	display: block;
+	position: absolute;
+	width: 4px;
+	height: 1px;
 	background: white;
+	opacity: 0.2;
+	border-radius: 1px;
+	-webkit-animation-name: spin;
+	animation-name: spin;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-timing-function: ease;
+	animation-timing-function: ease;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+button.active .spinner i:nth-child(1) {
+	-webkit-transform: rotate(30deg) translateX(6px);
+	-ms-transform: rotate(30deg) translateX(6px);
+	transform: rotate(30deg) translateX(6px);
+	-webkit-animation-delay: 0.08333s;
+	animation-delay: 0.08333s;
+}
+
+button.active .spinner i:nth-child(2) {
+	-webkit-transform: rotate(60deg) translateX(6px);
+	-ms-transform: rotate(60deg) translateX(6px);
+	transform: rotate(60deg) translateX(6px);
+	-webkit-animation-delay: 0.16667s;
+	animation-delay: 0.16667s;
+}
+
+button.active .spinner i:nth-child(3) {
+	-webkit-transform: rotate(90deg) translateX(6px);
+	-ms-transform: rotate(90deg) translateX(6px);
+	transform: rotate(90deg) translateX(6px);
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+button.active .spinner i:nth-child(4) {
+	-webkit-transform: rotate(120deg) translateX(6px);
+	-ms-transform: rotate(120deg) translateX(6px);
+	transform: rotate(120deg) translateX(6px);
+	-webkit-animation-delay: 0.33333s;
+	animation-delay: 0.33333s;
+}
+
+button.active .spinner i:nth-child(5) {
+	-webkit-transform: rotate(150deg) translateX(6px);
+	-ms-transform: rotate(150deg) translateX(6px);
+	transform: rotate(150deg) translateX(6px);
+	-webkit-animation-delay: 0.41667s;
+	animation-delay: 0.41667s;
+}
+
+button.active .spinner i:nth-child(6) {
+	-webkit-transform: rotate(180deg) translateX(6px);
+	-ms-transform: rotate(180deg) translateX(6px);
+	transform: rotate(180deg) translateX(6px);
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+}
+
+button.active .spinner i:nth-child(7) {
+	-webkit-transform: rotate(210deg) translateX(6px);
+	-ms-transform: rotate(210deg) translateX(6px);
+	transform: rotate(210deg) translateX(6px);
+	-webkit-animation-delay: 0.58333s;
+	animation-delay: 0.58333s;
+}
+
+button.active .spinner i:nth-child(8) {
+	-webkit-transform: rotate(240deg) translateX(6px);
+	-ms-transform: rotate(240deg) translateX(6px);
+	transform: rotate(240deg) translateX(6px);
+	-webkit-animation-delay: 0.66667s;
+	animation-delay: 0.66667s;
+}
+
+button.active .spinner i:nth-child(9) {
+	-webkit-transform: rotate(270deg) translateX(6px);
+	-ms-transform: rotate(270deg) translateX(6px);
+	transform: rotate(270deg) translateX(6px);
+	-webkit-animation-delay: 0.75s;
+	animation-delay: 0.75s;
+}
+
+button.active .spinner i:nth-child(10) {
+	-webkit-transform: rotate(300deg) translateX(6px);
+	-ms-transform: rotate(300deg) translateX(6px);
+	transform: rotate(300deg) translateX(6px);
+	-webkit-animation-delay: 0.83333s;
+	animation-delay: 0.83333s;
+}
+
+button.active .spinner i:nth-child(11) {
+	-webkit-transform: rotate(330deg) translateX(6px);
+	-ms-transform: rotate(330deg) translateX(6px);
+	transform: rotate(330deg) translateX(6px);
+	-webkit-animation-delay: 0.91667s;
+	animation-delay: 0.91667s;
+}
+
+button.active .spinner i:nth-child(12) {
+	-webkit-transform: rotate(360deg) translateX(6px);
+	-ms-transform: rotate(360deg) translateX(6px);
+	transform: rotate(360deg) translateX(6px);
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
 }
 
 @media only screen and (max-width: 767px) {
@@ -897,6 +1022,30 @@ body.android.light {
 	opacity: 1;
 	-webkit-box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.8);
 	box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.8);
+}
+
+}
+
+@-webkit-keyframes fade-in {
+
+0% {
+	opacity: 0;
+}
+
+100% {
+	opacity: 1;
+}
+
+}
+
+@keyframes fade-in {
+
+0% {
+	opacity: 0;
+}
+
+100% {
+	opacity: 1;
 }
 
 }
