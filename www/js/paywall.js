@@ -43,7 +43,7 @@ define('paywall', ['main'], function(app)
 
         init: function()
         {
-            window.nativeContext = this.getNativeContext();
+            this.nativeContext = this.getNativeContext();
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
             this.registerCommonEventListeners();
@@ -143,18 +143,6 @@ define('paywall', ['main'], function(app)
                 $(this).addClass('open');
 
                 e.preventDefault();
-            });
-
-            this.$chrome.on('click', '.active-tab', function(e)
-            {
-                $($(this).attr('active-tab')).addClass('open');
-
-                e.preventDefault();
-            });
-
-            this.$chrome.on('touchmove touchstart', function()
-            {
-                $('.layer-content').removeClass('overflowHidden');
             });
         },
 
