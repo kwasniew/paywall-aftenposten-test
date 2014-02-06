@@ -44,12 +44,6 @@ body.android.light {
 	display: block;
 }
 
-.overflowHidden {
-	overflow: hidden;
-	height: 100%;
-	width: 100%;
-}
-
 #paywall {
 	opacity: 1;
 	overflow: hidden;
@@ -76,127 +70,6 @@ body.android.light {
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
 	text-shadow: 0px 1px 0px white;
-}
-
-#paywall .spinner {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	z-index: 2;
-}
-
-#paywall .spinner i {
-	display: block;
-	position: absolute;
-	width: 7px;
-	height: 2px;
-	background: black;
-	opacity: 0.2;
-	border-radius: 4px;
-	-webkit-animation-name: spin;
-	animation-name: spin;
-	-webkit-animation-duration: 1s;
-	animation-duration: 1s;
-	-webkit-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
-	-webkit-animation-timing-function: ease;
-	animation-timing-function: ease;
-}
-
-#paywall i:nth-child(1) {
-	-webkit-transform: rotate(30deg) translateX(10px);
-	-ms-transform: rotate(30deg) translateX(10px);
-	transform: rotate(30deg) translateX(10px);
-	-webkit-animation-delay: 0.08333s;
-	animation-delay: 0.08333s;
-}
-
-#paywall i:nth-child(2) {
-	-webkit-transform: rotate(60deg) translateX(10px);
-	-ms-transform: rotate(60deg) translateX(10px);
-	transform: rotate(60deg) translateX(10px);
-	-webkit-animation-delay: 0.16667s;
-	animation-delay: 0.16667s;
-}
-
-#paywall i:nth-child(3) {
-	-webkit-transform: rotate(90deg) translateX(10px);
-	-ms-transform: rotate(90deg) translateX(10px);
-	transform: rotate(90deg) translateX(10px);
-	-webkit-animation-delay: 0.25s;
-	animation-delay: 0.25s;
-}
-
-#paywall i:nth-child(4) {
-	-webkit-transform: rotate(120deg) translateX(10px);
-	-ms-transform: rotate(120deg) translateX(10px);
-	transform: rotate(120deg) translateX(10px);
-	-webkit-animation-delay: 0.33333s;
-	animation-delay: 0.33333s;
-}
-
-#paywall i:nth-child(5) {
-	-webkit-transform: rotate(150deg) translateX(10px);
-	-ms-transform: rotate(150deg) translateX(10px);
-	transform: rotate(150deg) translateX(10px);
-	-webkit-animation-delay: 0.41667s;
-	animation-delay: 0.41667s;
-}
-
-#paywall i:nth-child(6) {
-	-webkit-transform: rotate(180deg) translateX(10px);
-	-ms-transform: rotate(180deg) translateX(10px);
-	transform: rotate(180deg) translateX(10px);
-	-webkit-animation-delay: 0.5s;
-	animation-delay: 0.5s;
-}
-
-#paywall i:nth-child(7) {
-	-webkit-transform: rotate(210deg) translateX(10px);
-	-ms-transform: rotate(210deg) translateX(10px);
-	transform: rotate(210deg) translateX(10px);
-	-webkit-animation-delay: 0.58333s;
-	animation-delay: 0.58333s;
-}
-
-#paywall i:nth-child(8) {
-	-webkit-transform: rotate(240deg) translateX(10px);
-	-ms-transform: rotate(240deg) translateX(10px);
-	transform: rotate(240deg) translateX(10px);
-	-webkit-animation-delay: 0.66667s;
-	animation-delay: 0.66667s;
-}
-
-#paywall i:nth-child(9) {
-	-webkit-transform: rotate(270deg) translateX(10px);
-	-ms-transform: rotate(270deg) translateX(10px);
-	transform: rotate(270deg) translateX(10px);
-	-webkit-animation-delay: 0.75s;
-	animation-delay: 0.75s;
-}
-
-#paywall i:nth-child(10) {
-	-webkit-transform: rotate(300deg) translateX(10px);
-	-ms-transform: rotate(300deg) translateX(10px);
-	transform: rotate(300deg) translateX(10px);
-	-webkit-animation-delay: 0.83333s;
-	animation-delay: 0.83333s;
-}
-
-#paywall i:nth-child(11) {
-	-webkit-transform: rotate(330deg) translateX(10px);
-	-ms-transform: rotate(330deg) translateX(10px);
-	transform: rotate(330deg) translateX(10px);
-	-webkit-animation-delay: 0.91667s;
-	animation-delay: 0.91667s;
-}
-
-#paywall i:nth-child(12) {
-	-webkit-transform: rotate(360deg) translateX(10px);
-	-ms-transform: rotate(360deg) translateX(10px);
-	transform: rotate(360deg) translateX(10px);
-	-webkit-animation-delay: 1s;
-	animation-delay: 1s;
 }
 
 #paywall .inner {
@@ -255,10 +128,6 @@ body.android.light {
 	margin: 0 0 1em;
 	font-weight: 100;
 	color: #333333;
-	-webkit-user-select: text;
-	-moz-user-select: text;
-	-ms-user-select: text;
-	user-select: text;
 }
 
 #paywall button {
@@ -267,10 +136,6 @@ body.android.light {
 	margin: 0 5px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
-	-webkit-user-select: text;
-	-moz-user-select: text;
-	-ms-user-select: text;
-	user-select: text;
 	border: none;
 }
 
@@ -378,6 +243,11 @@ body.android.light {
 	background-size: 47px 90px;
 }
 
+#paywall a.spid-logo {
+	width: 44px;
+	margin-right: 0 !important;
+}
+
 #paywall b {
 	font-weight: 600;
 }
@@ -427,10 +297,6 @@ body.android.light {
 	border-radius: 5px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
-	-webkit-user-select: text;
-	-moz-user-select: text;
-	-ms-user-select: text;
-	user-select: text;
 	-webkit-transition-property: color, border-color;
 	transition-property: color, border-color;
 	-webkit-transition-duration: 0.3s;
@@ -493,6 +359,10 @@ body.android.light {
 #paywall input[type="text"],
 #paywall input[type="password"] {
 	padding-left: 40px;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
 }
 
 #paywall input[type="submit"] {
@@ -509,13 +379,13 @@ body.android.light {
 	background: #1081b1;
 }
 
-#paywall .halfWidth {
+#paywall .half-width {
 	width: 45%;
 	float: right;
 	text-align: center;
 }
 
-#paywall .halfWidth:first-child {
+#paywall .half-width:first-child {
 	float: left;
 }
 
@@ -649,14 +519,135 @@ body.android.light {
 	color: #333333;
 }
 
-.android #paywall .halfWidth:first-child {
+.android #paywall .half-width:first-child {
 	float: none;
 	margin: auto;
 }
 
 .android a.restore-purchases,
-.android .promotingAppStore {
+.android .itunes-promotion {
 	display: none !important;
+}
+
+.spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+}
+
+.spinner i {
+	display: block;
+	position: absolute;
+	width: 7px;
+	height: 2px;
+	background: black;
+	opacity: 0.2;
+	border-radius: 4px;
+	-webkit-animation-name: spin;
+	animation-name: spin;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease;
+	animation-timing-function: ease;
+}
+
+.spinner i:nth-child(1) {
+	-webkit-transform: rotate(30deg) translateX(10px);
+	-ms-transform: rotate(30deg) translateX(10px);
+	transform: rotate(30deg) translateX(10px);
+	-webkit-animation-delay: 0.08333s;
+	animation-delay: 0.08333s;
+}
+
+.spinner i:nth-child(2) {
+	-webkit-transform: rotate(60deg) translateX(10px);
+	-ms-transform: rotate(60deg) translateX(10px);
+	transform: rotate(60deg) translateX(10px);
+	-webkit-animation-delay: 0.16667s;
+	animation-delay: 0.16667s;
+}
+
+.spinner i:nth-child(3) {
+	-webkit-transform: rotate(90deg) translateX(10px);
+	-ms-transform: rotate(90deg) translateX(10px);
+	transform: rotate(90deg) translateX(10px);
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+.spinner i:nth-child(4) {
+	-webkit-transform: rotate(120deg) translateX(10px);
+	-ms-transform: rotate(120deg) translateX(10px);
+	transform: rotate(120deg) translateX(10px);
+	-webkit-animation-delay: 0.33333s;
+	animation-delay: 0.33333s;
+}
+
+.spinner i:nth-child(5) {
+	-webkit-transform: rotate(150deg) translateX(10px);
+	-ms-transform: rotate(150deg) translateX(10px);
+	transform: rotate(150deg) translateX(10px);
+	-webkit-animation-delay: 0.41667s;
+	animation-delay: 0.41667s;
+}
+
+.spinner i:nth-child(6) {
+	-webkit-transform: rotate(180deg) translateX(10px);
+	-ms-transform: rotate(180deg) translateX(10px);
+	transform: rotate(180deg) translateX(10px);
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+}
+
+.spinner i:nth-child(7) {
+	-webkit-transform: rotate(210deg) translateX(10px);
+	-ms-transform: rotate(210deg) translateX(10px);
+	transform: rotate(210deg) translateX(10px);
+	-webkit-animation-delay: 0.58333s;
+	animation-delay: 0.58333s;
+}
+
+.spinner i:nth-child(8) {
+	-webkit-transform: rotate(240deg) translateX(10px);
+	-ms-transform: rotate(240deg) translateX(10px);
+	transform: rotate(240deg) translateX(10px);
+	-webkit-animation-delay: 0.66667s;
+	animation-delay: 0.66667s;
+}
+
+.spinner i:nth-child(9) {
+	-webkit-transform: rotate(270deg) translateX(10px);
+	-ms-transform: rotate(270deg) translateX(10px);
+	transform: rotate(270deg) translateX(10px);
+	-webkit-animation-delay: 0.75s;
+	animation-delay: 0.75s;
+}
+
+.spinner i:nth-child(10) {
+	-webkit-transform: rotate(300deg) translateX(10px);
+	-ms-transform: rotate(300deg) translateX(10px);
+	transform: rotate(300deg) translateX(10px);
+	-webkit-animation-delay: 0.83333s;
+	animation-delay: 0.83333s;
+}
+
+.spinner i:nth-child(11) {
+	-webkit-transform: rotate(330deg) translateX(10px);
+	-ms-transform: rotate(330deg) translateX(10px);
+	transform: rotate(330deg) translateX(10px);
+	-webkit-animation-delay: 0.91667s;
+	animation-delay: 0.91667s;
+}
+
+.spinner i:nth-child(12) {
+	-webkit-transform: rotate(360deg) translateX(10px);
+	-ms-transform: rotate(360deg) translateX(10px);
+	transform: rotate(360deg) translateX(10px);
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
 }
 
 @media only screen and (max-width: 767px) {
@@ -752,7 +743,7 @@ body.android.light {
 	color: white;
 }
 
-#paywall .halfWidth {
+#paywall .half-width {
 	width: 100%;
 	margin: 0;
 	padding: 0;

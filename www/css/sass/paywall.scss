@@ -1,6 +1,6 @@
-@import 'base/animations';
 @import 'base/variables';
 @import 'base/mixins';
+@import 'base/animations';
 
 .event-frame { display: none; }
 
@@ -23,12 +23,6 @@ body {
 .clear {
     clear: both;
     display: block;
-}
-
-.overflowHidden {
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
 }
 
 #paywall {
@@ -54,44 +48,6 @@ body {
         -webkit-tap-highlight-color: transparent;
         text-shadow: 0px 1px 0px rgba(255,255,255,1)
     }
-
-	$particles: 12;
-	$radius: 10;
-	$lapDuration: 1s;
-
-	.spinner {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		z-index: 2;
-
-		i {
-			display: block;
-			position: absolute;
-			width: 7px;
-			height: 2px;
-			background: #000;
-			opacity: 0.2;
-			border-radius: 4px;
-			animation-name: spin;
-			animation-duration: $lapDuration;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease;
-		}
-	}
-
-	@for $i from 1 through $particles {
-		i:nth-child(#{$i}) {
-		$angle: $i / $particles * 360;
-
-		transform:
-			rotate( #{$angle}deg )
-			translateX( #{$radius}px );
-
-			animation-delay: $i * ($lapDuration / $particles);
-		}
-	}
-
 
     .inner {
         color: #fff;
@@ -145,7 +101,6 @@ body {
         margin: 0 0 1em;
         font-weight: 100;
         color: #333;
-        user-select: text;
 
         @media #{$screen-mobile-big} {
             font-size: 14px;
@@ -159,7 +114,6 @@ body {
         margin: 0 5px;
         font-weight: 400;
         font-family: 'Open Sans', sans-serif;
-        user-select: text;
         border: none;
 
         &:focus {
@@ -284,6 +238,11 @@ body {
                 background-size: 47px 90px;
             }
         }
+
+        &.spid-logo {
+            width: 44px;
+            margin-right: 0 !important;
+        }
     }
 
     @media #{$screen-mobile-big} {
@@ -338,7 +297,6 @@ body {
         border-radius: 5px;
         font-weight: 400;
         font-family: 'Open Sans', sans-serif;
-        user-select: text;
         @include transition((color, border-color));
         @include placeholder-text(#666);
 
@@ -350,7 +308,10 @@ body {
         }
 
         &[type="text"],
-        &[type="password"] { padding-left: 40px; }
+        &[type="password"] {
+            padding-left: 40px;
+            user-select: text;
+        }
 
         &[type="submit"] {
             background: $color-blue;
@@ -392,7 +353,7 @@ body {
         }
     }
 
-    .halfWidth {
+    .half-width {
         width: 45%;
         float: right;
         text-align: center;
@@ -591,11 +552,13 @@ body {
 }
 
 .android {
-    #paywall .halfWidth:first-child {
+    #paywall .half-width:first-child {
         float: none;
         margin: auto;
     }
 
     a.restore-purchases,
-    .promotingAppStore { display: none !important; }
+    .itunes-promotion { display: none !important; }
 }
+
+@import 'globals/spinner';

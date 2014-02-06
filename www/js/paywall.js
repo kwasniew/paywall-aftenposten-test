@@ -94,23 +94,24 @@ define('paywall', ['main'], function(app)
         getNativeContext: function()
         {
             var nativeContext = {};
-
             var search = window.location.search;
 
             // https://github.com/sindresorhus/query-string
             if(typeof search === 'string')
             {
                 search = search.trim().replace(/^\?/, '');
-                if(!search) return {};
 
-                return search.trim().split('&').reduce(function(result, param)
+                if(search)
                 {
-                    var parts = param.replace(/\+/g, ' ').split('=');
-                    // missing `=` should be `null`:
-                    // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-                    result[parts[0]] = parts[1] === undefined ? null : decodeURIComponent(parts[1]);
-                    return result;
-                }, {});
+                    nativeContext = search.trim().split('&').reduce(function(result, param)
+                    {
+                        var parts = param.replace(/\+/g, ' ').split('=');
+                        // missing `=` should be `null`:
+                        // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+                        result[parts[0]] = parts[1] === undefined ? null : decodeURIComponent(parts[1]);
+                        return result;
+                    }, {});
+                }
             }
 
             return nativeContext;

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" >
-        <meta name="apple-mobile-web-app-capable" content="yes" >
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" >
-        <meta name="format-detection" content="telephone=no" >
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /><!-- , target-densitydpi=medium-dpi -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no" />
         <title>Aftenposten paywall</title>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="css/paywall.css" />
-        <link rel="apple-touch-icon-precomposed" href="gfx/appicon.png" />
     </head>
     <body class="light">
         <div id="chrome">
@@ -18,8 +17,6 @@
                     <div class="customer-logo no-mobile"></div>
                     <a href="https://kundesenter.aftenposten.no/" class="external-browser more-info-trigger round-button"><b>i</b></a>
                     <div id="content">
-
-
                         <div id="login" class="tab open">
                             <header>
                                 <h2>Logg inn med <a href="https://kundesenter.aftenposten.no/" class="external-browser spid-logo"></a></h2>
@@ -35,9 +32,7 @@
                                 <a href="#" internal="#purchase" class="tab-trigger hide-on-focus">Bli abonnent ›</a>
                                 <a href="#" class="restore-purchases hide-on-focus" data-provider="itunes">Gjenopprette iTunes-kjøp</a>
                             </footer>
-                        </div>
-
-
+                        </div><!-- / login -->
                         <div id="forgot-password" class="tab">
                             <header>
                                 <p>Skriv inn din SPiD-brukernavn for å få tilsendt glemt SPiD-passord.</p>
@@ -50,9 +45,7 @@
                                 <a href="https://kundesenter.aftenposten.no/" class="external-browser spid-logo"></a>
                                 <a href="#" class="restore-purchases" data-provider="itunes">Gjenopprette iTunes-kjøp</a>
                             </footer>
-                        </div>
-
-
+                        </div><!-- / forgot-password -->
                         <div id="logged-in" class="tab">
                             <header>
                                 <h2>Hei, <span class="getSpidUserName">Ukjent</span>!</h2>
@@ -63,30 +56,24 @@
                                 <a href="#" class="logout">Logg ut</a>
                                 <a href="#" internal="#purchase" class="tab-trigger">Bli abonnent ›</a>
                             </footer>
-                        </div>
-
-
+                        </div><!-- / logged-in -->
                         <div id="purchase" class="tab">
                             <header>
-                                <div class="halfWidth aftenpostenProducts">
+                                <div class="half-width spid-products">
                                     <h2>Kjøp abonnement hos Aftenposten</a></h2>
-                                    <p>Som abonnent hos Aftenposten får du ubegrenset tilgang til vårt innhold i alle digitale kanaler, inkludert aftenposten.no. 
+                                    <p>Som abonnent hos Aftenposten får du ubegrenset tilgang til vårt innhold i alle digitale kanaler, inkludert aftenposten.no.
                                     	<button href="https://kundesenter.aftenposten.no/" type="button" class="external-browser button blue-button">Les mer her</button>
                                     </p>
-                                    
                                 </div>
-                                <div class="halfWidth promotingAppStore">
+                                <div class="half-width itunes-promotion">
                                     <h2>Kjøp abonnement via iTunes</h2>
-                                    <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto. 
+                                    <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto.
                                     	<button type="button" internal="#products" class="button blue-button tab-trigger in-app-purchase" data-provider="itunes">Kjøp tilgang nå</button>
                                     </p>
-                                    
                                 </div>
                             </header>
                             <a href="#" internal="#login" id="subscriber-link" class="subscriber-link tab-trigger go-back-button round-button button-bottom">‹</a>
-                        </div>
-
-
+                        </div><!-- / purchase -->
                         <div id="products" class="tab">
                             <header>
                                 <h2>Kjøp abonnement via iTunes</h2>
@@ -97,9 +84,7 @@
                                 <a href="#" class="restore-purchases" data-provider="itunes">Gjenopprette iTunes-kjøp</a>
                             </footer>
                             <a href="#" internal="#purchase" class="tab-trigger go-back-button round-button button-bottom">‹</a>
-                        </div>
-
-
+                        </div><!-- / products -->
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -122,7 +107,7 @@
 
                 $(document).ready(function()
                 {
-                    var ivyPaywall = new paywall();
+                    window.ivyPaywall = new paywall();
                 });
             });
 
