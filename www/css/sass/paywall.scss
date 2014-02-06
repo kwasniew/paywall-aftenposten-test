@@ -132,10 +132,15 @@ body {
         font-style: normal;
         border-radius: 4px;
         text-shadow: none !important;
+        @include transition((padding-left));
 
         &.blue-button {
             background: $color-blue;
             color: #fff !important;
+        }
+        &.active {
+	        padding-left: 40px;
+	        position: relative;
         }
         &:active {
             background: #1081b1;

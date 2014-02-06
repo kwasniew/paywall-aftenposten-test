@@ -1,5 +1,5 @@
 $particles: 12;
-$radius: 10;
+$radius: 8;
 $lapDuration: 1s;
 
 .spinner {
@@ -11,7 +11,7 @@ $lapDuration: 1s;
     i {
         display: block;
         position: absolute;
-        width: 7px;
+        width: 5px;
         height: 2px;
         background: #000;
         opacity: 0.2;
@@ -29,4 +29,13 @@ $lapDuration: 1s;
             }
         }
     }
+}
+
+.active .spinner {
+	left: 16px;
+	top: 16px;
+	
+	i {
+		background: #fff;
+	}
 }

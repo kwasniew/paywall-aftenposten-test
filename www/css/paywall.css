@@ -154,11 +154,21 @@ body.android.light {
 	font-style: normal;
 	border-radius: 4px;
 	text-shadow: none !important;
+	-webkit-transition: padding-left 0.3s ease-out 0;
+	transition: padding-left 0.3s ease-out 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
 }
 
 #paywall .button.blue-button {
 	background: #2bb4ed;
 	color: white !important;
+}
+
+#paywall .button.active {
+	padding-left: 40px;
+	position: relative;
 }
 
 #paywall .button:active {
@@ -539,7 +549,7 @@ body.android.light {
 .spinner i {
 	display: block;
 	position: absolute;
-	width: 7px;
+	width: 5px;
 	height: 2px;
 	background: black;
 	opacity: 0.2;
@@ -555,99 +565,108 @@ body.android.light {
 }
 
 .spinner i:nth-child(1) {
-	-webkit-transform: rotate(30deg) translateX(10px);
-	-ms-transform: rotate(30deg) translateX(10px);
-	transform: rotate(30deg) translateX(10px);
+	-webkit-transform: rotate(30deg) translateX(8px);
+	-ms-transform: rotate(30deg) translateX(8px);
+	transform: rotate(30deg) translateX(8px);
 	-webkit-animation-delay: 0.08333s;
 	animation-delay: 0.08333s;
 }
 
 .spinner i:nth-child(2) {
-	-webkit-transform: rotate(60deg) translateX(10px);
-	-ms-transform: rotate(60deg) translateX(10px);
-	transform: rotate(60deg) translateX(10px);
+	-webkit-transform: rotate(60deg) translateX(8px);
+	-ms-transform: rotate(60deg) translateX(8px);
+	transform: rotate(60deg) translateX(8px);
 	-webkit-animation-delay: 0.16667s;
 	animation-delay: 0.16667s;
 }
 
 .spinner i:nth-child(3) {
-	-webkit-transform: rotate(90deg) translateX(10px);
-	-ms-transform: rotate(90deg) translateX(10px);
-	transform: rotate(90deg) translateX(10px);
+	-webkit-transform: rotate(90deg) translateX(8px);
+	-ms-transform: rotate(90deg) translateX(8px);
+	transform: rotate(90deg) translateX(8px);
 	-webkit-animation-delay: 0.25s;
 	animation-delay: 0.25s;
 }
 
 .spinner i:nth-child(4) {
-	-webkit-transform: rotate(120deg) translateX(10px);
-	-ms-transform: rotate(120deg) translateX(10px);
-	transform: rotate(120deg) translateX(10px);
+	-webkit-transform: rotate(120deg) translateX(8px);
+	-ms-transform: rotate(120deg) translateX(8px);
+	transform: rotate(120deg) translateX(8px);
 	-webkit-animation-delay: 0.33333s;
 	animation-delay: 0.33333s;
 }
 
 .spinner i:nth-child(5) {
-	-webkit-transform: rotate(150deg) translateX(10px);
-	-ms-transform: rotate(150deg) translateX(10px);
-	transform: rotate(150deg) translateX(10px);
+	-webkit-transform: rotate(150deg) translateX(8px);
+	-ms-transform: rotate(150deg) translateX(8px);
+	transform: rotate(150deg) translateX(8px);
 	-webkit-animation-delay: 0.41667s;
 	animation-delay: 0.41667s;
 }
 
 .spinner i:nth-child(6) {
-	-webkit-transform: rotate(180deg) translateX(10px);
-	-ms-transform: rotate(180deg) translateX(10px);
-	transform: rotate(180deg) translateX(10px);
+	-webkit-transform: rotate(180deg) translateX(8px);
+	-ms-transform: rotate(180deg) translateX(8px);
+	transform: rotate(180deg) translateX(8px);
 	-webkit-animation-delay: 0.5s;
 	animation-delay: 0.5s;
 }
 
 .spinner i:nth-child(7) {
-	-webkit-transform: rotate(210deg) translateX(10px);
-	-ms-transform: rotate(210deg) translateX(10px);
-	transform: rotate(210deg) translateX(10px);
+	-webkit-transform: rotate(210deg) translateX(8px);
+	-ms-transform: rotate(210deg) translateX(8px);
+	transform: rotate(210deg) translateX(8px);
 	-webkit-animation-delay: 0.58333s;
 	animation-delay: 0.58333s;
 }
 
 .spinner i:nth-child(8) {
-	-webkit-transform: rotate(240deg) translateX(10px);
-	-ms-transform: rotate(240deg) translateX(10px);
-	transform: rotate(240deg) translateX(10px);
+	-webkit-transform: rotate(240deg) translateX(8px);
+	-ms-transform: rotate(240deg) translateX(8px);
+	transform: rotate(240deg) translateX(8px);
 	-webkit-animation-delay: 0.66667s;
 	animation-delay: 0.66667s;
 }
 
 .spinner i:nth-child(9) {
-	-webkit-transform: rotate(270deg) translateX(10px);
-	-ms-transform: rotate(270deg) translateX(10px);
-	transform: rotate(270deg) translateX(10px);
+	-webkit-transform: rotate(270deg) translateX(8px);
+	-ms-transform: rotate(270deg) translateX(8px);
+	transform: rotate(270deg) translateX(8px);
 	-webkit-animation-delay: 0.75s;
 	animation-delay: 0.75s;
 }
 
 .spinner i:nth-child(10) {
-	-webkit-transform: rotate(300deg) translateX(10px);
-	-ms-transform: rotate(300deg) translateX(10px);
-	transform: rotate(300deg) translateX(10px);
+	-webkit-transform: rotate(300deg) translateX(8px);
+	-ms-transform: rotate(300deg) translateX(8px);
+	transform: rotate(300deg) translateX(8px);
 	-webkit-animation-delay: 0.83333s;
 	animation-delay: 0.83333s;
 }
 
 .spinner i:nth-child(11) {
-	-webkit-transform: rotate(330deg) translateX(10px);
-	-ms-transform: rotate(330deg) translateX(10px);
-	transform: rotate(330deg) translateX(10px);
+	-webkit-transform: rotate(330deg) translateX(8px);
+	-ms-transform: rotate(330deg) translateX(8px);
+	transform: rotate(330deg) translateX(8px);
 	-webkit-animation-delay: 0.91667s;
 	animation-delay: 0.91667s;
 }
 
 .spinner i:nth-child(12) {
-	-webkit-transform: rotate(360deg) translateX(10px);
-	-ms-transform: rotate(360deg) translateX(10px);
-	transform: rotate(360deg) translateX(10px);
+	-webkit-transform: rotate(360deg) translateX(8px);
+	-ms-transform: rotate(360deg) translateX(8px);
+	transform: rotate(360deg) translateX(8px);
 	-webkit-animation-delay: 1s;
 	animation-delay: 1s;
+}
+
+.active .spinner {
+	left: 16px;
+	top: 16px;
+}
+
+.active .spinner i {
+	background: white;
 }
 
 @media only screen and (max-width: 767px) {
