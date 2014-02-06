@@ -243,7 +243,7 @@ define('paywall', ['main'], function(app)
                 {
                     var $productbutton = $(
                         '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + provider + '" class="button blue-button">' +
-                            'Kjøp <span class="title">' + product.title + '</span> ' +
+                            '<span class="title">' + product.title + ' ' + product.duration + '</span> ' +
                             'for <span class="price">' + product.priceFormatted + '</span>' +
                         '</button>'
                     );
