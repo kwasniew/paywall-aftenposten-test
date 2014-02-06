@@ -78,7 +78,17 @@ body.android.light {
 	text-shadow: 0px 1px 0px white;
 }
 
-#paywall .paywall-inner {
+#paywall .spinner {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -16px 0 -16px;
+	background: red;
+}
+
+#paywall .inner {
 	color: white;
 	text-align: center;
 	opacity: 1;
@@ -87,15 +97,16 @@ body.android.light {
 	width: 100%;
 	position: relative;
 	zoom: 1;
+	background: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wgARCAAECAADAREAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQIABv/EABkBAQEBAQEBAAAAAAAAAAAAAAECAAMEBf/aAAwDAQACEAMQAAAB5v2ffdzrQ6Hc1itzdzrQvOtzdzrc3c6edbm6KIrQ6KJSXajYUcOKC8WFh0Doaw6h0k6B1DoHUOmOunoHTT0Tpp6VNpTNVKjUtGQqdQVhCiaCsJNYcOHC7I5zspWFKopKZWaopmmaZpmkpmqmsOmsVhxQJmcm07S6HSkUSkURRKRRFTKRRKQkpOJwbTsGJ2NpWcystTrhqW4anXFXLUa5amqjVNJqlw4QTaczmHc1hebudbm7lTzrc63Ktzrc7OdbnWiiK0UShQJk2FHFBeKC9ugXJ0DoHU3QOodA6E9Q6Y6h009E6aejNpbNVNI1ORqdQUCaiaCsUS4oHTWzhTbZy7OFylJTKlUUzTNM0zVTTNJTNM1hxWHTWyDOQZdO0Ol04hJSKJSElJSUhJSaJSUl0pKT/8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgBAQABBQIAf//EABgRAQEBAQEAAAAAAAAAAAAAAAEAMGAQ/9oACAEDAQE/AWZmZmZmZmZ8Z0IiIiIiIiIiIjoGZmZmZmZmZnUiIiIiIiIiIjhv/8QAFBEBAAAAAAAAAAAAAAAAAAAAgP/aAAgBAgEBPwEAf//EABQQAQAAAAAAAAAAAAAAAAAAAID/2gAIAQEABj8CAH//xAAaEAEBAQADAQAAAAAAAAAAAAABABAgMFBA/9oACAEBAAE/Ie08U4mmnyPkszjMzMzj3mGkR4phEcD4nxf/2gAMAwEAAgADAAAAEF2vD1T3yZlF4ICaCkQbvqHecjHUrkJeO9vKmr4D8m32s+UYQNZ1+qV0SfqT3MauK4ez6unWoyYvZZFxi8ku3vwb9QCurynKo5ud/HV0joDUj82XllLy4moORd03t/22S//EABkRAQEAAwEAAAAAAAAAAAAAAAEAECAwQP/aAAgBAwEBPxDuAAHIzM6kR4wCACObo8DciIiOTMzMzMzMzMzMzMzsRERERERERGrM+EAAGdiIiPEAAAiN2cuGeZERgwcnDMzMzMzMzMzMzMzN/8QAGhEBAQEAAwEAAAAAAAAAAAAAAQAQIDBAUP/aAAgBAgEBPxD5LwZmZnGcfARERERERERERER3voOB8B63XHWZmZmccfCREREREREREREer//EABgQAQEBAQEAAAAAAAAAAAAAAAEAECAw/9oACAEBAAE/ECIiIiIiIjBEREcERrjMzOs49ERGCIjBGCMEREcuOszM4ZmZmZnoiIiIiIiIjwZmZ4D4EHDOvJERGDBHAIiIjp1xmZmZnkwiIiMHAIjBERHgzMzhmZmZmZmZ7IiIwiMIiIiL/9k=) 50% 0 no-repeat;
 }
 
-#paywall .paywall-inner:before,
-#paywall .paywall-inner:after {
+#paywall .inner:before,
+#paywall .inner:after {
 	content: "";
 	display: table;
 }
 
-#paywall .paywall-inner:after {
+#paywall .inner:after {
 	clear: both;
 }
 
@@ -110,15 +121,6 @@ body.android.light {
 	background-size: 47px 90px;
 }
 
-#paywall .colored-border {
-	position: absolute;
-	height: 3px;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wgARCAAECAADAREAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQIABv/EABkBAQEBAQEBAAAAAAAAAAAAAAECAAMEBf/aAAwDAQACEAMQAAAB5v2ffdzrQ6Hc1itzdzrQvOtzdzrc3c6edbm6KIrQ6KJSXajYUcOKC8WFh0Doaw6h0k6B1DoHUOmOunoHTT0Tpp6VNpTNVKjUtGQqdQVhCiaCsJNYcOHC7I5zspWFKopKZWaopmmaZpmkpmqmsOmsVhxQJmcm07S6HSkUSkURRKRRFTKRRKQkpOJwbTsGJ2NpWcystTrhqW4anXFXLUa5amqjVNJqlw4QTaczmHc1hebudbm7lTzrc63Ktzrc7OdbnWiiK0UShQJk2FHFBeKC9ugXJ0DoHU3QOodA6E9Q6Y6h009E6aejNpbNVNI1ORqdQUCaiaCsUS4oHTWzhTbZy7OFylJTKlUUzTNM0zVTTNJTNM1hxWHTWyDOQZdO0Ol04hJSKJSElJSUhJSaJSUl0pKT/8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgBAQABBQIAf//EABgRAQEBAQEAAAAAAAAAAAAAAAEAMGAQ/9oACAEDAQE/AWZmZmZmZmZ8Z0IiIiIiIiIiIjoGZmZmZmZmZnUiIiIiIiIiIjhv/8QAFBEBAAAAAAAAAAAAAAAAAAAAgP/aAAgBAgEBPwEAf//EABQQAQAAAAAAAAAAAAAAAAAAAID/2gAIAQEABj8CAH//xAAaEAEBAQADAQAAAAAAAAAAAAABABAgMFBA/9oACAEBAAE/Ie08U4mmnyPkszjMzMzj3mGkR4phEcD4nxf/2gAMAwEAAgADAAAAEF2vD1T3yZlF4ICaCkQbvqHecjHUrkJeO9vKmr4D8m32s+UYQNZ1+qV0SfqT3MauK4ez6unWoyYvZZFxi8ku3vwb9QCurynKo5ud/HV0joDUj82XllLy4moORd03t/22S//EABkRAQEAAwEAAAAAAAAAAAAAAAEAECAwQP/aAAgBAwEBPxDuAAHIzM6kR4wCACObo8DciIiOTMzMzMzMzMzMzMzsRERERERERGrM+EAAGdiIiPEAAAiN2cuGeZERgwcnDMzMzMzMzMzMzMzN/8QAGhEBAQEAAwEAAAAAAAAAAAAAAQAQIDBAUP/aAAgBAgEBPxD5LwZmZnGcfARERERERERERER3voOB8B63XHWZmZmccfCREREREREREREer//EABgQAQEBAQEAAAAAAAAAAAAAAAEAECAw/9oACAEBAAE/ECIiIiIiIjBEREcERrjMzOs49ERGCIjBGCMEREcuOszM4ZmZmZnoiIiIiIiIjwZmZ4D4EHDOvJERGDBHAIiIjp1xmZmZnkwiIiMHAIjBERHgzMzhmZmZmZmZ7IiIwiMIiIiL/9k=) no-repeat left center;
-}
-
 #paywall h1 {
 	font-size: 30px;
 	margin: 0;
@@ -126,7 +128,7 @@ body.android.light {
 
 #paywall h2,
 #paywall h2 a,
-#paywall h2 .paywall-tab-trigger {
+#paywall h2 .tab-trigger {
 	font-size: 16px;
 	margin: 0 0 0.3em;
 	text-decoration: none;
@@ -427,7 +429,7 @@ body.android.light {
 	position: relative;
 }
 
-#paywall .paywall-tab {
+#paywall .tab {
 	width: 100%;
 	padding: 20px 0;
 	position: absolute;
@@ -445,13 +447,13 @@ body.android.light {
 	pointer-events: none;
 }
 
-#paywall .paywall-tab.open {
+#paywall .tab.open {
 	left: 0;
 	opacity: 1;
 	pointer-events: inherit;
 }
 
-#paywall .paywall-tab header {
+#paywall .tab header {
 	-webkit-transition: padding-top 0.3s ease-out 0;
 	transition: padding-top 0.3s ease-out 0;
 	-webkit-transform: translate3d(0, 0, 0);
@@ -459,7 +461,7 @@ body.android.light {
 	-webkit-backface-visibility: hidden;
 }
 
-#paywall .paywall-tab-trigger {
+#paywall .tab-trigger {
 	cursor: pointer;
 }
 
@@ -470,6 +472,7 @@ body.android.light {
 
 #paywall .purchase-options {
 	height: 36px;
+	position: relative;
 }
 
 #paywall .input {
@@ -534,7 +537,7 @@ body.android.light {
 	border-bottom-color: #2bb4ed;
 }
 
-.light .paywall-inner {
+.light .inner {
 	color: #333333;
 }
 
@@ -556,7 +559,7 @@ body.android.light {
 
 #paywall h2,
 #paywall h2 a,
-#paywall h2 .paywall-tab-trigger {
+#paywall h2 .tab-trigger {
 	margin: 0 0 5px;
 	line-height: 1em;
 }
@@ -580,7 +583,7 @@ body.android.light {
 	z-index: 9999;
 }
 
-#paywall .paywall-tab a.more-info-trigger {
+#paywall .tab a.more-info-trigger {
 	display: block;
 }
 
@@ -645,7 +648,7 @@ body.android.light {
 	margin: 5px auto 0;
 }
 
-#paywall .paywall-tab {
+#paywall .tab {
 	padding-bottom: 15px;
 }
 

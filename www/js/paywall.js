@@ -30,50 +30,62 @@ define('paywall', ['main'], function(app)
     Paywall.prototype = {
         deviceHeight: window.screen.height,
 
+        $chrome: $('#chrome'),
+
+        tab: {
+            $login: $('#login'),
+            $forgotPassword: $('#forgot-password'),
+            $loggedIn: $('#logged-in'),
+            $purchase: $('#purchase'),
+            $products: $('#products')
+        },
+
         init: function()
         {
             window.nativeContext = this.getNativeContext();
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
             this.registerCommonEventListeners();
-            this.registerPurchaseEventListeners();
             this.registerUserEventListeners();
+            this.registerPurchaseEventListeners();
         },
 
         updateHeight: function()
         {
             // Find the highest tab
-            var arr = [];
-            $('.paywall-tab').each(function()
+            var tabHeights = [];
+            $('.tab').each(function()
             {
                 var $tab = $(this);
-                var thisOutherHeight = $tab.outerHeight();
-                var thisMarginTop = thisOutherHeight / 2;
-                arr.push(thisOutherHeight);
-                $tab.css('margin-top',  -thisMarginTop);
+
+                var tabOutherHeight = $tab.outerHeight();
+                tabHeights.push(tabOutherHeight);
+
+                var tabMarginTop = (tabOutherHeight / 2) * -1;
+                $tab.css('margin-top', tabMarginTop);
             });
 
-            var totalHeight = Math.max.apply(Math, arr);
-            $('#paywall-content').css('height', totalHeight);
+            var tallestTabHeight = Math.max.apply(Math, tabHeights);
+            $('#content').css('height', tallestTabHeight);
 
             // Notify native about the paywall’s height
-            app.bridge.trigger('paywallLoaded', { 'height': totalHeight });
+            app.bridge.trigger('paywallLoaded', { 'height': tallestTabHeight });
         },
 
         adjustLoginInputsIfMobile: function()
         {
+            var self = this;
+
             if(this.deviceHeight <= 480)
             {
-                var $login = $('#paywall-login');
-
                 $('input')
                     .focus(function()
                     {
-                        $login.addClass('focus');
+                        self.tab.$login.addClass('focus');
                     })
                     .blur(function()
                     {
-                        $login.removeClass('focus');
+                        self.tab.$login.removeClass('focus');
                     });
             }
         },
@@ -109,137 +121,44 @@ define('paywall', ['main'], function(app)
         },
 
         /*
-         *      Purchase related
+         *      Common event listeners
          */
 
-        purchaseInfoDone: function(data, provider)
+        registerCommonEventListeners: function()
         {
-            if('products' in data && data.products.length)
+            this.$chrome.on('click', '.external-browser', function(e)
             {
-                var $target = $('#paywall-products .purchase-options');
-
-                var $buttons = $('<div class="purchase-options"></div>');
-                $.each(data.products, function(i, product)
-                {
-                    var $productbutton = $(
-                        '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + provider + '" class="button blue-button">' +
-                            'Kjøp <span class="title">' + product.title + '</span> ' +
-                            'for <span class="price">' + product.priceFormatted + '</span>' +
-                        '</button>'
-                    );
-
-                    $buttons.append($productbutton);
-                });
-
-                $target.html($buttons.html());
-            }
-        },
-
-        purchaseInfoFail: function(data)
-        {
-            console.log('purchaseInfoFail', data);
-        },
-
-        purchaseDone: function(provider)
-        {
-            app.bridge.trigger('getUserInfo',
-            {
-                provider: provider,
-
-                doneEvent: app.callbackHelper.create(),
-                failEvent: app.callbackHelper.create()
-            });
-
-            // Display purchase success message
-            // remove spinner
-        },
-
-        purchaseFail: function(data)
-        {
-            // remove spinner
-            console.log('purchaseFail', data);
-        },
-
-        restorePurchasesDone: function(provider)
-        {
-
-        },
-
-        restorePurchasesFail: function(data)
-        {
-            console.log('restorePurchasesFail', data);
-        },
-
-        registerPurchaseEventListeners: function()
-        {
-            var self = this;
-
-            // Choose a provider to buy from, ask its purchase alternatives
-            $('#paywall-buy').on('click', '.in-app-purchase', function(e)
-            {
-                var provider = $(this).data('provider');
-
-                app.bridge.trigger('getPurchaseInfo',
-                {
-                    provider: provider,
-
-                    doneEvent: app.callbackHelper.create(function(data)
-                    {
-                        self.purchaseInfoDone(data, provider);
-                    }),
-
-                    failEvent: app.callbackHelper.create(self.purchaseInfoFail)
-                });
+                var url = $(this).attr('href');
+                app.bridge.trigger('externalBrowser', { url: url });
 
                 e.preventDefault();
             });
 
-            // Choose one of the provider’s purchase alternatives
-            $('#paywall-products').on('click', '.purchase-options .purchase-button', function()
+            this.$chrome.on('click', '.tab-trigger', function(e)
             {
-                var $button = $(this);
-                var provider = $button.data('provider');
-                var productIdentifier = $button.data('product-identifier');
-
-                // add spinner
-
-                app.bridge.trigger('purchase',
-                {
-                    provider: provider,
-
-                    productIdentifier: productIdentifier,
-                    doneEvent: app.callbackHelper.create(function()
-                    {
-                        self.purchaseDone(provider);
-                    }),
-
-                    failEvent: app.callbackHelper.create(self.purchaseFail)
-                });
-            });
-
-            // Restore purchases
-            $('#paywall-products').on('click', '.restore-purchases', function(e)
-            {
-                var provider = $(this).data('provider');
-
-                app.bridge.trigger('restorePurchases',
-                {
-                    provider: provider,
-
-                    doneEvent: app.callbackHelper.create(function()
-                    {
-                        self.restorePurchasesDone(provider);
-                    }),
-
-                    failEvent: app.callbackHelper.create(self.restorePurchasesFail)
-                });
+                $('.tab.open').removeClass('open');
+                $('.tab-trigger.open').removeClass('open');
+                $($(this).attr('internal')).addClass('open');
+                $(this).addClass('open');
 
                 e.preventDefault();
+            });
+
+            this.$chrome.on('click', '.active-tab', function(e)
+            {
+                $($(this).attr('active-tab')).addClass('open');
+
+                e.preventDefault();
+            });
+
+            this.$chrome.on('touchmove touchstart', function()
+            {
+                $('.layer-content').removeClass('overflowHidden');
             });
         },
 
         /*
-         *      User related
+         *      User related event listeners
          */
 
         loginDone: function(provider)
@@ -270,7 +189,7 @@ define('paywall', ['main'], function(app)
             // TBD
 
             // Log in
-            $('#paywall-login').on('submit', 'form', function(e)
+            this.tab.$login.on('submit', 'form', function(e)
             {
                 var $form = $(this);
                 var provider = $form.data('provider');
@@ -282,12 +201,10 @@ define('paywall', ['main'], function(app)
                     provider: provider,
                     username: username,
                     password: password,
-
                     doneEvent: app.callbackHelper.create(function()
                     {
                         self.loginDone(provider);
                     }),
-
                     failEvent: app.callbackHelper.create(self.loginFail)
                 });
 
@@ -298,13 +215,12 @@ define('paywall', ['main'], function(app)
 
 
             // Log out (not sure if this should be constrained to this tab only)
-            $('#paywall-logged-in').on('click', '.paywall-logout', function(doneEvent)
+            this.tab.$loggedIn.on('click', '.paywall-logout', function(doneEvent)
             {
                 var provider = $(this).data('provider');
                 app.bridge.trigger('logout',
                 {
                     provider: provider,
-
                     doneEvent: app.callbackHelper.create(self.logoutDone),
                     failEvent: app.callbackHelper.create(self.logoutFail)
                 });
@@ -313,38 +229,127 @@ define('paywall', ['main'], function(app)
             });
         },
 
-        registerCommonEventListeners: function()
+        /*
+         *      Purchase related event listeners
+         */
+
+        purchaseInfoDone: function(data, provider, $target)
         {
-            var $root = $('#chrome');
-
-            $root.on('click', '.external-browser', function(e)
+            if('products' in data && data.products.length)
             {
-                var url = $(this).attr('href');
-                app.bridge.trigger('externalBrowser', { url: url });
+                var $buttons = $('<div class="purchase-options"></div>');
+                $.each(data.products, function(i, product)
+                {
+                    var $productbutton = $(
+                        '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + provider + '" class="button blue-button">' +
+                            'Kjøp <span class="title">' + product.title + '</span> ' +
+                            'for <span class="price">' + product.priceFormatted + '</span>' +
+                        '</button>'
+                    );
+
+                    $buttons.append($productbutton);
+                });
+
+                $target.html($buttons.html());
+            }
+        },
+
+        purchaseInfoFail: function(data)
+        {
+            console.log('purchaseInfoFail', data);
+        },
+
+        purchaseDone: function(provider)
+        {
+            app.bridge.trigger('getUserInfo',
+            {
+                provider: provider,
+                doneEvent: app.callbackHelper.create(),
+                failEvent: app.callbackHelper.create()
+            });
+
+            // Display purchase success message
+            // remove spinner
+        },
+
+        purchaseFail: function(data)
+        {
+            // remove spinner
+            console.log('purchaseFail', data);
+        },
+
+        restorePurchasesDone: function(provider)
+        {
+
+        },
+
+        restorePurchasesFail: function(data)
+        {
+            console.log('restorePurchasesFail', data);
+        },
+
+        registerPurchaseEventListeners: function()
+        {
+            var self = this;
+
+            // Choose a provider to buy from, ask for its purchase options
+            this.tab.$purchase.on('click', '.in-app-purchase', function(e)
+            {
+                var $placeholder = self.tab.$products.find('.purchase-options');
+                self.addSpinner($placeholder);
+
+                var provider = $(this).data('provider');
+
+                app.bridge.trigger('getPurchaseInfo',
+                {
+                    provider: provider,
+                    doneEvent: app.callbackHelper.create(function(data)
+                    {
+                        self.purchaseInfoDone(data, provider, $placeholder);
+                    }),
+                    failEvent: app.callbackHelper.create(self.purchaseInfoFail)
+                });
 
                 e.preventDefault();
             });
 
-            $root.on('click', '.paywall-tab-trigger', function(e)
+            // Choose one of the provider’s purchase alternatives
+            this.tab.$products.on('click', '.purchase-options .purchase-button', function()
             {
-                $('.paywall-tab.open').removeClass('open');
-                $('.paywall-tab-trigger.open').removeClass('open');
-                $($(this).attr('internal')).addClass('open');
-                $(this).addClass('open');
+                var $button = $(this);
+                var provider = $button.data('provider');
+                var productIdentifier = $button.data('product-identifier');
 
-                e.preventDefault();
+                // add spinner
+
+                app.bridge.trigger('purchase',
+                {
+                    provider: provider,
+                    productIdentifier: productIdentifier,
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        self.purchaseDone(provider);
+                    }),
+                    failEvent: app.callbackHelper.create(self.purchaseFail)
+                });
             });
 
-            $root.on('click', '.active-tab', function(e)
+            // Restore purchases
+            this.tab.$products.on('click', '.restore-purchases', function(e)
             {
-                $($(this).attr('active-tab')).addClass('open');
+                var provider = $(this).data('provider');
+
+                app.bridge.trigger('restorePurchases',
+                {
+                    provider: provider,
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        self.restorePurchasesDone(provider);
+                    }),
+                    failEvent: app.callbackHelper.create(self.restorePurchasesFail)
+                });
 
                 e.preventDefault();
-            });
-
-            $root.on('touchmove touchstart', function()
-            {
-                $('.layer-content').removeClass('overflowHidden');
             });
         }
     };

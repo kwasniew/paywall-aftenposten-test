@@ -14,14 +14,13 @@
     <body class="light">
         <div id="chrome">
             <div id="paywall">
-                <div class="paywall-inner">
-                    <span class="colored-border"></span>
+                <div class="inner">
                     <div class="customer-logo no-mobile"></div>
                     <a href="https://kundesenter.aftenposten.no/" class="external-browser more-info-trigger round-button"><b>i</b></a>
-                    <div id="paywall-content">
+                    <div id="content">
 
 
-                        <div id="paywall-login" class="paywall-tab open">
+                        <div id="login" class="tab open">
                             <header>
                                 <h2>Logg inn med <a href="https://kundesenter.aftenposten.no/" class="external-browser spid-logo"></a></h2>
                                 <p>Vennligst logg inn dersom du har kjøpt tilgang til Aftenposten Digital og har en SPiD-konto.</p>
@@ -33,13 +32,13 @@
                             </form>
                             <footer>
                                 <a href="https://payment.schibsted.no/auth/forgotPassword?redirect=aftenposten.no" class="external-browser forgotPassword">Glemt passord?</a>
-                                <a href="#" internal="#paywall-buy" class="paywall-tab-trigger hide-on-focus">Bli abonnent ›</a>
+                                <a href="#" internal="#purchase" class="tab-trigger hide-on-focus">Bli abonnent ›</a>
                                 <a href="#" class="restore-purchases hide-on-focus">Gjenopprette iTunes-kjøp</a>
                             </footer>
                         </div>
 
 
-                        <div id="paywall-forgot-password" class="paywall-tab">
+                        <div id="forgot-password" class="tab">
                             <header>
                                 <p>Skriv inn din SPiD-brukernavn for å få tilsendt glemt SPiD-passord.</p>
                             </header>
@@ -54,7 +53,7 @@
                         </div>
 
 
-                        <div id="paywall-logged-in" class="paywall-tab">
+                        <div id="logged-in" class="tab">
                             <header>
                                 <h2>Hei, <span class="getSpidUserName">Ukjent</span>!</h2>
                                 <p>Du er logget inn, men brukeren din har ingen abonnement som gir tilgang til dette innholdet. På <a href="https://kundesenter.aftenposten.no/" class="blue external-browser">ap.no/produkter</a> finner du en oversikt over tilgjengelige produktpakker og mulighet for utvidelse av ditt abonnement.</p>
@@ -62,12 +61,12 @@
                             </header>
                             <footer>
                                 <a href="#" class="paywall-logout">Logg ut</a>
-                                <a href="#" internal="#paywall-buy" class="paywall-tab-trigger">Bli abonnent ›</a>
+                                <a href="#" internal="#purchase" class="tab-trigger">Bli abonnent ›</a>
                             </footer>
                         </div>
 
 
-                        <div id="paywall-buy" class="paywall-tab">
+                        <div id="purchase" class="tab">
                             <header>
                                 <div class="halfWidth aftenpostenProducts">
                                     <h2>Kjøp abonnement hos Aftenposten</a></h2>
@@ -76,15 +75,15 @@
                                 </div>
                                 <div class="halfWidth promotingAppStore">
                                     <h2>Kjøp abonnement via iTunes</h2>
-                                    <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto. <a href="#" internal="#paywall-products" class="paywall-tab-trigger blue no-tablet in-app-purchase" data-provider="itunes">Kjøp tilgang nå ›</a></p>
-                                    <button type="button" internal="#paywall-products" class="button blue-button paywall-tab-trigger no-mobile in-app-purchase" data-provider="itunes">Kjøp tilgang nå</button>
+                                    <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto. <a href="#" internal="#products" class="tab-trigger blue no-tablet in-app-purchase" data-provider="itunes">Kjøp tilgang nå ›</a></p>
+                                    <button type="button" internal="#products" class="button blue-button tab-trigger no-mobile in-app-purchase" data-provider="itunes">Kjøp tilgang nå</button>
                                 </div>
                             </header>
-                            <a href="#" internal="#paywall-login" id="subscriber-link" class="subscriber-link paywall-tab-trigger go-back-button round-button button-bottom">‹</a>
+                            <a href="#" internal="#login" id="subscriber-link" class="subscriber-link tab-trigger go-back-button round-button button-bottom">‹</a>
                         </div>
 
 
-                        <div id="paywall-products" class="paywall-tab">
+                        <div id="products" class="tab">
                             <header>
                                 <h2>Kjøp abonnement via iTunes</h2>
                                 <p>Du administrerer ditt abonnement via din iTunes-konto.<br />Abonnementet løper til det sies opp.</p>
@@ -93,7 +92,7 @@
                             <footer>
                                 <a href="#" class="restore-purchases" data-provider="itunes">Gjenopprette iTunes-kjøp</a>
                             </footer>
-                            <a href="#" internal="#paywall-buy" class="paywall-tab-trigger go-back-button round-button button-bottom">‹</a>
+                            <a href="#" internal="#purchase" class="tab-trigger go-back-button round-button button-bottom">‹</a>
                         </div>
 
 

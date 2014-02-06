@@ -54,7 +54,19 @@ body {
         text-shadow: 0px 1px 0px rgba(255,255,255,1)
     }
 
-    .paywall-inner {
+    .spinner {
+        $size: 32px;
+
+        width: $size;
+        height: $size;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -($size / 2) 0 0 -($size / 2);
+        background: red;
+    }
+
+    .inner {
         color: #fff;
         text-align: center;
         opacity:1;
@@ -63,6 +75,7 @@ body {
         width: 100%;
         position: relative;
         @include clearfix;
+        background: url(/gfx/colored_border.jpg) 50% 0 no-repeat;
     }
 
     .customer-logo {
@@ -75,15 +88,6 @@ body {
         background-size: 47px 90px;
     }
 
-    .colored-border {
-        position: absolute;
-        height: 3px;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: url(/gfx/colored_border.jpg) no-repeat left center;
-    }
-
     h1 {
         font-size: 30px;
         margin: 0;
@@ -93,7 +97,7 @@ body {
 
     h2,
     h2 a,
-    h2 .paywall-tab-trigger {
+    h2 .tab-trigger {
         font-size: 16px;
         margin: 0 0 0.3em;
         text-decoration: none;
@@ -241,7 +245,7 @@ body {
     }
 
     @media #{$screen-mobile-big} {
-        .paywall-tab a.more-info-trigger { display: block; }
+        .tab a.more-info-trigger { display: block; }
     }
 
     b { font-weight: 600; }
@@ -388,7 +392,7 @@ body {
 
     #paywall-content { position: relative; }
 
-    .paywall-tab {
+    .tab {
         width: 100%;
         padding: 20px 0;
         position: absolute;
@@ -409,7 +413,7 @@ body {
         @media #{$screen-mobile-big} { padding-bottom: 15px; }
     }
 
-    .paywall-tab-trigger { cursor: pointer; }
+    .tab-trigger { cursor: pointer; }
 
     #paywall-products .paywall-buy-product {
         display: inline-block;
@@ -423,6 +427,7 @@ body {
 
     .purchase-options {
         height: 36px;
+        position: relative;
 
         @media #{$screen-mobile-big} {
             height: 60px;
@@ -542,7 +547,7 @@ body {
         }
     }
 
-    .paywall-inner { color: #333; }
+    .inner { color: #333; }
 }
 
 .android {
