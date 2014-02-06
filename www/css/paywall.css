@@ -79,13 +79,124 @@ body.android.light {
 }
 
 #paywall .spinner {
-	width: 32px;
-	height: 32px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -16px 0 -16px;
-	background: red;
+	z-index: 2;
+}
+
+#paywall .spinner i {
+	display: block;
+	position: absolute;
+	width: 7px;
+	height: 2px;
+	background: black;
+	opacity: 0.2;
+	border-radius: 4px;
+	-webkit-animation-name: spin;
+	animation-name: spin;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease;
+	animation-timing-function: ease;
+}
+
+#paywall i:nth-child(1) {
+	-webkit-transform: rotate(30deg) translateX(10px);
+	-ms-transform: rotate(30deg) translateX(10px);
+	transform: rotate(30deg) translateX(10px);
+	-webkit-animation-delay: 0.08333s;
+	animation-delay: 0.08333s;
+}
+
+#paywall i:nth-child(2) {
+	-webkit-transform: rotate(60deg) translateX(10px);
+	-ms-transform: rotate(60deg) translateX(10px);
+	transform: rotate(60deg) translateX(10px);
+	-webkit-animation-delay: 0.16667s;
+	animation-delay: 0.16667s;
+}
+
+#paywall i:nth-child(3) {
+	-webkit-transform: rotate(90deg) translateX(10px);
+	-ms-transform: rotate(90deg) translateX(10px);
+	transform: rotate(90deg) translateX(10px);
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+#paywall i:nth-child(4) {
+	-webkit-transform: rotate(120deg) translateX(10px);
+	-ms-transform: rotate(120deg) translateX(10px);
+	transform: rotate(120deg) translateX(10px);
+	-webkit-animation-delay: 0.33333s;
+	animation-delay: 0.33333s;
+}
+
+#paywall i:nth-child(5) {
+	-webkit-transform: rotate(150deg) translateX(10px);
+	-ms-transform: rotate(150deg) translateX(10px);
+	transform: rotate(150deg) translateX(10px);
+	-webkit-animation-delay: 0.41667s;
+	animation-delay: 0.41667s;
+}
+
+#paywall i:nth-child(6) {
+	-webkit-transform: rotate(180deg) translateX(10px);
+	-ms-transform: rotate(180deg) translateX(10px);
+	transform: rotate(180deg) translateX(10px);
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
+}
+
+#paywall i:nth-child(7) {
+	-webkit-transform: rotate(210deg) translateX(10px);
+	-ms-transform: rotate(210deg) translateX(10px);
+	transform: rotate(210deg) translateX(10px);
+	-webkit-animation-delay: 0.58333s;
+	animation-delay: 0.58333s;
+}
+
+#paywall i:nth-child(8) {
+	-webkit-transform: rotate(240deg) translateX(10px);
+	-ms-transform: rotate(240deg) translateX(10px);
+	transform: rotate(240deg) translateX(10px);
+	-webkit-animation-delay: 0.66667s;
+	animation-delay: 0.66667s;
+}
+
+#paywall i:nth-child(9) {
+	-webkit-transform: rotate(270deg) translateX(10px);
+	-ms-transform: rotate(270deg) translateX(10px);
+	transform: rotate(270deg) translateX(10px);
+	-webkit-animation-delay: 0.75s;
+	animation-delay: 0.75s;
+}
+
+#paywall i:nth-child(10) {
+	-webkit-transform: rotate(300deg) translateX(10px);
+	-ms-transform: rotate(300deg) translateX(10px);
+	transform: rotate(300deg) translateX(10px);
+	-webkit-animation-delay: 0.83333s;
+	animation-delay: 0.83333s;
+}
+
+#paywall i:nth-child(11) {
+	-webkit-transform: rotate(330deg) translateX(10px);
+	-ms-transform: rotate(330deg) translateX(10px);
+	transform: rotate(330deg) translateX(10px);
+	-webkit-animation-delay: 0.91667s;
+	animation-delay: 0.91667s;
+}
+
+#paywall i:nth-child(12) {
+	-webkit-transform: rotate(360deg) translateX(10px);
+	-ms-transform: rotate(360deg) translateX(10px);
+	transform: rotate(360deg) translateX(10px);
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
 }
 
 #paywall .inner {
@@ -756,6 +867,26 @@ body.android.light {
 
 #paywall .focus header {
 	padding-top: 45px !important;
+}
+
+}
+
+@-webkit-keyframes spin {
+
+30% {
+	opacity: 1;
+	-webkit-box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.8);
+	box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.8);
+}
+
+}
+
+@keyframes spin {
+
+30% {
+	opacity: 1;
+	-webkit-box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.8);
+	box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.8);
 }
 
 }

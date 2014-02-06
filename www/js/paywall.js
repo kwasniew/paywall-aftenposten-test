@@ -118,7 +118,7 @@ define('paywall', ['main'], function(app)
 
         addSpinner: function($target)
         {
-            $target.append('<div class="spinner"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>');
+            $target.html('<div class="spinner"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>');
         },
 
         /*
@@ -152,6 +152,7 @@ define('paywall', ['main'], function(app)
 
         loginDone: function(provider)
         {
+            console.log('login with ' + provider + 'successful');
             // Re-fetch user info?
         },
 
@@ -250,20 +251,14 @@ define('paywall', ['main'], function(app)
 
         purchaseDone: function(provider)
         {
-            app.bridge.trigger('getUserInfo',
-            {
-                provider: provider,
-                doneEvent: app.callbackHelper.create(),
-                failEvent: app.callbackHelper.create()
-            });
+            // Native removes paywall...
 
-            // Display purchase success message
-            // remove spinner
+            // Refresh user?
+            // Display purchase success message?
         },
 
         purchaseFail: function(data)
         {
-            // remove spinner
             console.log('purchaseFail', data);
         },
 
@@ -303,7 +298,7 @@ define('paywall', ['main'], function(app)
             });
 
             // Choose one of the provider’s purchase alternatives
-            this.tab.$products.on('click', '.purchase-options .purchase-button', function()
+            this.tab.$products.on('click', '.purchase-options button', function()
             {
                 var $button = $(this);
                 var provider = $button.data('provider');

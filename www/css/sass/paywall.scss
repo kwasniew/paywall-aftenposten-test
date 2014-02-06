@@ -54,11 +54,11 @@ body {
         -webkit-tap-highlight-color: transparent;
         text-shadow: 0px 1px 0px rgba(255,255,255,1)
     }
-    
+
 	$particles: 12;
 	$radius: 10;
 	$lapDuration: 1s;
-	
+
 	.spinner {
 		position: absolute;
 		top: 50%;
@@ -79,15 +79,15 @@ body {
 			animation-timing-function: ease;
 		}
 	}
-	
+
 	@for $i from 1 through $particles {
 		i:nth-child(#{$i}) {
 		$angle: $i / $particles * 360;
-		
+
 		transform:
 			rotate( #{$angle}deg )
 			translateX( #{$radius}px );
-			
+
 			animation-delay: $i * ($lapDuration / $particles);
 		}
 	}
@@ -198,7 +198,7 @@ body {
     #purchase .button {
 		display: block;
 		margin: 10px auto 0;
-		
+
 		@media #{$screen-mobile-big} {
 			margin: 0;
 			padding: 0;
@@ -206,11 +206,11 @@ body {
 			background: none;
 			color: $color-blue !important;
 			text-transform: inherit;
-			
+
 			&:after {
 				content: ' ›';
 			}
-        }		        
+        }
     }
 
     a {
