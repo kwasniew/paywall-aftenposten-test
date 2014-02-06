@@ -302,10 +302,24 @@ define('paywall', ['main'], function(app)
             this.tab.$products.on('click', '.purchase-options button', function()
             {
                 var $button = $(this);
+
+                $button
+                    .addClass('active')
+                .siblings()
+                    .attr('disabled', 'disabled')
+                    .addClass('disabled');
+
                 var provider = $button.data('provider');
                 var productIdentifier = $button.data('product-identifier');
 
                 // add spinner
+
+                var always = function()
+                {
+                    $button.add($button.siblings())
+                        .removeClass('active disabled')
+                        .removeAttr('disabled');
+                };
 
                 app.bridge.trigger('purchase',
                 {
@@ -313,9 +327,14 @@ define('paywall', ['main'], function(app)
                     productIdentifier: productIdentifier,
                     doneEvent: app.callbackHelper.create(function()
                     {
+                        always();
                         self.purchaseDone(provider);
                     }),
-                    failEvent: app.callbackHelper.create(self.purchaseFail)
+                    failEvent: app.callbackHelper.create(function()
+                    {
+                        always();
+                        self.purchaseFail();
+                    })
                 });
             });
 
