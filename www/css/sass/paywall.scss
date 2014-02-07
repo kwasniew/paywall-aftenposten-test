@@ -116,8 +116,8 @@ body {
         &.show { display: inline; }
     }
 
-	button {
-		-webkit-appearance: none;
+    button {
+        -webkit-appearance: none;
         appearance: none;
         margin: 0 5px;
         font-weight: 400;
@@ -127,7 +127,7 @@ body {
         &:focus {
             outline-width: 0;
         }
-	}
+    }
 
     .button {
         background: transparent;
@@ -150,8 +150,8 @@ body {
         }
 
         &.active {
-	        padding-left: 36px;
-	        position: relative;
+            padding-left: 36px;
+            position: relative;
         }
 
         &.disabled {
@@ -170,20 +170,20 @@ body {
     }
 
     #purchase .button {
-		display: block;
-		margin: 10px auto 0;
+        display: block;
+        margin: 10px auto 0;
 
-		@media #{$screen-mobile-big} {
-			margin: 0;
-			padding: 0;
-			display: inline-block;
-			background: none;
-			color: $color-primary !important;
-			text-transform: inherit;
+        @media #{$screen-mobile-big} {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            background: none;
+            color: $color-primary !important;
+            text-transform: inherit;
 
-			&:after {
-				content: ' ›';
-			}
+            &:after {
+                content: ' ›';
+            }
         }
     }
 
@@ -274,13 +274,13 @@ body {
     .blue { color: $color-primary !important; }
 
     .go-back-button {
-    	&.round-button {
-	        position: fixed;
-	        top: 50%;
-	        left: 20px;
-	        margin-top: -20px;
-	        font-size: 22px;
-	    }
+        &.round-button {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            margin-top: -20px;
+            font-size: 22px;
+        }
     }
 
     header {
@@ -373,7 +373,7 @@ body {
                 margin: 0;
                 float: right;
                 height: 37px;
-				color: #fff;
+                color: #fff;
             }
         }
     }
@@ -506,8 +506,8 @@ body {
 
     .input_password {
         &:before {
-	        background: url(/gfx/paywall-sprite@2x.png) no-repeat -25px -22px;
-	        background-size: 47px 90px;
+            background: url(/gfx/paywall-sprite@2x.png) no-repeat -25px -22px;
+            background-size: 47px 90px;
         }
 
         @media #{$screen-mobile-big} {
@@ -541,12 +541,13 @@ body {
             top: auto;
             left: 25%;
             opacity: 0;
-			@include transition((left, opacity), $performance: false, $delay: 0.1s);
+            @include transition((left, opacity), $performance: false, $delay: 0.1s);
             margin-top: 0;
         }
+
         .open .button-bottom.round-button {
-			left: 10px;
-			opacity: 1;
+            left: 10px;
+            opacity: 1;
         }
 
         .focus {
