@@ -22,9 +22,10 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
 
         logToApp: function(data)
         {
-            this.bridge.trigger('log', {
-                "message": data,
-                "level": 1
+            this.bridge.trigger('log',
+            {
+                'message': data,
+                'level': 1
             });
         },
 
@@ -45,13 +46,26 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
          *
          * @return {void}
          */
-        initBridge: function () {
+        initBridge: function()
+        {
             // This is used to trigger HTML-events by the native layer
-            this.event = _.extend({}, Alf.Events);
+            this.event = _.extend({}, Alf.Events); // Clone
+
+            /*this.event = {
+                on: Zepto.fn.on,
+                off: Zepto.fn.off,
+                bind: Zepto.fn.on,
+                unbind: Zepto.fn.off,
+                one: Zepto.fn.one,
+                trigger: Zepto.fn.trigger,
+                triggerHandler: Zepto.fn.triggerHandler
+            };*/
 
             // This is used to send event-data to the native app
-            this.bridge = _.extend({}, Alf.Events, {
-              initialize: function () {
+            this.bridge = _.extend({}, Alf.Events,
+            {
+                initialize: function()
+                {
                     this.frameIndex = 0;
                     this.eventFrames = $('.event-frame');
                     this.bind('all', this.eventTriggered);
@@ -66,19 +80,17 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
                  *
                  * @return {void}
                  */
-                eventTriggered: function () {
+                eventTriggered: function()
+                {
                     //console.log([].slice.call(arguments));
                     var eventInfo = JSON.stringify([].slice.call(arguments));
 
                     this.frameIndex = (this.frameIndex + 1) % this.eventFrames.length;
+
                     if(app.isEmbeddedInApp)
-                    {
                         this.eventFrames[this.frameIndex].src = 'event://' + escape(eventInfo);
-                    }
                     else
-                    {
                         app.logToConsole('Event: ' + eventInfo);
-                    }
                 }
             });
 
@@ -130,10 +142,6 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
     app.event.on('applicationState', function(state)
     {
         app.logToAll('Got applicationState: ' + state);
-    });
-
-    $(document).ready(function () {
-        app.bridge.trigger('integrationLoaded', {});
     });
 
     return app;

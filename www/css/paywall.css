@@ -130,6 +130,18 @@ body.android.light {
 	color: #333333;
 }
 
+#paywall .spid-user-name {
+	display: none;
+}
+
+#paywall .spid-user-name:before {
+	content: ", ";
+}
+
+#paywall .spid-user-name.show {
+	display: inline;
+}
+
 #paywall button {
 	-webkit-appearance: none;
 	appearance: none;

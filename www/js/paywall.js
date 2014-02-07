@@ -28,12 +28,14 @@ define('paywall', ['main'], function(app)
     };
 
     Paywall.prototype = {
+        user: null,
         deviceHeight: window.screen.height,
 
         $chrome: $('#chrome'),
 
         tab: {
             $all: $('.tab'),
+            $triggers: $('.tab-trigger'),
             $login: $('#login'),
             $forgotPassword: $('#forgot-password'),
             $loggedIn: $('#logged-in'),
@@ -43,12 +45,28 @@ define('paywall', ['main'], function(app)
 
         init: function()
         {
-            this.nativeContext = this.getNativeContext();
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
+
+            // Store as member variables on app for convenience
+            this.nativeContext = this.getNativeContext();
+            this.getUserInfo();
+
+            // Event listeners
             this.registerCommonEventListeners();
             this.registerUserEventListeners();
             this.registerPurchaseEventListeners();
+        },
+
+        switchTab: function(identifier)
+        {
+            // Hide current tab
+            this.tab.$all.removeClass('open');
+            this.tab.$triggers.removeClass('open');
+
+            // Show new tab
+            $(identifier).addClass('open');
+            this.tab.$triggers.filter('[internal="' + identifier + '"]').addClass('open');
         },
 
         updateHeight: function()
@@ -79,15 +97,15 @@ define('paywall', ['main'], function(app)
 
             if(this.deviceHeight <= 480)
             {
-                $('input')
-                    .focus(function()
-                    {
-                        self.tab.$login.addClass('focus');
-                    })
-                    .blur(function()
-                    {
-                        self.tab.$login.removeClass('focus');
-                    });
+                $chrome.on('input', 'focus', function()
+                {
+                    self.tab.$login.addClass('focus');
+                });
+
+                $chrome.on('input', 'blur', function()
+                {
+                    self.tab.$login.removeClass('focus');
+                });
             }
         },
 
@@ -117,6 +135,39 @@ define('paywall', ['main'], function(app)
             return nativeContext;
         },
 
+        userInfoDone: function(data)
+        {
+            this.user = data.userInfo;
+
+            this.tab.$loggedIn.find('.spid-user-name')
+                .text(this.user.displayName)
+                .addClass('show');
+
+            this.switchTab('#logged-in');
+        },
+
+        userInfoFail: function(error)
+        {
+            this.user = null;
+        },
+
+        getUserInfo: function(provider)
+        {
+            var self = this;
+
+            if(!provider) provider = 'spid';
+
+            app.bridge.trigger('getUserInfo',
+            {
+                provider: provider,
+                doneEvent: app.callbackHelper.create(function()
+                {
+                    self.userInfoDone.apply(self, arguments);
+                }),
+                failEvent: app.callbackHelper.create(self.userInfoFail)
+            });
+        },
+
         addSpinner: function($target, method)
         {
             var supportedMethods = ['html', 'append', 'prepend'];
@@ -138,6 +189,8 @@ define('paywall', ['main'], function(app)
 
         registerCommonEventListeners: function()
         {
+            var self = this;
+
             this.$chrome.on('click', '.external-browser', function(e)
             {
                 var url = $(this).attr('href');
@@ -148,11 +201,7 @@ define('paywall', ['main'], function(app)
 
             this.$chrome.on('click', '.tab-trigger', function(e)
             {
-                $('.tab.open').removeClass('open');
-                $('.tab-trigger.open').removeClass('open');
-                $($(this).attr('internal')).addClass('open');
-                $(this).addClass('open');
-
+                self.switchTab($(this).attr('internal'));
                 e.preventDefault();
             });
         },
@@ -161,10 +210,10 @@ define('paywall', ['main'], function(app)
          *      User related event listeners
          */
 
-        loginDone: function(provider)
+        loginDone: function(provider, $form)
         {
-            console.log('login with ' + provider + 'successful');
-            // Re-fetch user info?
+            this.getUserInfo(provider);
+            $form.find('input[name="username"], input[name="password"]').blur();
         },
 
         loginFail: function(data)
@@ -195,7 +244,7 @@ define('paywall', ['main'], function(app)
                 var $form = $(this);
                 var provider = $form.data('provider');
                 var username = $.trim($form.find('input[name="username"]').val());
-                var password = $(this).find('input[name="password"]').val();
+                var password = $form.find('input[name="password"]').val();
 
                 app.bridge.trigger('login',
                 {
@@ -204,7 +253,7 @@ define('paywall', ['main'], function(app)
                     password: password,
                     doneEvent: app.callbackHelper.create(function()
                     {
-                        self.loginDone(provider);
+                        self.loginDone.call(self, provider, $form);
                     }),
                     failEvent: app.callbackHelper.create(self.loginFail)
                 });
@@ -239,7 +288,9 @@ define('paywall', ['main'], function(app)
             if('products' in data && data.products.length)
             {
                 var $buttons = $('<div class="purchase-options"></div>');
-                $.each(data.products, function(i, product)
+
+                var products = _.sortBy(data.products, 'price');
+                $.each(products, function(i, product)
                 {
                     var $productbutton = $(
                         '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + provider + '" class="button blue-button">' +

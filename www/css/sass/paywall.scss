@@ -108,6 +108,14 @@ body {
         }
     }
 
+    .spid-user-name {
+        display: none;
+
+        &:before { content: ", "; }
+
+        &.show { display: inline; }
+    }
+
 	button {
 		-webkit-appearance: none;
         appearance: none;
