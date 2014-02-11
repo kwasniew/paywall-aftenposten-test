@@ -276,7 +276,7 @@ define('paywall', ['main'], function(app)
                     {
                         always();
                         self.loginFail.apply(self, arguments);
-                    });
+                    })
                 });
 
                 e.preventDefault();
