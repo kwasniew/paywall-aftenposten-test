@@ -413,6 +413,7 @@ body {
             margin: 10px !important;
             font-weight: 600 !important;
             position: relative;
+			@include transition(padding-left);
             
             .spinner {
 	            left: 10px;
@@ -421,6 +422,7 @@ body {
 			&.active {
 	            padding-left: 36px;
             }
+            
             
             &:active { color: $color-primary !important; }
             @media #{$screen-mobile-small} { display: inline-block; }

@@ -149,10 +149,37 @@ body.android.light {
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
 	border: none;
+	overflow: hidden;
 }
 
 #paywall button:focus {
 	outline-width: 0;
+}
+
+#paywall button[type="submit"] {
+	background: #2bb4ed;
+	font-weight: 600;
+	color: white;
+	text-shadow: none !important;
+	border-radius: 4px;
+	margin: 0;
+	padding: 0 20px;
+	line-height: 44px;
+	width: 44px;
+	font-size: 16px;
+}
+
+#paywall button[type="submit"].active {
+	text-indent: -999px;
+	padding-left: 20px;
+}
+
+#paywall button[type="submit"] .spinner {
+	left: 50%;
+}
+
+#paywall button[type="submit"]:active {
+	background: #1081b1;
 }
 
 #paywall .button {
@@ -408,20 +435,6 @@ body.android.light {
 	border-bottom-color: #2bb4ed;
 }
 
-#paywall input[type="submit"] {
-	background: #2bb4ed;
-	font-weight: 600;
-	color: white;
-	border: none;
-	text-shadow: none !important;
-	border-radius: 5px;
-	margin: 0 2px;
-}
-
-#paywall input[type="submit"]:focus {
-	background: #1081b1;
-}
-
 #paywall .half-width {
 	width: 45%;
 	float: right;
@@ -445,6 +458,20 @@ body.android.light {
 	font-size: 14px;
 	margin: 10px !important;
 	font-weight: 600 !important;
+	position: relative;
+	-webkit-transition: padding-left 0.3s ease-out 0;
+	transition: padding-left 0.3s ease-out 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+}
+
+#paywall footer a .spinner {
+	left: 10px;
+}
+
+#paywall footer a.active {
+	padding-left: 36px;
 }
 
 #paywall footer a:active {
@@ -687,7 +714,6 @@ button.active .spinner {
 	left: 50%;
 	z-index: 2;
 	left: 16px;
-	top: 16px;
 }
 
 button.active .spinner i {
@@ -824,6 +850,14 @@ button.active .spinner i:nth-child(12) {
 	text-align: center;
 }
 
+#paywall button[type="submit"] {
+	width: 14%;
+	padding: 0;
+	margin: 0;
+	float: right;
+	line-height: 36px;
+}
+
 #paywall .button {
 	padding: 7px 20px 9px;
 	-webkit-box-sizing: border-box;
@@ -885,18 +919,6 @@ button.active .spinner i:nth-child(12) {
 
 #paywall input[type="password"] {
 	margin: 0;
-}
-
-#paywall input[type="submit"] {
-	background: #2bb4ed;
-	border: 1px solid #2bb4ed;
-	font-weight: bold;
-	width: 14%;
-	padding: 0;
-	margin: 0;
-	float: right;
-	height: 37px;
-	color: white;
 }
 
 #paywall .half-width {
