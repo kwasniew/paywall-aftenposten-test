@@ -144,6 +144,7 @@ define('paywall', ['main'], function(app)
                 .addClass('show');
 
             this.switchTab('#logged-in');
+            this.tab.$purchase.find('.go-back-button').attr('internal', '#logged-in');
         },
 
         userInfoFail: function(error)
@@ -221,9 +222,10 @@ define('paywall', ['main'], function(app)
             console.log('loginFail', data);
         },
 
-        logoutDone: function()
+        logoutDone: function(provider)
         {
             // Re-fetch user info?
+            console.log('user logged out from', provider);
         },
 
         logoutFail: function(data)
@@ -265,13 +267,17 @@ define('paywall', ['main'], function(app)
 
 
             // Log out (not sure if this should be constrained to this tab only)
-            this.tab.$loggedIn.on('click', '.logout', function(doneEvent)
+            this.tab.$loggedIn.on('click', '.logout', function(e)
             {
+                console.log('user wants to log out');
                 var provider = $(this).data('provider');
                 app.bridge.trigger('logout',
                 {
                     provider: provider,
-                    doneEvent: app.callbackHelper.create(self.logoutDone),
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        self.logoutDone.call(self, provider);
+                    }),
                     failEvent: app.callbackHelper.create(self.logoutFail)
                 });
 
@@ -313,6 +319,7 @@ define('paywall', ['main'], function(app)
 
         purchaseDone: function(provider)
         {
+            console.log('purchaseDone', provider);
             // Native removes paywall...
 
             // Refresh user?
