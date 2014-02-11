@@ -251,16 +251,12 @@ define('paywall', ['main'], function(app)
 
                 var $button = $form.find('button[type="submit"]');
                 self.addSpinner($button, 'append');
-                $button
-                    .addClass('active')
-                    .text('Logger ut');
+                $button.addClass('active');
 
                 var always = function()
                 {
                     self.removeSpinner($button);
-                    $button
-                        .removeClass('active')
-                        .text('Logg ut');
+                    $button.removeClass('active');
                 };
 
                 app.bridge.trigger('login',
@@ -289,13 +285,17 @@ define('paywall', ['main'], function(app)
                 var $button = $(this);
                 var provider = $button.data('provider');
 
+                $button
+                    .addClass('active')
+                    .text('Logger ut');
                 self.addSpinner($button, 'append');
-                $button.addClass('active');
 
                 var always = function()
                 {
                     self.removeSpinner($button);
-                    $button.removeClass('active');
+                    $button
+                        .removeClass('active')
+                        .text('Logg ut');
                 };
 
                 app.bridge.trigger('logout',
