@@ -244,9 +244,6 @@ define('paywall', ['main'], function(app)
         {
             var self = this;
 
-            // Register
-            // TBD
-
             // Log in
             this.tab.$login.on('submit', 'form', function(e)
             {
@@ -255,6 +252,16 @@ define('paywall', ['main'], function(app)
                 var username = $.trim($form.find('input[name="username"]').val());
                 var password = $form.find('input[name="password"]').val();
 
+                var $button = $form.find('input[type="submit"]');
+                self.addSpinner($button, 'append');
+                $button.addClass('active');
+
+                var always = function()
+                {
+                    self.removeSpinner($button);
+                    $button.removeClass('active');
+                };
+
                 app.bridge.trigger('login',
                 {
                     provider: provider,
@@ -262,30 +269,47 @@ define('paywall', ['main'], function(app)
                     password: password,
                     doneEvent: app.callbackHelper.create(function()
                     {
+                        always();
                         self.loginDone.call(self, provider, $form);
                     }),
-                    failEvent: app.callbackHelper.create(self.loginFail)
+                    failEvent: app.callbackHelper.create(function()
+                    {
+                        always();
+                        self.loginFail.apply(self, arguments);
+                    });
                 });
 
                 e.preventDefault();
             });
 
-            // Forgot password
-
-
             // Log out (not sure if this should be constrained to this tab only)
             this.tab.$loggedIn.on('click', '.logout', function(e)
             {
-                console.log('user wants to log out');
-                var provider = $(this).data('provider');
+                var $button = $(this);
+                var provider = $button.data('provider');
+
+                self.addSpinner($button, 'append');
+                $button.addClass('active');
+
+                var always = function()
+                {
+                    self.removeSpinner($button);
+                    $button.removeClass('active');
+                };
+
                 app.bridge.trigger('logout',
                 {
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function()
                     {
+                        always();
                         self.logoutDone.call(self, provider);
                     }),
-                    failEvent: app.callbackHelper.create(self.logoutFail)
+                    failEvent: app.callbackHelper.create(function()
+                    {
+                        always();
+                        self.logoutFail.apply(self, arguments);
+                    })
                 });
 
                 e.preventDefault();
@@ -376,19 +400,16 @@ define('paywall', ['main'], function(app)
             // Choose one of the provider’s purchase alternatives
             this.tab.$products.on('click', '.purchase-options button', function()
             {
-                var $button = $(this);
+                var provider = $button.data('provider');
+                var productIdentifier = $button.data('product-identifier');
 
+                var $button = $(this);
                 self.addSpinner($button, 'append');
                 $button
                     .addClass('active')
                 .siblings()
                     .attr('disabled', 'disabled')
                     .addClass('disabled');
-
-                var provider = $button.data('provider');
-                var productIdentifier = $button.data('product-identifier');
-
-                // add spinner
 
                 var always = function()
                 {
@@ -405,7 +426,7 @@ define('paywall', ['main'], function(app)
                     doneEvent: app.callbackHelper.create(function()
                     {
                         always();
-                        self.purchaseDone(provider);
+                        self.purchaseDone.call(self, provider);
                     }),
                     failEvent: app.callbackHelper.create(function()
                     {
