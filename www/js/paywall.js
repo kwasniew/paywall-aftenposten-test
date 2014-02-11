@@ -226,6 +226,13 @@ define('paywall', ['main'], function(app)
         {
             // Re-fetch user info?
             console.log('user logged out from', provider);
+
+            this.tab.$loggedIn.find('.spid-user-name')
+                .text('')
+                .removeClass('show');
+
+            this.switchTab('#login');
+            this.tab.$purchase.find('.go-back-button').attr('internal', '#login');
         },
 
         logoutFail: function(data)
