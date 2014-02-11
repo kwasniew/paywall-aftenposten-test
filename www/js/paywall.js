@@ -252,7 +252,7 @@ define('paywall', ['main'], function(app)
                 var username = $.trim($form.find('input[name="username"]').val());
                 var password = $form.find('input[name="password"]').val();
 
-                var $button = $form.find('input[type="submit"]');
+                var $button = $form.find('button[type="submit"]');
                 self.addSpinner($button, 'append');
                 $button.addClass('active');
 
