@@ -128,7 +128,7 @@ body {
         &:focus {
             outline-width: 0;
         }
-        
+
 		&[type="submit"] {
             background: $color-primary;
             font-weight: 600;
@@ -140,7 +140,7 @@ body {
 			line-height: 44px;
 			width: 44px;
 			font-size: 16px;
-			
+
 			&.active {
 				text-indent: -999px;
 				padding-left: 20px;
@@ -414,16 +414,16 @@ body {
             font-weight: 600 !important;
             position: relative;
 			@include transition(padding-left);
-            
+
             .spinner {
 	            left: 10px;
             }
-			
+
 			&.active {
 	            padding-left: 36px;
             }
-            
-            
+
+
             &:active { color: $color-primary !important; }
             @media #{$screen-mobile-small} { display: inline-block; }
             @media #{$screen-mobile-big} { text-align: center; }

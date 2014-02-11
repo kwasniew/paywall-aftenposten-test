@@ -224,9 +224,6 @@ define('paywall', ['main'], function(app)
 
         logoutDone: function(provider)
         {
-            // Re-fetch user info?
-            console.log('user logged out from', provider);
-
             this.tab.$loggedIn.find('.spid-user-name')
                 .text('')
                 .removeClass('show');
@@ -254,12 +251,16 @@ define('paywall', ['main'], function(app)
 
                 var $button = $form.find('button[type="submit"]');
                 self.addSpinner($button, 'append');
-                $button.addClass('active');
+                $button
+                    .addClass('active')
+                    .text('Logger ut');
 
                 var always = function()
                 {
                     self.removeSpinner($button);
-                    $button.removeClass('active');
+                    $button
+                        .removeClass('active')
+                        .text('Logg ut');
                 };
 
                 app.bridge.trigger('login',
