@@ -62,7 +62,7 @@ define('paywall', ['main'], function(app)
             this.getUserInfo(provider);
         },
 
-        loginFail: function(data)
+        loginFail: function(error)
         {
 
         },
@@ -72,7 +72,7 @@ define('paywall', ['main'], function(app)
 
         },
 
-        logoutFail: function(data)
+        logoutFail: function(error)
         {
 
         },
@@ -90,10 +90,7 @@ define('paywall', ['main'], function(app)
                     username: username,
                     password: password,
                     doneEvent: app.callbackHelper.create(_.bind(self.loginDone, self, provider))
-                    failEvent: app.callbackHelper.create(function()
-                    {
-                        self.loginFail.apply(self, arguments);
-                    })
+                    failEvent: app.callbackHelper.create(_.bind(self.loginFail, self))
                 });
 
                 e.preventDefault();
@@ -106,10 +103,7 @@ define('paywall', ['main'], function(app)
                 {
                     provider: $(this).data('provider'),
                     doneEvent: app.callbackHelper.create(_.bind(self.logoutDone, self, provider))
-                    failEvent: app.callbackHelper.create(function()
-                    {
-                        self.logoutFail.apply(self, arguments);
-                    })
+                    failEvent: app.callbackHelper.create(_.bind(self.logoutFail, self))
                 });
 
                 e.preventDefault();
