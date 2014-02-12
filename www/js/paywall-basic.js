@@ -158,7 +158,7 @@ define('paywall', ['main'], function(app)
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function(data)
                     {
-                        self.getPurchaseInfoDone.apply(self, data, provider);
+                        self.getPurchaseInfoDone.call(self, data, provider);
                     }),
                     failEvent: app.callbackHelper.create(_.bind(self.getPurchaseInfoFail, self))
                 });

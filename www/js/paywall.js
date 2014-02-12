@@ -289,7 +289,7 @@ define('paywall', ['main'], function(app)
          *      Purchase related event listeners
          */
 
-        purchaseInfoDone: function(data, provider, $target)
+        getPurchaseInfoDone: function(data, provider, $target)
         {
             if('products' in data && data.products.length)
             {
@@ -312,9 +312,9 @@ define('paywall', ['main'], function(app)
             }
         },
 
-        purchaseInfoFail: function(error)
+        getPurchaseInfoFail: function(error)
         {
-            console.log('purchaseInfoFail', error);
+            console.log('getPurchaseInfoFail', error);
         },
 
         purchaseDone: function(provider)
@@ -358,9 +358,9 @@ define('paywall', ['main'], function(app)
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function(data)
                     {
-                        self.purchaseInfoDone(data, provider, $placeholder);
+                        self.getPurchaseInfoDone.call(self, data, provider, $placeholder);
                     }),
-                    failEvent: app.callbackHelper.create(_.bind(self.purchaseInfoFail, self))
+                    failEvent: app.callbackHelper.create(_.bind(self.getPurchaseInfoFail, self))
                 });
 
                 e.preventDefault();
