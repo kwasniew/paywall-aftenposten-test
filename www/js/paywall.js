@@ -47,9 +47,6 @@ define('paywall', ['main'], function(app)
         {
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
-
-            // Store as member variables on app for convenience
-            this.nativeContext = this.getNativeContext();
             this.getUserInfo();
 
             // Event listeners
@@ -88,7 +85,7 @@ define('paywall', ['main'], function(app)
             $('#content').css('height', tallestTabHeight);
 
             // Notify native about the paywall’s height
-            app.bridge.trigger('paywallLoaded', { 'height': tallestTabHeight });
+            app.bridge.trigger('paywallLoaded', { height: tallestTabHeight });
         },
 
         adjustLoginInputsIfMobile: function()
@@ -109,33 +106,7 @@ define('paywall', ['main'], function(app)
             }
         },
 
-        getNativeContext: function()
-        {
-            var nativeContext = {};
-            var search = window.location.search;
-
-            // https://github.com/sindresorhus/query-string
-            if(typeof search === 'string')
-            {
-                search = search.trim().replace(/^\?/, '');
-
-                if(search)
-                {
-                    nativeContext = search.trim().split('&').reduce(function(result, param)
-                    {
-                        var parts = param.replace(/\+/g, ' ').split('=');
-                        // missing `=` should be `null`:
-                        // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-                        result[parts[0]] = parts[1] === undefined ? null : decodeURIComponent(parts[1]);
-                        return result;
-                    }, {});
-                }
-            }
-
-            return nativeContext;
-        },
-
-        userInfoDone: function(data)
+        getUserInfoDone: function(data)
         {
             this.user = data.userInfo;
 
@@ -147,7 +118,7 @@ define('paywall', ['main'], function(app)
             this.tab.$purchase.find('.go-back-button').attr('internal', '#logged-in');
         },
 
-        userInfoFail: function(error)
+        getUserInfoFail: function(error)
         {
             this.user = null;
         },
@@ -161,11 +132,8 @@ define('paywall', ['main'], function(app)
             app.bridge.trigger('getUserInfo',
             {
                 provider: provider,
-                doneEvent: app.callbackHelper.create(function()
-                {
-                    self.userInfoDone.apply(self, arguments);
-                }),
-                failEvent: app.callbackHelper.create(self.userInfoFail)
+                doneEvent: app.callbackHelper.create(_.bind(self.getUserInfoDone, self)),
+                failEvent: app.callbackHelper.create(_.bind(self.getUserInfoFail, self))
             });
         },
 
@@ -217,9 +185,9 @@ define('paywall', ['main'], function(app)
             $form.find('input[name="username"], input[name="password"]').blur();
         },
 
-        loginFail: function(data)
+        loginFail: function(error)
         {
-            console.log('loginFail', data);
+            console.log('loginFail', error);
         },
 
         logoutDone: function(provider)
@@ -232,9 +200,9 @@ define('paywall', ['main'], function(app)
             this.tab.$purchase.find('.go-back-button').attr('internal', '#login');
         },
 
-        logoutFail: function(data)
+        logoutFail: function(error)
         {
-            console.log('logoutFail', data);
+            console.log('logoutFail', error);
         },
 
         registerUserEventListeners: function()
@@ -344,9 +312,9 @@ define('paywall', ['main'], function(app)
             }
         },
 
-        purchaseInfoFail: function(data)
+        purchaseInfoFail: function(error)
         {
-            console.log('purchaseInfoFail', data);
+            console.log('purchaseInfoFail', error);
         },
 
         purchaseDone: function(provider)
@@ -358,9 +326,9 @@ define('paywall', ['main'], function(app)
             // Display purchase success message?
         },
 
-        purchaseFail: function(data)
+        purchaseFail: function(error)
         {
-            console.log('purchaseFail', data);
+            console.log('purchaseFail', error);
         },
 
         restorePurchasesDone: function(provider)
@@ -368,9 +336,9 @@ define('paywall', ['main'], function(app)
 
         },
 
-        restorePurchasesFail: function(data)
+        restorePurchasesFail: function(error)
         {
-            console.log('restorePurchasesFail', data);
+            console.log('restorePurchasesFail', error);
         },
 
         registerPurchaseEventListeners: function()
@@ -392,7 +360,7 @@ define('paywall', ['main'], function(app)
                     {
                         self.purchaseInfoDone(data, provider, $placeholder);
                     }),
-                    failEvent: app.callbackHelper.create(self.purchaseInfoFail)
+                    failEvent: app.callbackHelper.create(_.bind(self.purchaseInfoFail, self))
                 });
 
                 e.preventDefault();
@@ -401,10 +369,10 @@ define('paywall', ['main'], function(app)
             // Choose one of the provider’s purchase alternatives
             this.tab.$products.on('click', '.purchase-options button', function()
             {
+                var $button = $(this);
                 var provider = $button.data('provider');
                 var productIdentifier = $button.data('product-identifier');
 
-                var $button = $(this);
                 self.addSpinner($button, 'append');
                 $button
                     .addClass('active')
@@ -447,9 +415,9 @@ define('paywall', ['main'], function(app)
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function()
                     {
-                        self.restorePurchasesDone(provider);
+                        self.restorePurchasesDone.call(self, provider);
                     }),
-                    failEvent: app.callbackHelper.create(self.restorePurchasesFail)
+                    failEvent: app.callbackHelper.create(_.bind(self.restorePurchasesFail, self))
                 });
 
                 e.preventDefault();

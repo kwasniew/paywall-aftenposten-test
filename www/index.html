@@ -22,7 +22,7 @@
                                 <h2>Logg inn med <a href="https://kundesenter.aftenposten.no/" class="external-browser spid-logo"></a></h2>
                                 <p>Vennligst logg inn dersom du har kjøpt tilgang til Aftenposten Digital og har en SPiD-konto.</p>
                             </header>
-                            <form id="login_form" class="clearfix" data-provider="spid">
+                            <form class="login clearfix" data-provider="spid">
                                 <div class="input_username input"><input type="text" name="username" placeholder="SPiD-brukernavn" value="hein@haraldsonberg.net" autocomplete="off"></div>
                                 <div class="input_password input"><input type="password" name="password" placeholder="SPiD-passord" value="Asdf1234" autocomplete="off"></div>
                                 <button type="submit" class="button blue-button"> › </button>
@@ -97,23 +97,22 @@
         <iframe width="0" height="0" frameborder="0" class="event-frame"></iframe>
 
         <script type="text/javascript" src="vendor/aptoma/alf/alf.min.js"></script>
-        <!--script type="text/javascript" src="js/lib/zepto.min.js"></script-->
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/paywall.js"></script>
         <script type="text/javascript" src="js/callback-helper.js"></script>
         <script type="text/javascript">
-            require(['main', 'paywall'], function(app, paywall)
+            require(['main', 'paywall'], function(app, AftenpostenPaywall)
             {
                 'use strict';
 
                 $(document).ready(function()
                 {
-                    window.ivyPaywall = new paywall();
+                    window.paywall = new AftenpostenPaywall();
                 });
             });
 
             //allow :active styles to work in your CSS on a page in Mobile Safari
-            document.addEventListener("touchstart", function(){}, true);
+            document.addEventListener('touchstart', function(){}, true);
         </script>
     </body>
 </html>

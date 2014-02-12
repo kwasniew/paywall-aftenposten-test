@@ -4,20 +4,45 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
     var $ = Alf.dom;
 
     var app = {
-        initialize: function () {
-            this.isEmbeddedInApp = this.getURLParameter('isEmbeddedInApp', '1') != '0';
+        initialize: function()
+        {
+            this.context = this.objectifyUrlParams();
+
+            this.isEmbeddedInApp = true;
+            if('isEmbeddedInApp' in this.context)
+                this.isEmbeddedInApp = this.context.isEmbeddedInApp;
+
             this.event = null;
             this.bridge = null;
             this.initBridge();
 
-            this.callbackHelper = new CallbackHelper({ namespace: 'app.callbackHelper'});
+            this.callbackHelper = new CallbackHelper({ namespace: 'app.callbackHelper' });
         },
 
-        getURLParameter: function(name, fallbackValue)
+        objectifyUrlParams: function()
         {
-            return decodeURI(
-                (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,fallbackValue])[1]
-            );
+            var params = {};
+            var search = window.location.search;
+
+            // https://github.com/sindresorhus/query-string
+            if(typeof search === 'string')
+            {
+                search = search.trim().replace(/^\?/, '');
+
+                if(search)
+                {
+                    params = search.trim().split('&').reduce(function(result, param)
+                    {
+                        var parts = param.replace(/\+/g, ' ').split('=');
+                        // missing `=` should be `null`:
+                        // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+                        result[parts[0]] = parts[1] === undefined ? null : decodeURIComponent(parts[1]);
+                        return result;
+                    }, {});
+                }
+            }
+
+            return params;
         },
 
         logToApp: function(data)
