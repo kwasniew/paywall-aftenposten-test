@@ -1,3 +1,177 @@
+/*  Clan Open Type  *
+ *  ==============  */
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Thin.otf) format("opentype");
+	font-style: normal;
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Thin.otf) format("opentype");
+	font-style: italic;
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Book.otf) format("opentype");
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Book.otf) format("opentype");
+	font-style: italic;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-style: italic, oblique;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
+	font-style: italic;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Black_0.otf) format("opentype");
+	font-style: normal;
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Black_0.otf) format("opentype");
+	font-style: italic;
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Ultra.otf) format("opentype");
+	font-style: normal;
+	font-weight: 1000;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Ultra.otf) format("opentype");
+	font-style: italic;
+	font-weight: 1000;
+}
+
+/*  Publico Headline  *
+ *  ================  */
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Light.otf) format("opentype");
+	font-style: normal;
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-LightItalic.otf) format("opentype");
+	font-style: italic;
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Roman.otf) format("opentype");
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Italic.otf) format("opentype");
+	font-style: italic;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Medium.otf) format("opentype");
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-MediumItalic.otf) format("opentype");
+	font-style: italic;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Bold.otf) format("opentype");
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-BoldItalic.otf) format("opentype");
+	font-style: italic;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Extrabold.otf) format("opentype");
+	font-style: normal;
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-ExtraboldItalic.otf) format("opentype");
+	font-style: italic;
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Black.otf) format("opentype");
+	font-style: normal;
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "Publico Headline";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-BlackItalic.otf) format("opentype");
+	font-style: italic;
+	font-weight: 900;
+}
+
 .event-frame {
 	display: none;
 }
@@ -48,7 +222,7 @@ body.android.light {
 	opacity: 1;
 	overflow: hidden;
 	display: block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Clan OT", sans-serif;
 	pointer-events: inherit;
 	position: relative;
 	width: 100%;
@@ -147,7 +321,7 @@ body.android.light {
 	appearance: none;
 	margin: 0 5px;
 	font-weight: 400;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Clan OT", sans-serif;
 	border: none;
 	overflow: hidden;
 }
@@ -186,7 +360,7 @@ body.android.light {
 	background: transparent;
 	padding: 8px 20px;
 	display: inline-block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Clan OT", sans-serif;
 	font-weight: 600;
 	font-size: 13px;
 	text-transform: uppercase;
@@ -360,7 +534,7 @@ body.android.light {
 	border-radius: 5px;
 	border: none;
 	font-weight: 400;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Clan OT", sans-serif;
 	-webkit-transition-property: color, border-color;
 	transition-property: color, border-color;
 	-webkit-transition-duration: 0.3s;
