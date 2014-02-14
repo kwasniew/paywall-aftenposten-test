@@ -30,7 +30,7 @@ body {
     opacity: 1;
     overflow: hidden;
     display: block;
-    font-family: $font-sans;
+    font-family: $font-clan-bodytext;
     pointer-events: inherit;
     position: relative;
     width: 100%;
@@ -71,6 +71,9 @@ body {
         background: url(/gfx/paywall-sprite@2x.png) no-repeat center -42px;
         background-size: 47px 90px;
     }
+
+    h1,
+    h2 { font-family: $font-clan-headings; }
 
     h1 {
         font-size: 30px;
@@ -121,8 +124,8 @@ body {
 		-webkit-appearance: none;
         appearance: none;
         margin: 0 5px;
+        font-family: $font-clan-bodytext;
         font-weight: 400;
-        font-family: $font-sans;
         border: none;
         overflow: hidden;
 
@@ -168,8 +171,8 @@ body {
         background: transparent;
         padding: 8px 20px;
         display: inline-block;
-        font-family: $font-sans;
-        font-weight: 600;
+        font-family: $font-clan-bodytext;
+        font-weight: 400;
         font-size: 13px;
         text-transform: uppercase;
         font-style: normal;
@@ -236,7 +239,7 @@ body {
             margin: 0;
             border-radius: 100%;
             border: 1px solid $color-primary;
-            line-height: 24px;
+            line-height: 28px;
             color: #333;
             cursor: pointer;
             text-shadow: none !important;
@@ -351,7 +354,7 @@ body {
         border-radius: 5px;
         border: none;
         font-weight: 400;
-        font-family: $font-sans;
+        font-family: $font-clan-bodytext;
         @include transition((color, border-color));
         @include placeholder-text(#666);
 

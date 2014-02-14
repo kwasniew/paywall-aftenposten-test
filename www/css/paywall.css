@@ -2,87 +2,73 @@
  *  ==============  */
 
 @font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Thin.otf) format("opentype");
-	font-style: normal;
-	font-weight: 100;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Thin.otf) format("opentype");
-	font-style: italic;
-	font-weight: 100;
-}
-
-@font-face {
-	font-family: "Clan OT";
+	font-family: "Clan OT Book";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Book.otf) format("opentype");
+	font-weight: normal;
 	font-style: normal;
-	font-weight: 400;
 }
 
 @font-face {
-	font-family: "Clan OT";
+	font-family: "Clan OT Book";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Clan OT Book";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Book.otf) format("opentype");
+	font-weight: normal;
 	font-style: italic;
-	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Clan OT Book";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-weight: bold;
+	font-style: italic;
 }
 
 @font-face {
 	font-family: "Clan OT";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-weight: normal;
 	font-style: normal;
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
-	font-style: italic, oblique;
-	font-weight: 500;
 }
 
 @font-face {
 	font-family: "Clan OT";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
+	font-weight: bold;
 	font-style: normal;
-	font-weight: 700;
 }
 
 @font-face {
 	font-family: "Clan OT";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
+	font-weight: normal;
 	font-style: italic;
-	font-weight: 700;
 }
 
 @font-face {
 	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Black_0.otf) format("opentype");
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Thin.otf) format("opentype");
+	font-weight: 300;
 	font-style: normal;
-	font-weight: 900;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Black_0.otf) format("opentype");
-	font-style: italic;
-	font-weight: 900;
 }
 
 @font-face {
 	font-family: "Clan OT";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Ultra.otf) format("opentype");
+	font-weight: 900;
 	font-style: normal;
-	font-weight: 1000;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Ultra.otf) format("opentype");
-	font-style: italic;
-	font-weight: 1000;
 }
 
 /*  Publico Headline  *
@@ -279,6 +265,11 @@ body.android.light {
 	background-size: 47px 90px;
 }
 
+#paywall h1,
+#paywall h2 {
+	font-family: "Clan OT Book", sans-serif;
+}
+
 #paywall h1 {
 	font-size: 30px;
 	margin: 0;
@@ -320,8 +311,8 @@ body.android.light {
 	-webkit-appearance: none;
 	appearance: none;
 	margin: 0 5px;
-	font-weight: 400;
 	font-family: "Clan OT", sans-serif;
+	font-weight: 400;
 	border: none;
 	overflow: hidden;
 }
@@ -361,7 +352,7 @@ body.android.light {
 	padding: 8px 20px;
 	display: inline-block;
 	font-family: "Clan OT", sans-serif;
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 13px;
 	text-transform: uppercase;
 	font-style: normal;
@@ -427,7 +418,7 @@ body.android.light {
 	margin: 0;
 	border-radius: 100%;
 	border: 1px solid #2bb4ed;
-	line-height: 24px;
+	line-height: 28px;
 	color: #333333;
 	cursor: pointer;
 	text-shadow: none !important;

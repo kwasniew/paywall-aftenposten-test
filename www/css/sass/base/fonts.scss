@@ -28,7 +28,77 @@ $PublicoHeadline: $AftenpostenTypefaces + 'PublicoHeadline/PublicoHeadline';
 /*  Clan Open Type  *
  *  ==============  */
 
-// Thin
+ @font-face {
+    font-family: "Clan OT Book";
+    src: url(#{$ClanOT}-Book.otf) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Clan OT Book";
+    src: url(#{$ClanOT}-Medium.otf) format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Clan OT Book";
+    src: url(#{$ClanOT}-Book.otf) format("opentype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Clan OT Book";
+    src: url(#{$ClanOT}-Medium.otf) format("opentype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Clan OT";
+    src: url(#{$ClanOT}-Medium.otf) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Clan OT";
+    src: url(#{$ClanOT}-Bold.otf) format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Clan OT";
+    src: url(#{$ClanOT}-Bold.otf) format("opentype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Clan OT";
+    src: url(#{$ClanOT}-Bold.otf) format("opentype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Clan OT";
+    src: url(#{$ClanOT}-Thin.otf) format("opentype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Clan OT";
+    src: url(#{$ClanOT}-Ultra.otf) format("opentype");
+    font-weight: 900;
+    font-style: normal;
+}
+
+/*// Thin
 @font-face {
     font-family: "Clan OT";
     src: url(#{$ClanOT}-Thin.otf) format("opentype");
@@ -49,7 +119,7 @@ $PublicoHeadline: $AftenpostenTypefaces + 'PublicoHeadline/PublicoHeadline';
     font-family: "Clan OT";
     src: url(#{$ClanOT}-Book.otf) format("opentype");
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 // Book italic
@@ -57,7 +127,7 @@ $PublicoHeadline: $AftenpostenTypefaces + 'PublicoHeadline/PublicoHeadline';
     font-family: "Clan OT";
     src: url(#{$ClanOT}-Book.otf) format("opentype");
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 // Medium
@@ -65,7 +135,7 @@ $PublicoHeadline: $AftenpostenTypefaces + 'PublicoHeadline/PublicoHeadline';
     font-family: "Clan OT";
     src: url(#{$ClanOT}-Medium.otf) format("opentype");
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 // Medium italic
@@ -73,7 +143,7 @@ $PublicoHeadline: $AftenpostenTypefaces + 'PublicoHeadline/PublicoHeadline';
     font-family: "Clan OT";
     src: url(#{$ClanOT}-Medium.otf) format("opentype");
     font-style: italic, oblique;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 // Bold
@@ -122,7 +192,7 @@ $PublicoHeadline: $AftenpostenTypefaces + 'PublicoHeadline/PublicoHeadline';
     src: url(#{$ClanOT}-Ultra.otf) format("opentype");
     font-style: italic;
     font-weight: 1000;
-}
+}*/
 
 
 /*  Publico Headline  *
