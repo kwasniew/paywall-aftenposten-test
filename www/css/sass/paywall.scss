@@ -116,12 +116,11 @@ body {
         display: none;
 
         &:before { content: ", "; }
-
         &.show { display: inline; }
     }
 
-	button {
-		-webkit-appearance: none;
+    button {
+        -webkit-appearance: none;
         appearance: none;
         margin: 0 5px;
         font-family: $font-clan-bodytext;
@@ -129,11 +128,9 @@ body {
         border: none;
         overflow: hidden;
 
-        &:focus {
-            outline-width: 0;
-        }
+        &:focus { outline-width: 0; }
 
-		&[type="submit"] {
+        &[type="submit"] {
             background: $color-primary;
             font-weight: 600;
             color: #fff;
@@ -141,31 +138,27 @@ body {
             border-radius: 4px;
             margin: 0;
             padding: 0 20px;
-			line-height: 44px;
-			width: 44px;
-			font-size: 16px;
+            line-height: 44px;
+            width: 44px;
+            font-size: 16px;
 
-			&.active {
-				text-indent: -999px;
-				padding-left: 20px;
-			}
-			.spinner {
-				left: 50%;
-			}
+            &.active {
+                text-indent: -999px;
+                padding-left: 20px;
+                .spinner { left: 50%; }
+            }
 
             &:active { background: #1081b1; }
 
-	        @media #{$screen-mobile-big} {
+            @media #{$screen-mobile-big} {
                 width: 14%;
                 padding: 0;
                 margin: 0;
                 float: right;
                 line-height: 36px;
-	        }
+            }
         }
-
-
-	}
+    }
 
     .button {
         background: transparent;
@@ -180,6 +173,8 @@ body {
         text-shadow: none !important;
         @include transition((padding-left, background));
 
+        * { text-shadow: none !important; }
+
         &.blue-button {
             background: $color-primary;
             color: #fff !important;
@@ -188,18 +183,16 @@ body {
         }
 
         &.active {
-	        padding-left: 36px;
-	        position: relative;
+            padding-left: 36px;
+            position: relative;
         }
+
+        &:active { background: #1081b1; }
 
         &.disabled {
             background: rgba($color-primary, .5);
             pointer-events: none;
         }
-
-        &:active { background: #1081b1; }
-
-        * { text-shadow: none !important; }
 
         @media #{$screen-mobile-big} {
             padding: 7px 20px 9px;
@@ -208,20 +201,18 @@ body {
     }
 
     #purchase .button {
-		display: block;
-		margin: 10px auto 0;
+        display: block;
+        margin: 10px auto 0;
 
-		@media #{$screen-mobile-big} {
-			margin: 0;
-			padding: 0;
-			display: inline-block;
-			background: none;
-			color: $color-primary !important;
-			text-transform: inherit;
+        @media #{$screen-mobile-big} {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            background: none;
+            color: $color-primary !important;
+            text-transform: inherit;
 
-			&:after {
-				content: ' ›';
-			}
+            &:after { content: ' ›'; }
         }
     }
 
@@ -308,17 +299,16 @@ body {
     }
 
     b { font-weight: 600; }
-
     .blue { color: $color-primary !important; }
 
     .go-back-button {
-    	&.round-button {
-	        position: fixed;
-	        top: 50%;
-	        left: 20px;
-	        margin-top: -20px;
-	        font-size: 22px;
-	    }
+        &.round-button {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            margin-top: -20px;
+            font-size: 22px;
+        }
     }
 
     header {
@@ -417,18 +407,15 @@ body {
             margin: 10px !important;
             font-weight: 600 !important;
             position: relative;
-			@include transition(padding-left);
-
-            .spinner {
-	            left: 10px;
-            }
-
-			&.active {
-	            padding-left: 36px;
-            }
-
+            @include transition(padding-left);
 
             &:active { color: $color-primary !important; }
+
+            &.active {
+                padding-left: 36px;
+                .spinner { left: 10px; }
+            }
+
             @media #{$screen-mobile-small} { display: inline-block; }
             @media #{$screen-mobile-big} { text-align: center; }
         }
@@ -531,8 +518,8 @@ body {
 
     .input_password {
         &:before {
-	        background: url(/gfx/paywall-sprite@2x.png) no-repeat -25px -22px;
-	        background-size: 47px 90px;
+            background: url(/gfx/paywall-sprite@2x.png) no-repeat -25px -22px;
+            background-size: 47px 90px;
         }
 
         @media #{$screen-mobile-big} {
@@ -566,12 +553,12 @@ body {
             top: auto;
             left: 25%;
             opacity: 0;
-			@include transition((left, opacity), $performance: false, $delay: 0.1s);
+            @include transition((left, opacity), $performance: false, $delay: 0.1s);
             margin-top: 0;
         }
         .open .button-bottom.round-button {
-			left: 10px;
-			opacity: 1;
+            left: 10px;
+            opacity: 1;
         }
 
         .focus {

@@ -339,7 +339,7 @@ body.android.light {
 	padding-left: 20px;
 }
 
-#paywall button[type="submit"] .spinner {
+#paywall button[type="submit"].active .spinner {
 	left: 50%;
 }
 
@@ -371,6 +371,10 @@ body.android.light {
 	-webkit-backface-visibility: hidden;
 }
 
+#paywall .button * {
+	text-shadow: none !important;
+}
+
 #paywall .button.blue-button {
 	background: #2bb4ed;
 	color: white !important;
@@ -385,17 +389,13 @@ body.android.light {
 	position: relative;
 }
 
-#paywall .button.disabled {
-	background: rgba(43, 180, 237, 0.5);
-	pointer-events: none;
-}
-
 #paywall .button:active {
 	background: #1081b1;
 }
 
-#paywall .button * {
-	text-shadow: none !important;
+#paywall .button.disabled {
+	background: rgba(43, 180, 237, 0.5);
+	pointer-events: none;
 }
 
 #paywall #purchase .button {
@@ -631,16 +631,16 @@ body.android.light {
 	-webkit-backface-visibility: hidden;
 }
 
-#paywall footer a .spinner {
-	left: 10px;
+#paywall footer a:active {
+	color: #2bb4ed !important;
 }
 
 #paywall footer a.active {
 	padding-left: 36px;
 }
 
-#paywall footer a:active {
-	color: #2bb4ed !important;
+#paywall footer a.active .spinner {
+	left: 10px;
 }
 
 #paywall #content {
