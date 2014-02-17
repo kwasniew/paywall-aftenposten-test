@@ -31,34 +31,6 @@
 
 @font-face {
 	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
-	font-weight: bold;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
-	font-weight: bold;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: "Clan OT";
 	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Thin.otf) format("opentype");
 	font-weight: 300;
 	font-style: normal;
@@ -66,7 +38,42 @@
 
 @font-face {
 	font-family: "Clan OT";
-	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Ultra.otf) format("opentype");
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Book.otf) format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Bold.otf) format("opentype");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Clan OT";
+	src: url(http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Medium.otf) format("opentype");
 	font-weight: 900;
 	font-style: normal;
 }
@@ -269,11 +276,6 @@ body.android.light {
 	background-size: 47px 90px;
 }
 
-#paywall h1,
-#paywall h2 {
-	font-family: "Clan OT Book", sans-serif;
-}
-
 #paywall h1 {
 	font-size: 30px;
 	margin: 0;
@@ -286,7 +288,6 @@ body.android.light {
 	margin: 0 0 0.3em;
 	text-decoration: none;
 	font-weight: 700;
-	font-style: normal;
 	color: #333333;
 	text-transform: uppercase;
 }
@@ -295,7 +296,7 @@ body.android.light {
 	font-size: 16px;
 	line-height: 1.5em;
 	margin: 0 0 1em;
-	font-weight: 100;
+	font-weight: normal;
 	color: #333333;
 }
 
@@ -365,7 +366,6 @@ body.android.light {
 	width: 22px;
 	height: 22px;
 	line-height: 22px;
-	font-weight: 300;
 }
 
 #paywall .spid-user-name {
@@ -385,7 +385,7 @@ body.android.light {
 	appearance: none;
 	margin: 0 5px;
 	font-family: "Clan OT", sans-serif;
-	font-weight: 400;
+	font-weight: normal;
 	border: none;
 	overflow: hidden;
 }
@@ -396,7 +396,7 @@ body.android.light {
 
 #paywall button[type="submit"] {
 	background: #2bb4ed;
-	font-weight: 600;
+	font-weight: bold;
 	color: white;
 	text-shadow: none !important;
 	border-radius: 4px;
@@ -413,7 +413,7 @@ body.android.light {
 }
 
 #paywall button[type="submit"].active .spinner {
-	left: 50%;
+	left: 20px;
 }
 
 #paywall button[type="submit"]:active {
@@ -424,11 +424,8 @@ body.android.light {
 	background: transparent;
 	padding: 8px 20px;
 	display: inline-block;
-	font-family: "Clan OT", sans-serif;
-	font-weight: 400;
 	font-size: 13px;
 	text-transform: uppercase;
-	font-style: normal;
 	border-radius: 4px;
 	text-shadow: none !important;
 	-webkit-transition-property: padding-left, background;
@@ -479,7 +476,7 @@ body.android.light {
 #paywall a {
 	color: #333333;
 	text-decoration: none;
-	font-weight: 600;
+	font-weight: bold;
 	font-style: normal;
 }
 
@@ -495,6 +492,8 @@ body.android.light {
 	color: #333333;
 	cursor: pointer;
 	text-shadow: none !important;
+	line-height: 30px;
+	text-indent: 2px;
 }
 
 #paywall a.round-button:active {
@@ -503,11 +502,12 @@ body.android.light {
 }
 
 #paywall a.more-info-trigger {
-	line-height: 30px;
+	line-height: 32px;
 	position: fixed;
 	right: 20px;
 	top: 20px;
 	z-index: 9999;
+	text-indent: 0;
 }
 
 #paywall a.icon,
@@ -551,7 +551,7 @@ body.android.light {
 }
 
 #paywall b {
-	font-weight: 600;
+	font-weight: bold;
 }
 
 #paywall .blue {
@@ -597,7 +597,7 @@ body.android.light {
 	appearance: none;
 	border-radius: 5px;
 	border: none;
-	font-weight: 400;
+	font-weight: normal;
 	font-family: "Clan OT", sans-serif;
 	-webkit-transition-property: color, border-color;
 	transition-property: color, border-color;
@@ -695,7 +695,8 @@ body.android.light {
 #paywall footer a {
 	font-size: 14px;
 	margin: 10px !important;
-	font-weight: 600 !important;
+	font-weight: bold;
+	padding: 5px 0;
 	position: relative;
 	-webkit-transition: padding-left 0.3s ease-out 0;
 	transition: padding-left 0.3s ease-out 0;
@@ -1119,6 +1120,10 @@ button.active .spinner i:nth-child(12) {
 	line-height: 36px;
 }
 
+#paywall button[type="submit"].active .spinner {
+	left: 50%;
+}
+
 #paywall .button {
 	padding: 7px 20px 9px;
 	-webkit-box-sizing: border-box;
@@ -1209,17 +1214,11 @@ button.active .spinner i:nth-child(12) {
 }
 
 #paywall .purchase-options {
-	height: 60px;
+	height: 68px;
 }
 
 #paywall .purchase-options button.blue-button {
-	height: 30px;
-	padding: 0 20px;
-	line-height: 30px;
-	color: #2bb4ed !important;
-	background: none;
-	border: none !important;
-	text-transform: none;
+	margin-bottom: 2px;
 }
 
 #paywall .input {
