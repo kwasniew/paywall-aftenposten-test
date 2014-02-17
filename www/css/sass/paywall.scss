@@ -264,6 +264,7 @@ body {
             background: none;
             color: $color-primary !important;
             text-transform: inherit;
+            font-weight: bold;
 
             &:after { content: ' ›'; }
         }
@@ -471,11 +472,16 @@ body {
 
             &.active {
                 padding-left: 36px;
-                .spinner { left: 10px; }
+                .spinner { 
+                	left: 10px;
+                	opacity: 1;
+                }
             }
 
             @media #{$screen-mobile-small} { display: inline-block; }
-            @media #{$screen-mobile-big} { text-align: center; }
+            @media #{$screen-mobile-big} { 
+            	text-align: center;
+            }
         }
 
         @media #{$screen-mobile-small} { text-align: center; }
@@ -526,7 +532,11 @@ body {
     .purchase-options {
         height: 36px;
         position: relative;
-
+		
+		.spinner {
+			opacity: 1;
+		}
+		
         button {
             opacity: 0;
             @include animation(fade-in, .2s, ease-in-out, 1);
@@ -655,4 +665,5 @@ body {
 button.active .spinner {
     @include spinner(4px, 1px, 6px, $color: #fff);
     left: 16px;
+	opacity: 1;
 }

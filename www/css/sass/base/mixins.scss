@@ -61,6 +61,9 @@
     top: 50%;
     left: 50%;
     z-index: 2;
+    opacity: 0;
+	@include transition((left, opacity));
+
 
     i {
         display: block;

@@ -717,6 +717,7 @@ body.android.light {
 
 #paywall footer a.active .spinner {
 	left: 10px;
+	opacity: 1;
 }
 
 #paywall #content {
@@ -767,6 +768,10 @@ body.android.light {
 #paywall .purchase-options {
 	height: 36px;
 	position: relative;
+}
+
+#paywall .purchase-options .spinner {
+	opacity: 1;
 }
 
 #paywall .purchase-options button {
@@ -854,6 +859,18 @@ body.android.light {
 	top: 50%;
 	left: 50%;
 	z-index: 2;
+	opacity: 0;
+	-webkit-transition-property: left, opacity;
+	transition-property: left, opacity;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	-webkit-transition-delay: 0;
+	transition-delay: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
 }
 
 .spinner i {
@@ -977,7 +994,20 @@ button.active .spinner {
 	top: 50%;
 	left: 50%;
 	z-index: 2;
+	opacity: 0;
+	-webkit-transition-property: left, opacity;
+	transition-property: left, opacity;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	-webkit-transition-delay: 0;
+	transition-delay: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
 	left: 16px;
+	opacity: 1;
 }
 
 button.active .spinner i {
@@ -1140,6 +1170,7 @@ button.active .spinner i:nth-child(12) {
 	background: none;
 	color: #2bb4ed !important;
 	text-transform: inherit;
+	font-weight: bold;
 }
 
 #paywall #purchase .button:after {
