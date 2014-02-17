@@ -26,7 +26,20 @@ define('paywall', ['main'], function(app)
     {
         this.init(args);
     };
-
+    
+    
+    /***
+    *
+    * HEIN HAVE TO DO SOME FIX HERE...
+    */
+	$('.tooltip').click(function() {
+		var centerToolTip = ($(this).width()) / 2;
+		$(this).css('margin-left', -centerToolTip);
+	});
+	$('.tooltip span').click(function() {
+		$(this).closest(".tooltip").css('opacity', 0);
+	});
+	
     Paywall.prototype = {
         user: null,
         deviceHeight: window.screen.height,
@@ -54,6 +67,8 @@ define('paywall', ['main'], function(app)
             this.registerUserEventListeners();
             this.registerPurchaseEventListeners();
         },
+        
+
 
         switchTab: function(identifier)
         {
