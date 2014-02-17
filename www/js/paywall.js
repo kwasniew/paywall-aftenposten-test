@@ -47,7 +47,7 @@ define('paywall', ['main'], function(app)
         {
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
-            this.centerTooltips();
+            this.setupTooltips();
             this.getUserInfo();
 
             // Event listeners
@@ -107,12 +107,21 @@ define('paywall', ['main'], function(app)
             }
         },
 
-        centerTooltips: function()
+        setupTooltips: function()
         {
             this.$chrome.find('.tooltip').each(function(i, tooltip)
             {
-                $(tooltip).css('margin-left', -parseInt($(this).width() / 2, 10));
+                $(tooltip).css('margin-left', -parseInt($(tooltip).width() / 2, 10));
             });
+        },
+
+        showTooltip: function($context, message)
+        {
+            var $tooltip = $context.find('.tooltip');
+            $tooltip.find('.message').text(message)
+            .parent()
+                .css('margin-left', -parseInt($tooltip.width() / 2, 10) + 'px')
+                .addClass('visible');
         },
 
         getUserInfoDone: function(data)
@@ -183,11 +192,14 @@ define('paywall', ['main'], function(app)
                 e.preventDefault();
             });
 
-            this.$chrome.on('focus', 'input[type="text"], input[type="password"]', function()
+            var addInputClearButton = function()
             {
                 if($.trim($(this).val()) !== '')
                     $(this).addClass('focus-has-content');
-            });
+            };
+
+            this.$chrome.on('focus', 'input[type="text"], input[type="password"]', addInputClearButton);
+            this.$chrome.on('input', 'input[type="text"], input[type="password"]', addInputClearButton);
 
             this.$chrome.on('blur', 'input[type="text"], input[type="password"]', function()
             {
@@ -200,12 +212,15 @@ define('paywall', ['main'], function(app)
 
             this.$chrome.on('click', '.clear-input', function(e)
             {
-                $(this).prev('input').val('');
+                $(this).prev('input')
+                    .val('')
+                    .focus();
             });
 
-            this.$chrome.on('click', '.tooltip .close', function()
+            this.$chrome.on('click', '.tooltip .close', function(e)
             {
                 $(this).closest('.tooltip').removeClass('visible');
+                e.stopPropagation();
             });
         },
 
@@ -219,9 +234,9 @@ define('paywall', ['main'], function(app)
             $form.find('input[name="username"], input[name="password"]').blur();
         },
 
-        loginFail: function(error)
+        loginFail: function(error, $form)
         {
-            console.log('loginFail', error);
+            this.showTooltip($form, error.description);
         },
 
         logoutDone: function(provider)
@@ -271,10 +286,10 @@ define('paywall', ['main'], function(app)
                         always();
                         self.loginDone.call(self, provider, $form);
                     }),
-                    failEvent: app.callbackHelper.create(function()
+                    failEvent: app.callbackHelper.create(function(data)
                     {
                         always();
-                        self.loginFail.apply(self, arguments);
+                        self.loginFail.call(self, data.error, $form);
                     })
                 });
 
@@ -370,9 +385,9 @@ define('paywall', ['main'], function(app)
 
         },
 
-        restorePurchasesFail: function(error)
+        restorePurchasesFail: function(error, $button)
         {
-            console.log('restorePurchasesFail', error);
+            this.showTooltip($button, error.description);
         },
 
         registerPurchaseEventListeners: function()
@@ -462,10 +477,10 @@ define('paywall', ['main'], function(app)
                         always();
                         self.restorePurchasesDone.call(self, provider);
                     }),
-                    failEvent: app.callbackHelper.create(function()
+                    failEvent: app.callbackHelper.create(function(data)
                     {
                         always();
-                        self.restorePurchasesFail.apply(self, arguments);
+                        self.restorePurchasesFail.call(self, data.error, $button.closest('.button-wrap'));
                     })
                 });
 
