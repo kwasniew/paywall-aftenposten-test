@@ -411,6 +411,7 @@ body {
             @include placeholder-text($color-primary);
         }
 
+        &[type="email"],
         &[type="text"],
         &[type="password"] {
             padding-left: 40px;
@@ -573,9 +574,10 @@ body {
             border-radius: 100%;
             line-height: 20px;
             text-align: center;
-            font-weight: 400;
-            color: #fff;
-            background: #ccc;
+            font-weight: normal;
+            color: #333;
+			border-radius: 100%;
+			box-shadow: inset 0 0 0 1px #dddddd;
             pointer-events: auto;
             z-index: 1000;
         }
