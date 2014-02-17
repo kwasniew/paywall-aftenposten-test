@@ -27,19 +27,6 @@ define('paywall', ['main'], function(app)
         this.init(args);
     };
 
-
-    /***
-    *
-    * HEIN HAVE TO DO SOME FIX HERE...
-    */
-	$('.tooltip').click(function() {
-		var centerToolTip = ($(this).width()) / 2;
-		$(this).css('margin-left', -centerToolTip);
-	});
-	$('.tooltip span').click(function() {
-		$(this).closest(".tooltip").css('opacity', 0);
-	});
-
     Paywall.prototype = {
         user: null,
         deviceHeight: window.screen.height,
@@ -60,6 +47,7 @@ define('paywall', ['main'], function(app)
         {
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
+            this.centerTooltips();
             this.getUserInfo();
 
             // Event listeners
@@ -67,8 +55,6 @@ define('paywall', ['main'], function(app)
             this.registerUserEventListeners();
             this.registerPurchaseEventListeners();
         },
-
-
 
         switchTab: function(identifier)
         {
@@ -119,6 +105,14 @@ define('paywall', ['main'], function(app)
                     self.tab.$login.removeClass('focus');
                 });
             }
+        },
+
+        centerTooltips: function()
+        {
+            this.$chrome.find('.tooltip').each(function(i, tooltip)
+            {
+                $(tooltip).css('margin-left', -parseInt($(this).width() / 2, 10));
+            });
         },
 
         getUserInfoDone: function(data)
@@ -206,8 +200,12 @@ define('paywall', ['main'], function(app)
 
             this.$chrome.on('click', '.clear-input', function(e)
             {
-                console.log($(this).prev('input'));
                 $(this).prev('input').val('');
+            });
+
+            this.$chrome.on('click', '.tooltip .close', function()
+            {
+                $(this).closest('.tooltip').removeClass('visible');
             });
         },
 

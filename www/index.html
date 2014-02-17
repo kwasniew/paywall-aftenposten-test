@@ -23,7 +23,10 @@
                                 <p>Vennligst logg inn dersom du har kjøpt tilgang til Aftenposten Digital og har en SPiD-konto.</p>
                             </header>
                             <form class="login clearfix relative" data-provider="spid">
-	                            <div class="tooltip">Feil brukernavn eller passord.<br>Vennligst prøv igjen.<span class="close">×</span></div>
+	                            <div class="tooltip">
+                                    <span class="message"></span>
+                                    <span class="close">×</span>
+                                </div>
                                 <div class="input_username input">
                                     <input type="text" name="username" placeholder="Brukernavn" value="snd.web2@gmail.com" autocomplete="off"><span class="clear-input">×</span>
                                 </div>
@@ -37,7 +40,10 @@
                                 <a href="#" internal="#purchase" class="tab-trigger hide-on-focus">Bli abonnent ›</a>
                                 <a href="#" class="restore-purchases hide-on-focus" data-provider="itunes">
 									Gjenopprette iTunes-kjøp
-									<div class="tooltip">Kunne ikke finne noen produkter å hente.<span>×</span></div>
+									<div class="tooltip">
+                                        <span class="message"></span>
+                                        <span class="close">×</span>
+                                    </div>
 								</a>
                             </footer>
                         </div><!-- / login -->
