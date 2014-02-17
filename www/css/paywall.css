@@ -317,6 +317,7 @@ body.android.light {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	text-shadow: none;
 	-webkit-transition: opacity 0.3s ease-out 0;
 	transition: opacity 0.3s ease-out 0;
 	-webkit-transform: translate3d(0, 0, 0);
@@ -781,6 +782,7 @@ body.android.light {
 
 #paywall .input {
 	display: inline-block;
+	padding: 0 20px 0 0;
 	margin: 0 2px;
 	position: relative;
 }
@@ -794,6 +796,28 @@ body.android.light {
 	left: 10px;
 	margin-top: -8px;
 	z-index: 999;
+}
+
+#paywall .input input + span {
+	display: none;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 50%;
+	margin-top: -10px;
+	right: 10px;
+	border-radius: 100%;
+	line-height: 20px;
+	text-align: center;
+	font-weight: 400;
+	color: white;
+	background: #cccccc;
+	pointer-events: auto;
+	z-index: 1000;
+}
+
+#paywall .input input.focus-has-content + span {
+	display: block;
 }
 
 #paywall .input_username:before {

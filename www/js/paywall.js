@@ -26,8 +26,8 @@ define('paywall', ['main'], function(app)
     {
         this.init(args);
     };
-    
-    
+
+
     /***
     *
     * HEIN HAVE TO DO SOME FIX HERE...
@@ -39,7 +39,7 @@ define('paywall', ['main'], function(app)
 	$('.tooltip span').click(function() {
 		$(this).closest(".tooltip").css('opacity', 0);
 	});
-	
+
     Paywall.prototype = {
         user: null,
         deviceHeight: window.screen.height,
@@ -67,7 +67,7 @@ define('paywall', ['main'], function(app)
             this.registerUserEventListeners();
             this.registerPurchaseEventListeners();
         },
-        
+
 
 
         switchTab: function(identifier)
@@ -187,6 +187,27 @@ define('paywall', ['main'], function(app)
             {
                 self.switchTab($(this).attr('internal'));
                 e.preventDefault();
+            });
+
+            this.$chrome.on('focus', 'input[type="text"], input[type="password"]', function()
+            {
+                if($.trim($(this).val()) !== '')
+                    $(this).addClass('focus-has-content');
+            });
+
+            this.$chrome.on('blur', 'input[type="text"], input[type="password"]', function()
+            {
+                var $input = $(this);
+                window.setTimeout(function()
+                {
+                    $input.removeClass('focus-has-content');
+                }, 100);
+            });
+
+            this.$chrome.on('click', '.clear-input', function(e)
+            {
+                console.log($(this).prev('input'));
+                $(this).prev('input').val('');
             });
         },
 
@@ -423,16 +444,31 @@ define('paywall', ['main'], function(app)
             // Restore purchases
             this.$chrome.on('click', '.restore-purchases', function(e)
             {
-                var provider = $(this).data('provider');
+                var $button = $(this);
+                var provider = $button.data('provider');
+
+                $button.addClass('active');
+                self.addSpinner($button, 'append');
+
+                var always = function()
+                {
+                    self.removeSpinner($button);
+                    $button.removeClass('active');
+                };
 
                 app.bridge.trigger('restorePurchases',
                 {
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function()
                     {
+                        always();
                         self.restorePurchasesDone.call(self, provider);
                     }),
-                    failEvent: app.callbackHelper.create(_.bind(self.restorePurchasesFail, self))
+                    failEvent: app.callbackHelper.create(function()
+                    {
+                        always();
+                        self.restorePurchasesFail.apply(self, arguments);
+                    })
                 });
 
                 e.preventDefault();

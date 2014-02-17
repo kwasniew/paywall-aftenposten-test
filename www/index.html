@@ -23,16 +23,20 @@
                                 <p>Vennligst logg inn dersom du har kjøpt tilgang til Aftenposten Digital og har en SPiD-konto.</p>
                             </header>
                             <form class="login clearfix relative" data-provider="spid">
-	                            	<div class="tooltip">Feil brukernavn eller passord.<br>Vennligst prøv igjen.<span>+</span></div>
-                                <div class="input_username input"><input type="text" name="username" placeholder="SPiD-brukernavn" value="snd.web2@gmail.com" autocomplete="off"></div>
-                                <div class="input_password input"><input type="password" name="password" placeholder="SPiD-passord" value="paywall12" autocomplete="off"></div>
+	                            <div class="tooltip">Feil brukernavn eller passord.<br>Vennligst prøv igjen.<span class="close">×</span></div>
+                                <div class="input_username input">
+                                    <input type="text" name="username" placeholder="Brukernavn" value="snd.web2@gmail.com" autocomplete="off"><span class="clear-input">×</span>
+                                </div>
+                                <div class="input_password input">
+                                    <input type="password" name="password" placeholder="Passord" value="paywall12" autocomplete="off"><span class="clear-input">×</span>
+                                </div>
                                 <button type="submit" class="button blue-button"> › </button>
                             </form>
                             <footer>
                                 <a href="https://stage.payment.schibsted.no/auth/forgotPassword?redirect=aftenposten://open/" class="external-browser forgotPassword">Glemt passord?</a>
                                 <a href="#" internal="#purchase" class="tab-trigger hide-on-focus">Bli abonnent ›</a>
                                 <a href="#" class="restore-purchases hide-on-focus" data-provider="itunes">
-									<div class="tooltip">Kunne ikke finne noen produkter å hente.<span>+</span></div>
+									<div class="tooltip">Kunne ikke finne noen produkter å hente.<span>×</span></div>
 									Gjenopprette iTunes-kjøp
 								</a>
                             </footer>
@@ -42,7 +46,9 @@
                                 <p>Skriv inn din SPiD-brukernavn for å få tilsendt glemt SPiD-passord.</p>
                             </header>
                             <form>
-                                <div class="input_username input"><input type="text" name="username" value="hein@haraldsonberg." placeholder="SPiD-brukernavn" autocomplete="off"></div>
+                                <div class="input_username input">
+                                    <input type="text" name="username" value="snd.web2@gmail.com" placeholder="Brukernavn" autocomplete="off"><span class="clear-input">×</span>
+                                </div>
                                 <input type="submit" value=" › ">
                             </form>
                             <footer>
