@@ -200,6 +200,7 @@ body {
             line-height: 44px;
             width: 44px;
             font-size: 16px;
+            text-indent: -5px;
 
             &.active {
                 text-indent: -999px;
@@ -214,7 +215,8 @@ body {
                 padding: 0;
                 margin: 0;
                 float: right;
-                line-height: 36px;
+                line-height: 35px;
+                text-indent: 0;
 
 	            &.active {
 	                .spinner { left: 50%; }
@@ -559,7 +561,9 @@ body {
             height: 68px;
 
             button.blue-button {
-				margin-bottom: 2px;
+				margin: 0 auto 5px;
+				min-width: 280px;
+				max-width: 100%;
             }
         }
     }
