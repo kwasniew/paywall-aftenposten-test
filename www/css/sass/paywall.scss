@@ -109,6 +109,7 @@ body {
             text-align: center;
         }
     }
+
     .tooltip {
         background: $color-primary;
         position: absolute;
@@ -125,13 +126,12 @@ body {
         pointer-events: none;
         color: white;
         box-sizing: border-box;
-        text-shadow: none;
-        @include transition((opacity));
+        @include transition(opacity);
 
-        .visible { opacity: 1; }
+        &.visible { opacity: 1; }
 
         &:before {
-            content: '';
+            content: "";
             width: 0;
             height: 0;
             border: 5px solid transparent;
@@ -144,23 +144,28 @@ body {
             @include transition(opacity);
             pointer-events: none;
             z-index: 999;
-
         }
 
-        span {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            margin-top: -13px;
-            font-size: 24px;
-            transform: rotate(45deg);
+        .message { text-shadow: none; }
+
+        .close {
             display: inline-block;
+            width: 22px;
+            height: 22px;
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            margin: -11px 0 0;
+            font-size: 18px;
             font-weight: 300;
             border: 1px solid rgba(#fff, .5);
             border-radius: 100%;
-            width: 22px;
-            height: 22px;
-            line-height: 22px;
+            background: none;
+            text-align: center;
+            text-indent: 1px;
+            line-height: 20px;
+            pointer-events: auto;
         }
     }
 
@@ -472,16 +477,21 @@ body {
 
             &.active {
                 padding-left: 36px;
-                .spinner { 
+                .spinner {
                 	left: 10px;
                 	opacity: 1;
                 }
             }
 
             @media #{$screen-mobile-small} { display: inline-block; }
-            @media #{$screen-mobile-big} { 
+            @media #{$screen-mobile-big} {
             	text-align: center;
             }
+        }
+
+        .button-wrap {
+            display: inline-block;
+            position: relative;
         }
 
         @media #{$screen-mobile-small} { text-align: center; }
@@ -532,11 +542,11 @@ body {
     .purchase-options {
         height: 36px;
         position: relative;
-		
+
 		.spinner {
 			opacity: 1;
 		}
-		
+
         button {
             opacity: 0;
             @include animation(fade-in, .2s, ease-in-out, 1);
@@ -572,26 +582,31 @@ body {
             margin: 0 0 2px;
         }
 
-        input + span {
-            display: none;
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            top: 50%;
-            margin-top: -10px;
-            right: 10px;
-            border-radius: 100%;
-            line-height: 20px;
-            text-align: center;
-            font-weight: normal;
-            color: #fff;
-			border-radius: 100%;
-			background: #ddd;
-            pointer-events: auto;
-            z-index: 1000;
-        }
+        input {
+            padding-right: 40px;
 
-        input.focus-has-content + span { display: block; }
+            & + .clear-input {
+                display: none;
+                width: 20px;
+                height: 20px;
+                padding: 0;
+                position: absolute;
+                top: 50%;
+                margin-top: -10px;
+                right: 10px;
+                border: 1px solid #ddd;
+                border-radius: 100%;
+                line-height: 18px;
+                text-align: center;
+                font-size: 14px;
+                font-weight: normal;
+                color: #333;
+                background: none;
+                pointer-events: auto;
+            }
+
+            &.focus-has-content + .clear-input { display: block; }
+        }
     }
 
     .input_username:before {

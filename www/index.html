@@ -23,22 +23,28 @@
                                 <p>Vennligst logg inn dersom du har kjøpt tilgang til Aftenposten Digital og har en SPiD-konto.</p>
                             </header>
                             <form class="login clearfix relative" data-provider="spid">
-	                            <div class="tooltip">Feil brukernavn eller passord.<br>Vennligst prøv igjen.<span class="close">×</span></div>
                                 <div class="input_username input">
-                                    <input type="email" name="username" placeholder="Brukernavn" value="snd.web2@gmail.com" autocomplete="off"><span class="clear-input">×</span>
+                                    <input type="text" name="username" placeholder="Brukernavn" value="snd.web2@gmail.com" autocomplete="off"><button type="button" class="clear-input">×</button>
                                 </div>
                                 <div class="input_password input">
-                                    <input type="password" name="password" placeholder="Passord" value="paywall12" autocomplete="off"><span class="clear-input">×</span>
+                                    <input type="password" name="password" placeholder="Passord" value="paywall12" autocomplete="off"><button type="button" class="clear-input">×</button>
                                 </div>
                                 <button type="submit" class="button blue-button">&#10095;</button>
+                                <div class="tooltip">
+                                    <span class="message"></span>
+                                    <button type="button" class="close">×</button>
+                                </div>
                             </form>
                             <footer>
                                 <a href="https://stage.payment.schibsted.no/auth/forgotPassword?redirect=aftenposten://open/" class="external-browser forgotPassword">Glemt passord?</a>
                                 <a href="#" internal="#purchase" class="tab-trigger hide-on-focus">Bli abonnent ›</a>
-                                <a href="#" class="restore-purchases hide-on-focus" data-provider="itunes">
-									Gjenopprette iTunes-kjøp
-									<div class="tooltip">Kunne ikke finne noen produkter å hente.<span>×</span></div>
-								</a>
+                                <div class="button-wrap">
+                                    <a href="#" class="restore-purchases hide-on-focus" data-provider="itunes">Gjenopprette iTunes-kjøp</a>
+                                    <div class="tooltip">
+                                        <span class="message"></span>
+                                        <button type="button" class="close">×</button>
+                                    </div>
+                                </div>
                             </footer>
                         </div><!-- / login -->
                         <div id="forgot-password" class="tab">
@@ -47,7 +53,7 @@
                             </header>
                             <form>
                                 <div class="input_username input">
-                                    <input type="text" name="username" value="snd.web2@gmail.com" placeholder="Brukernavn" autocomplete="off"><span class="clear-input">×</span>
+                                    <input type="text" name="username" value="snd.web2@gmail.com" placeholder="Brukernavn" autocomplete="off"><button type="button" class="clear-input">×</button>
                                 </div>
                                 <button type="submit" class="button blue-button">&#10095;</button>
                             </form>
@@ -72,13 +78,13 @@
                                 <div class="half-width spid-products">
                                     <h2>Kjøp abonnement hos Aftenposten</a></h2>
                                     <p>Som abonnent hos Aftenposten får du ubegrenset tilgang til vårt innhold i alle digitale kanaler, inkludert aftenposten.no.
-                                    	<button href="https://kundesenter.aftenposten.no/" type="button" class="external-browser button blue-button">Les mer</button>
+                                        <button href="https://kundesenter.aftenposten.no/" type="button" class="external-browser button blue-button">Les mer</button>
                                     </p>
                                 </div>
                                 <div class="half-width itunes-promotion">
                                     <h2>Kjøp abonnement via iTunes</h2>
                                     <p>Velger du å abonnere via iTunes, får du tilgang kun via denne appen. Du administrerer ditt abonnement via din iTunes-konto.
-                                    	<button type="button" internal="#products" class="button blue-button tab-trigger in-app-purchase" data-provider="itunes">Kjøp tilgang nå</button>
+                                        <button type="button" internal="#products" class="button blue-button tab-trigger in-app-purchase" data-provider="itunes">Kjøp tilgang nå</button>
                                     </p>
                                 </div>
                             </header>
