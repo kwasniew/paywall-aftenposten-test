@@ -166,6 +166,7 @@ body {
             text-indent: 1px;
             line-height: 20px;
             pointer-events: auto;
+            color: #fff;
         }
     }
 
@@ -369,7 +370,7 @@ body {
             top: 50%;
             left: 20px;
             margin-top: -20px;
-            font-size: 22px;
+            font-size: 16px;
         }
     }
 
@@ -486,6 +487,7 @@ body {
             @media #{$screen-mobile-small} { display: inline-block; }
             @media #{$screen-mobile-big} {
             	text-align: center;
+            	margin: 5px 10px !important;
             }
         }
 
@@ -500,7 +502,7 @@ body {
             display: block;
             width: 90%;
             padding: 0;
-            margin: 5px auto 0;
+            margin: 10px auto 0;
         }
     }
 
