@@ -119,9 +119,7 @@ define('paywall', ['main'], function(app)
         {
             var $tooltip = $context.find('.tooltip');
             $tooltip.find('.message').text(message)
-            .parent()
-                .css('margin-left', -parseInt($tooltip.width() / 2, 10) + 'px')
-                .addClass('visible');
+            .parent().addClass('visible');
         },
 
         getUserInfoDone: function(data)
@@ -192,18 +190,20 @@ define('paywall', ['main'], function(app)
                 e.preventDefault();
             });
 
-            var addInputClearButton = function()
+            var addInputClearButton = function(e)
             {
-                if($.trim($(this).val()) !== '')
-                    $(this).addClass('focus-has-content');
+                var $input = $(e.target);
+                if($.trim($input.val()) !== '')
+                    $input.addClass('focus-has-content');
             };
 
-            this.$chrome.on('focus', 'input[type="text"], input[type="password"]', addInputClearButton);
-            this.$chrome.on('input', 'input[type="text"], input[type="password"]', addInputClearButton);
+            var inputSelector = 'input[type="text"], input[type="email"], input[type="password"]';
+            this.$chrome.on('focus', inputSelector, addInputClearButton);
+            this.$chrome.on('input', inputSelector, addInputClearButton);
 
-            this.$chrome.on('blur', 'input[type="text"], input[type="password"]', function()
+            this.$chrome.on('blur', inputSelector, function(e)
             {
-                var $input = $(this);
+                var $input = $(e.target);
                 window.setTimeout(function()
                 {
                     $input.removeClass('focus-has-content');
