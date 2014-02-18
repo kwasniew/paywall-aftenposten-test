@@ -749,9 +749,10 @@ body.android.light {
 	color: #333333;
 	background: none;
 	pointer-events: auto;
+	z-index: 1000;
 }
 
-#paywall .input input.focus-has-content + .clear-input {
+#paywall .input input + .clear-input.show {
 	display: block;
 }
 

@@ -47,6 +47,7 @@ define('paywall', ['main'], function(app)
         {
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
+            this.setupInputClearButtons();
             this.getUserInfo();
 
             // Event listeners
@@ -104,6 +105,36 @@ define('paywall', ['main'], function(app)
                     self.tab.$login.removeClass('focus');
                 });
             }
+        },
+
+        setupInputClearButtons: function()
+        {
+            var $inputs = this.$chrome.find('input[type="text"], input[type="email"], input[type="password"]');
+
+            var addInputClearButton = function(e)
+            {
+                var $input = $(e.target);
+                if($.trim($input.val()) !== '')
+                    $input.next('.clear-input').addClass('show');
+            };
+
+            $inputs.on('focus', addInputClearButton);
+            $inputs.on('input', addInputClearButton);
+
+            $inputs.on('blur', function(e)
+            {
+                window.setTimeout(function()
+                {
+                    $(e.target).next('.clear-input').removeClass('show');
+                }, 100);
+            });
+
+            this.$chrome.on('click', '.clear-input', function(e)
+            {
+                $(this).prev('input')
+                    .val('')
+                    .focus();
+            });
         },
 
         showTooltip: function($context, message)
@@ -179,34 +210,6 @@ define('paywall', ['main'], function(app)
             {
                 self.switchTab($(this).attr('internal'));
                 e.preventDefault();
-            });
-
-            var addInputClearButton = function(e)
-            {
-                var $input = $(e.target);
-                if($.trim($input.val()) !== '')
-                    $input.addClass('focus-has-content');
-            };
-
-            var $inputs = this.$chrome.find('input[type="text"], input[type="email"], input[type="password"]');
-            console.log($inputs);
-            $inputs.on('focus', addInputClearButton);
-            $inputs.on('input', addInputClearButton);
-
-            $inputs.on('blur', function(e)
-            {
-                var $input = $(e.target);
-                window.setTimeout(function()
-                {
-                    $input.removeClass('focus-has-content');
-                }, 100);
-            });
-
-            this.$chrome.on('click', '.clear-input', function(e)
-            {
-                $(this).prev('input')
-                    .val('')
-                    .focus();
             });
 
             this.$chrome.on('click', '.tooltip', function(e)

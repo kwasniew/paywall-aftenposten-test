@@ -616,9 +616,10 @@ body {
                 color: #333;
                 background: none;
                 pointer-events: auto;
-            }
+                z-index: 1000;
 
-            &.focus-has-content + .clear-input { display: block; }
+                &.show { display: block; }
+            }
         }
     }
 
