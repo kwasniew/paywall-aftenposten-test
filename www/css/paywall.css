@@ -222,6 +222,7 @@ body.android.light {
 	left: 50%;
 	margin-bottom: 5px;
 	margin-left: -150px;
+	width: 300px;
 	z-index: 999;
 	padding: 12px 45px 12px 20px;
 	font-size: 12px;
