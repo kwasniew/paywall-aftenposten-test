@@ -241,9 +241,10 @@ body.android.light {
 
 #paywall .tooltip.visible {
 	opacity: 1;
+	pointer-events: auto;
 }
 
-#paywall .tooltip:before {
+#paywall .tooltip.visible:before {
 	content: "";
 	width: 0;
 	height: 0;
@@ -259,15 +260,16 @@ body.android.light {
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
-	pointer-events: none;
+	pointer-events: auto;
 	z-index: 999;
 }
 
-#paywall .tooltip .message {
+#paywall .tooltip.visible .message {
 	text-shadow: none;
+	pointer-events: auto;
 }
 
-#paywall .tooltip .close {
+#paywall .tooltip.visible .close {
 	display: inline-block;
 	width: 22px;
 	height: 22px;
@@ -283,6 +285,7 @@ body.android.light {
 	background: none;
 	text-align: center;
 	text-indent: 1px;
+	text-shadow: none;
 	line-height: 20px;
 	pointer-events: auto;
 	color: white;
@@ -520,14 +523,8 @@ body.android.light {
 	border: none;
 	font-weight: normal;
 	font-family: "Clan OT", sans-serif;
-	-webkit-transition-property: color, border-color;
-	transition-property: color, border-color;
-	-webkit-transition-duration: 0.3s;
-	transition-duration: 0.3s;
-	-webkit-transition-timing-function: ease-out;
-	transition-timing-function: ease-out;
-	-webkit-transition-delay: 0;
-	transition-delay: 0;
+	-webkit-transition: color 0.3s ease-out 0;
+	transition: color 0.3s ease-out 0;
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
@@ -556,7 +553,6 @@ body.android.light {
 #paywall input:focus {
 	color: white;
 	outline-width: 0;
-	border-radius: 5px 5px 0 0;
 }
 
 #paywall input:focus ::-webkit-input-placeholder {

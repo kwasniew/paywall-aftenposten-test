@@ -47,7 +47,6 @@ define('paywall', ['main'], function(app)
         {
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
-            this.setupTooltips();
             this.getUserInfo();
 
             // Event listeners
@@ -92,27 +91,19 @@ define('paywall', ['main'], function(app)
         adjustLoginInputsIfMobile: function()
         {
             var self = this;
-
             if(this.deviceHeight <= 480)
             {
-                $chrome.on('input', 'focus', function()
+                var $inputs = this.$chrome.find('input');
+                $inputs.on('focus', function()
                 {
                     self.tab.$login.addClass('focus');
                 });
 
-                $chrome.on('input', 'blur', function()
+                $inputs.on('blur', function()
                 {
                     self.tab.$login.removeClass('focus');
                 });
             }
-        },
-
-        setupTooltips: function()
-        {
-            this.$chrome.find('.tooltip').each(function(i, tooltip)
-            {
-                $(tooltip).css('margin-left', -parseInt($(tooltip).width() / 2, 10));
-            });
         },
 
         showTooltip: function($context, message)
@@ -197,11 +188,12 @@ define('paywall', ['main'], function(app)
                     $input.addClass('focus-has-content');
             };
 
-            var inputSelector = 'input[type="text"], input[type="email"], input[type="password"]';
-            this.$chrome.on('focus', inputSelector, addInputClearButton);
-            this.$chrome.on('input', inputSelector, addInputClearButton);
+            var $inputs = this.$chrome.find('input[type="text"], input[type="email"], input[type="password"]');
+            console.log($inputs);
+            $inputs.on('focus', addInputClearButton);
+            $inputs.on('input', addInputClearButton);
 
-            this.$chrome.on('blur', inputSelector, function(e)
+            $inputs.on('blur', function(e)
             {
                 var $input = $(e.target);
                 window.setTimeout(function()
@@ -217,9 +209,9 @@ define('paywall', ['main'], function(app)
                     .focus();
             });
 
-            this.$chrome.on('click', '.tooltip .close', function(e)
+            this.$chrome.on('click', '.tooltip', function(e)
             {
-                $(this).closest('.tooltip').removeClass('visible');
+                $(this).removeClass('visible');
                 e.stopPropagation();
             });
         },
