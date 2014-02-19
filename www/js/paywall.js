@@ -47,7 +47,7 @@ define('paywall', ['main'], function(app)
         {
             this.updateHeight();
             this.adjustLoginInputsIfMobile();
-            this.setupTooltips();
+            this.setupInputClearButtons();
             this.getUserInfo();
 
             // Event listeners
@@ -92,26 +92,48 @@ define('paywall', ['main'], function(app)
         adjustLoginInputsIfMobile: function()
         {
             var self = this;
-
             if(this.deviceHeight <= 480)
             {
-                $chrome.on('input', 'focus', function()
+                var $inputs = this.$chrome.find('input');
+                $inputs.on('focus', function()
                 {
                     self.tab.$login.addClass('focus');
                 });
 
-                $chrome.on('input', 'blur', function()
+                $inputs.on('blur', function()
                 {
                     self.tab.$login.removeClass('focus');
                 });
             }
         },
 
-        setupTooltips: function()
+        setupInputClearButtons: function()
         {
-            this.$chrome.find('.tooltip').each(function(i, tooltip)
+            var $inputs = this.$chrome.find('input[type="text"], input[type="email"], input[type="password"]');
+
+            var addInputClearButton = function(e)
             {
-                $(tooltip).css('margin-left', -parseInt($(tooltip).width() / 2, 10));
+                var $input = $(e.target);
+                if($.trim($input.val()) !== '')
+                    $input.next('.clear-input').addClass('show');
+            };
+
+            $inputs.on('focus', addInputClearButton);
+            $inputs.on('input', addInputClearButton);
+
+            $inputs.on('blur', function(e)
+            {
+                window.setTimeout(function()
+                {
+                    $(e.target).next('.clear-input').removeClass('show');
+                }, 100);
+            });
+
+            this.$chrome.on('click', '.clear-input', function(e)
+            {
+                $(this).prev('input')
+                    .val('')
+                    .focus();
             });
         },
 
@@ -190,36 +212,9 @@ define('paywall', ['main'], function(app)
                 e.preventDefault();
             });
 
-            var addInputClearButton = function(e)
+            this.$chrome.on('click', '.tooltip', function(e)
             {
-                var $input = $(e.target);
-                if($.trim($input.val()) !== '')
-                    $input.addClass('focus-has-content');
-            };
-
-            var inputSelector = 'input[type="text"], input[type="email"], input[type="password"]';
-            this.$chrome.on('focus', inputSelector, addInputClearButton);
-            this.$chrome.on('input', inputSelector, addInputClearButton);
-
-            this.$chrome.on('blur', inputSelector, function(e)
-            {
-                var $input = $(e.target);
-                window.setTimeout(function()
-                {
-                    $input.removeClass('focus-has-content');
-                }, 100);
-            });
-
-            this.$chrome.on('click', '.clear-input', function(e)
-            {
-                $(this).prev('input')
-                    .val('')
-                    .focus();
-            });
-
-            this.$chrome.on('click', '.tooltip .close', function(e)
-            {
-                $(this).closest('.tooltip').removeClass('visible');
+                $(this).removeClass('visible');
                 e.stopPropagation();
             });
         },

@@ -6,7 +6,7 @@ module.exports = function(grunt)
 
         watch: {
             css: {
-                files: ['www/css/sass/**/*.scss'],
+                files: ['sass/**/*.scss'],
                 tasks: ['sass', 'autoprefixer', 'cmq', 'imagemin', 'imageEmbed']
             }
         },
@@ -14,7 +14,7 @@ module.exports = function(grunt)
         sass: {
             dist: {
                 files: {
-                    'www/css/paywall.css': 'www/css/sass/paywall.scss'
+                    'www/css/paywall.css': 'sass/paywall.scss'
                 }
             }
         },
