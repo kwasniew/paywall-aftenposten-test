@@ -111,7 +111,7 @@ body {
     }
 
     .tooltip {
-        background: $color-primary;
+        background: $color-secondary;
         position: absolute;
         opacity: 0;
         border-radius: 4px;
@@ -138,7 +138,7 @@ body {
                 width: 0;
                 height: 0;
                 border: 5px solid transparent;
-                border-top: 5px solid $color-primary;
+                border-top: 5px solid $color-secondary;
                 position: absolute;
                 left: 50%;
                 bottom: -10px;
@@ -656,10 +656,7 @@ body {
         }
 
         .no-mobile { display: none !important; }
-        .button-bottom.round-button { left: 10px; }
-    }
 
-    @media #{$screen-mobile-small} {
         .button-bottom.round-button {
             bottom: 10px;
             top: auto;
@@ -672,6 +669,9 @@ body {
             left: 10px;
             opacity: 1;
         }
+    }
+        
+    @media #{$screen-mobile-small} {
 
         .focus {
             .hide-on-focus { display: none; }
