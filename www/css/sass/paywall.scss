@@ -111,7 +111,7 @@ body {
     }
 
     .tooltip {
-        background: $color-secondary;
+        background: $color-primary;
         position: absolute;
         opacity: 0;
         border-radius: 4px;
@@ -136,7 +136,7 @@ body {
             width: 0;
             height: 0;
             border: 5px solid transparent;
-            border-top: 5px solid $color-secondary;
+            border-top: 5px solid $color-primary;
             position: absolute;
             left: 50%;
             bottom: -10px;
@@ -190,7 +190,9 @@ body {
         &:focus { outline-width: 0; }
 
         &[type="submit"] {
+            background: $color-primary;
             font-weight: bold;
+            color: #fff;
             text-shadow: none !important;
             border-radius: 4px;
             margin: 0;
@@ -211,6 +213,7 @@ body {
             @media #{$screen-mobile-big} {
                 width: 14%;
                 padding: 0;
+                margin: 0;
                 float: right;
                 line-height: 35px;
                 text-indent: 0;
@@ -644,9 +647,12 @@ body {
             margin: 5px auto;
             width: 90%;
         }
-        
-        .no-mobile { display: none !important; }
 
+        .no-mobile { display: none !important; }
+        .button-bottom.round-button { left: 10px; }
+    }
+
+    @media #{$screen-mobile-small} {
         .button-bottom.round-button {
             bottom: 10px;
             top: auto;

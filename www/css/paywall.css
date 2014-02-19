@@ -214,7 +214,7 @@ body.android.light {
 }
 
 #paywall .tooltip {
-	background: #006791;
+	background: #2bb4ed;
 	position: absolute;
 	opacity: 0;
 	border-radius: 4px;
@@ -248,7 +248,7 @@ body.android.light {
 	width: 0;
 	height: 0;
 	border: 5px solid transparent;
-	border-top: 5px solid #006791;
+	border-top: 5px solid #2bb4ed;
 	position: absolute;
 	left: 50%;
 	bottom: -10px;
@@ -315,7 +315,9 @@ body.android.light {
 }
 
 #paywall button[type="submit"] {
+	background: #2bb4ed;
 	font-weight: bold;
+	color: white;
 	text-shadow: none !important;
 	border-radius: 4px;
 	margin: 0;
@@ -365,7 +367,7 @@ body.android.light {
 }
 
 #paywall .button.blue-button {
-	background: #00aeef;
+	background: #2bb4ed;
 	color: white !important;
 }
 
@@ -383,7 +385,7 @@ body.android.light {
 }
 
 #paywall .button.disabled {
-	background: rgba(0, 174, 239, 0.5);
+	background: rgba(43, 180, 237, 0.5);
 	pointer-events: none;
 }
 
@@ -406,7 +408,7 @@ body.android.light {
 	padding: 0;
 	margin: 0;
 	border-radius: 100%;
-	border: 1px solid #00aeef;
+	border: 1px solid #2bb4ed;
 	line-height: 28px;
 	color: #333333;
 	cursor: pointer;
@@ -417,7 +419,7 @@ body.android.light {
 
 #paywall a.round-button:active {
 	color: white !important;
-	background: #00aeef;
+	background: #2bb4ed;
 }
 
 #paywall a.more-info-trigger {
@@ -474,7 +476,7 @@ body.android.light {
 }
 
 #paywall .blue {
-	color: #00aeef !important;
+	color: #2bb4ed !important;
 }
 
 #paywall .go-back-button.round-button {
@@ -558,22 +560,22 @@ body.android.light {
 }
 
 #paywall input:focus ::-webkit-input-placeholder {
-	color: #00aeef;
+	color: #2bb4ed;
 	font-style: normal;
 }
 
 #paywall input:focus :-moz-placeholder {
-	color: #00aeef;
+	color: #2bb4ed;
 	font-style: normal;
 }
 
 #paywall input:focus ::-moz-placeholder {
-	color: #00aeef;
+	color: #2bb4ed;
 	font-style: normal;
 }
 
 #paywall input:focus :-ms-input-placeholder {
-	color: #00aeef;
+	color: #2bb4ed;
 	font-style: normal;
 }
 
@@ -590,8 +592,8 @@ body.android.light {
 #paywall input[type="email"]:focus,
 #paywall input[type="text"]:focus,
 #paywall input[type="password"]:focus {
-	color: #00aeef;
-	border-bottom-color: #00aeef;
+	color: #2bb4ed;
+	border-bottom-color: #2bb4ed;
 }
 
 #paywall .half-width {
@@ -627,7 +629,7 @@ body.android.light {
 }
 
 #paywall footer a:active {
-	color: #00aeef !important;
+	color: #2bb4ed !important;
 }
 
 #paywall footer a.active {
@@ -1076,6 +1078,7 @@ button.active .spinner i:nth-child(12) {
 #paywall button[type="submit"] {
 	width: 14%;
 	padding: 0;
+	margin: 0;
 	float: right;
 	line-height: 35px;
 	text-indent: 0;
@@ -1097,7 +1100,7 @@ button.active .spinner i:nth-child(12) {
 	padding: 0;
 	display: inline-block;
 	background: none;
-	color: #00aeef !important;
+	color: #2bb4ed !important;
 	text-transform: inherit;
 	font-weight: bold;
 }
@@ -1219,6 +1222,22 @@ button.active .spinner i:nth-child(12) {
 }
 
 #paywall .button-bottom.round-button {
+	left: 10px;
+}
+
+}
+
+@media only screen and (max-width: 479px) {
+
+#paywall footer a {
+	display: inline-block;
+}
+
+#paywall footer {
+	text-align: center;
+}
+
+#paywall .button-bottom.round-button {
 	bottom: 10px;
 	top: auto;
 	left: 25%;
@@ -1245,18 +1264,6 @@ button.active .spinner i:nth-child(12) {
 
 #paywall .focus header {
 	padding-top: 45px !important;
-}
-
-}
-
-@media only screen and (max-width: 479px) {
-
-#paywall footer a {
-	display: inline-block;
-}
-
-#paywall footer {
-	text-align: center;
 }
 
 }
