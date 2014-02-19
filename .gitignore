@@ -1,2 +1,9 @@
 .idea
 *.iml
+.sass-cache
+node_modules/
+composer.*
+*.log
+*.sublime-*
+.DS_Store
+sftp-config.json
