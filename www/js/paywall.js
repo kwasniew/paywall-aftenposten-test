@@ -226,7 +226,7 @@ define('paywall', ['main'], function(app)
         loginDone: function(provider, $form)
         {
             this.getUserInfo(provider);
-            $form.find('input[name="username"], input[name="password"]').blur();
+            $form.find('input[name="username"], input[name="password"]').trigger('blur');
         },
 
         loginFail: function(error, $form)
