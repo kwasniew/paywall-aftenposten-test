@@ -405,7 +405,8 @@ define('paywall', ['main'], function(app)
 
         restorePurchasesFail: function(error, $button)
         {
-            this.showTooltip($button, error.description);
+            if(!error.code === 'CANCELLED')
+                this.showTooltip($button, error.description);
         },
 
         registerPurchaseEventListeners: function()
