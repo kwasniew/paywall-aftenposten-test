@@ -137,6 +137,29 @@ define('paywall', ['main'], function(app)
             });
         },
 
+        hideKeyboard: function()
+        {
+            $('input, textarea').blur();
+
+            if(app.context.deviceOS === 'iOS')
+                document.activeElement.blur();
+
+            if(app.context.deviceOS === 'Android')
+            {
+                var $field = $('<input type="text">');
+                $('body').append($field);
+
+                window.setTimeout(function()
+                {
+                    $field.focus();
+                    setTimeout(function()
+                    {
+                        $field.hide();
+                    }, 50);
+                }, 50);
+            }
+        },
+
         showTooltip: function($context, message)
         {
             var $tooltip = $context.find('.tooltip');
@@ -223,10 +246,10 @@ define('paywall', ['main'], function(app)
          *      User related event listeners
          */
 
-        loginDone: function(provider, $form)
+        loginDone: function(provider)
         {
             this.getUserInfo(provider);
-            $form.find('input[name="username"], input[name="password"]').trigger('blur');
+            this.hideKeyboard();
         },
 
         loginFail: function(error, $form)
@@ -279,7 +302,7 @@ define('paywall', ['main'], function(app)
                     doneEvent: app.callbackHelper.create(function()
                     {
                         always();
-                        self.loginDone.call(self, provider, $form);
+                        self.loginDone.call(self, provider);
                     }),
                     failEvent: app.callbackHelper.create(function(data)
                     {
