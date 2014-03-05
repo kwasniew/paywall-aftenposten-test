@@ -152,7 +152,7 @@ define('paywall', ['main'], function(app)
                 window.setTimeout(function()
                 {
                     $field.focus();
-                    setTimeout(function()
+                    window.setTimeout(function()
                     {
                         $field.hide();
                     }, 50);
