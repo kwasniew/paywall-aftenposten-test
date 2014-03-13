@@ -560,22 +560,6 @@ body {
             position: relative;
             opacity: 0;
             @include animation(fade-in, .2s, ease-in-out, 1);
-
-            &.retry {
-                padding-left: 42px;
-
-                i {
-                    display: block;
-                    width: 21px;
-                    height: 21px;
-                    position: absolute;
-                    top: 6px;
-                    left: 10px;
-                    z-index: 2;
-                    background: 0 0 url(/gfx/retry.png) no-repeat;
-                    background-size: 21px 21px;
-                }
-            }
         }
 
         @media #{$screen-mobile-big} {

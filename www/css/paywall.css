@@ -711,23 +711,6 @@ body.android.light {
 	animation-fill-mode: forwards;
 }
 
-#paywall .purchase-options button.retry {
-	padding-left: 42px;
-}
-
-#paywall .purchase-options button.retry i {
-	display: block;
-	width: 21px;
-	height: 21px;
-	position: absolute;
-	top: 6px;
-	left: 10px;
-	z-index: 2;
-	background: 0 0 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAADIklEQVR42szZSWgTURgH8Dcx1dpFKy6guKBgVVyoK1QEFSuIYlWUSA9FpSAuFxVB0IPgyYtK8eJVKIgogrhgN5eKiqKW1r3SYwO1VNoqsbZZ/H/k/+iQZptJYt8HPyYkzcw/L9OXN99YkUhEuaw5sBe2wUKYChMgj68HYRB+wFe4D3eh283BLIdBC6AaaqAMPA6PNwRv4Bo8hIGY13UYK5OgB+AizOCOIhyd1/AK3kMnnwvBNFgE5bCJH2wK3xuGD3AFbnHkkwZVEjSFMmiC4Ui0/kA9bE3jvXYToRIaoR/CEIQWWMC/0TXq/cl2PA72QSeEGLQBSh0GjKccnnK/EvgbVLgNehqGuLMO8EF+FkJqXqiBLh6j103QIzDIT9sGS7MYMNZaHiOcLKg3zj/NbrjEaeYJ7ISAym45nhNjp5dSuM5pqB0O5iCkq7KPaD5chSLo4UTenaPjWpmM6H7YAsNwLIchXZU96Hl+0gdwWxlWOqj8LM7jL8Y5ZWDpoCc5mo+5gDAy6FxYwSmjVhlaEtTHraxkGkwOuoOPW7mGNDbofD5+pgwuD9eXUi9ND6ovHb6YHNRrm6IGDM34SwcNGBx0MhTqoMUGf+OzuQ15lNm1jtuA6UHXc+s3Pegabj+aHLSAfQGpGyYH9bFF9BeaTA2ax6sMWXq2yNRpatANsIqLpFrlosn1v+oCR7ONzTQjgx5mY00ui84muq4f61oNlzmad6Ax3nW9k06GlYOQi1W0BSm/7X44laxTMlY1Hep4JdwLldDlJKiMrDRcN6toE1bLZsn52M6vXZZ0R+Hd6CTxO2y6etgS/A1nstzFmwQnwM9OnrQ4qxL9faqgu9jIDTPwCzZhMw25Ed6y4yxaU+03VdASKIKb7DhL4AA8Zze62EG4QjjEUEHuX/ZVZ2uNJ5ToZoN+Us7HPhgP29mfWq5GbhjIid+hojcc5OLwM/xko00WvXKDYSVXQcugRI3cqPgOx6E5rTM5jRGNHRUZyWbos3116ZJz/RHsYWs87dPFyuCG2Cw2LypgCczkHOjh/Cyj2q+iN8Q+wT2o57fguP4JMAAs378BsfwNVAAAAABJRU5ErkJggg==) no-repeat;
-	-webkit-background-size: 21px 21px;
-	background-size: 21px 21px;
-}
-
 #paywall .input {
 	display: inline-block;
 	margin: 0 2px;

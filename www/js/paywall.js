@@ -178,6 +178,7 @@ define('paywall', ['main'], function(app)
                 $context.find('.tooltip').trigger('click');
             });
 
+            $context.find('button.retry').remove();
             $context.prepend($reloadButton);
         },
 
@@ -436,6 +437,8 @@ define('paywall', ['main'], function(app)
             var inAppPurchase = function(e)
             {
                 var $placeholder = self.tab.$products.find('.purchase-options');
+                $placeholder.find('button.retry').remove();
+                $placeholder.find('.tooltip').trigger('click');
                 self.addSpinner($placeholder, 'append');
 
                 var provider = $(this).data('provider');
