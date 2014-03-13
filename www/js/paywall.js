@@ -162,9 +162,23 @@ define('paywall', ['main'], function(app)
 
         showTooltip: function($context, message)
         {
-            var $tooltip = $context.find('.tooltip');
-            $tooltip.find('.message').text(message)
-            .parent().addClass('visible');
+            $context.find('.tooltip')
+                .addClass('visible')
+            .find('.message')
+                .text(message);
+        },
+
+        addRetryButton: function($context, provider, classes)
+        {
+            classes = (typeof classes === 'string') ? ' ' + classes : '';
+            var $reloadButton = $('<button type="button" class="button blue-button retry' + classes + '" data-provider="' + provider + '"><i></i>Prøv igjen</button>');
+            $reloadButton.on('click', function(e)
+            {
+                $(this).remove();
+                $context.find('.tooltip').trigger('click');
+            });
+
+            $context.prepend($reloadButton);
         },
 
         getUserInfoDone: function(data)
@@ -237,7 +251,11 @@ define('paywall', ['main'], function(app)
 
             this.$chrome.on('click', '.tooltip', function(e)
             {
-                $(this).removeClass('visible');
+                $(this)
+                    .removeClass('visible')
+                .find('.message')
+                    .text('');
+
                 e.stopPropagation();
             });
         },
@@ -269,7 +287,7 @@ define('paywall', ['main'], function(app)
 
         logoutFail: function(error)
         {
-            console.log('logoutFail', error);
+
         },
 
         registerUserEventListeners: function()
@@ -366,7 +384,7 @@ define('paywall', ['main'], function(app)
                 $.each(products, function(i, product)
                 {
                     var $productbutton = $(
-                        '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + provider + '" class="button blue-button">' +
+                        '<button type="button" data-product-identifier="' + product.productIdentifier + '" data-provider="' + provider + '" class="purchase-option button blue-button">' +
                             '<span class="title">' + product.title + ' ' + product.duration + '</span> ' +
                             'for <span class="price">' + product.priceFormatted + '</span>' +
                         '</button>'
@@ -375,18 +393,19 @@ define('paywall', ['main'], function(app)
                     $buttons.append($productbutton);
                 });
 
-                $target.html($buttons.html());
+                $target.find('button.purchase-option').remove();
+                $target.prepend($buttons.html());
             }
         },
 
-        getPurchaseInfoFail: function(error)
+        getPurchaseInfoFail: function(error, provider, $target)
         {
-            console.log('getPurchaseInfoFail', error);
+            this.showTooltip($target, error.description);
+            this.addRetryButton($target, provider, 'retry-in-app-purchase');
         },
 
         purchaseDone: function(provider)
         {
-            console.log('purchaseDone', provider);
             // Native removes paywall...
 
             // Refresh user?
@@ -395,7 +414,7 @@ define('paywall', ['main'], function(app)
 
         purchaseFail: function(error)
         {
-            console.log('purchaseFail', error);
+
         },
 
         restorePurchasesDone: function(provider)
@@ -414,10 +433,10 @@ define('paywall', ['main'], function(app)
             var self = this;
 
             // Choose a provider to buy from, ask for its purchase options
-            this.tab.$purchase.on('click', '.in-app-purchase', function(e)
+            var inAppPurchase = function(e)
             {
                 var $placeholder = self.tab.$products.find('.purchase-options');
-                self.addSpinner($placeholder);
+                self.addSpinner($placeholder, 'append');
 
                 var provider = $(this).data('provider');
 
@@ -437,12 +456,15 @@ define('paywall', ['main'], function(app)
                     failEvent: app.callbackHelper.create(function(data)
                     {
                         always();
-                        self.getPurchaseInfoFail.call(self, data);
+                        self.getPurchaseInfoFail.call(self, data.error, provider, $placeholder);
                     })
                 });
 
                 e.preventDefault();
-            });
+            };
+
+            this.tab.$purchase.on('click', '.in-app-purchase', inAppPurchase);
+            this.tab.$products.on('click', '.retry-in-app-purchase', inAppPurchase);
 
             // Choose one of the provider’s purchase alternatives
             this.tab.$products.on('click', '.purchase-options button', function()

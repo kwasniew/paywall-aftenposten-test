@@ -130,7 +130,7 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
         var error = url + ':' + linenumber + ' - ' + message;
         app.logToConsole(error);
         app.bridge.trigger('error', {
-            "reason": error
+            reason: error
         });
     };
 

@@ -225,9 +225,9 @@ body {
                 line-height: 35px;
                 text-indent: 0;
 
-	            &.active {
-	                .spinner { left: 50%; }
-	            }
+                &.active {
+                    .spinner { left: 50%; }
+                }
             }
         }
     }
@@ -304,8 +304,8 @@ body {
             color: #333;
             cursor: pointer;
             text-shadow: none !important;
-			line-height: 30px;
-			text-indent: 2px;
+            line-height: 30px;
+            text-indent: 2px;
 
             &:active {
                 color: #fff !important;
@@ -488,15 +488,15 @@ body {
             &.active {
                 padding-left: 36px;
                 .spinner {
-                	left: 10px;
-                	opacity: 1;
+                    left: 10px;
+                    opacity: 1;
                 }
             }
 
             @media #{$screen-mobile-small} { display: inline-block; }
             @media #{$screen-mobile-big} {
-            	text-align: center;
-            	margin: 5px 10px !important;
+                text-align: center;
+                margin: 5px 10px !important;
             }
         }
 
@@ -554,22 +554,37 @@ body {
         height: 36px;
         position: relative;
 
-		.spinner {
-			opacity: 1;
-		}
+        .spinner { opacity: 1; }
 
         button {
+            position: relative;
             opacity: 0;
             @include animation(fade-in, .2s, ease-in-out, 1);
+
+            &.retry {
+                padding-left: 42px;
+
+                i {
+                    display: block;
+                    width: 21px;
+                    height: 21px;
+                    position: absolute;
+                    top: 6px;
+                    left: 10px;
+                    z-index: 2;
+                    background: 0 0 url(/gfx/retry.png) no-repeat;
+                    background-size: 21px 21px;
+                }
+            }
         }
 
         @media #{$screen-mobile-big} {
             height: 68px;
 
             button.blue-button {
-				margin: 0 auto 5px;
-				min-width: 280px;
-				max-width: 100%;
+                margin: 0 auto 5px;
+                min-width: 280px;
+                max-width: 100%;
             }
         }
     }
@@ -624,7 +639,7 @@ body {
     }
 
     .input_username:before {
-        background: url(/gfx/paywall-sprite@2x.png) no-repeat -0px -22px;
+        background: url(/gfx/paywall-sprite@2x.png) no-repeat 0 -22px;
         background-size: 47px 90px;
     }
 
@@ -670,7 +685,7 @@ body {
             opacity: 1;
         }
     }
-        
+
     @media #{$screen-mobile-small} {
 
         .focus {
@@ -694,5 +709,5 @@ body {
 button.active .spinner {
     @include spinner(4px, 1px, 6px, $color: #fff);
     left: 16px;
-	opacity: 1;
+    opacity: 1;
 }
