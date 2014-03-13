@@ -421,14 +421,24 @@ define('paywall', ['main'], function(app)
 
                 var provider = $(this).data('provider');
 
+                var always = function()
+                {
+                    self.removeSpinner($placeholder);
+                };
+
                 app.bridge.trigger('getPurchaseInfo',
                 {
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function(data)
                     {
+                        always();
                         self.getPurchaseInfoDone.call(self, data, provider, $placeholder);
                     }),
-                    failEvent: app.callbackHelper.create(_.bind(self.getPurchaseInfoFail, self))
+                    failEvent: app.callbackHelper.create(function(data)
+                    {
+                        always();
+                        self.getPurchaseInfoFail.call(self, data);
+                    })
                 });
 
                 e.preventDefault();
