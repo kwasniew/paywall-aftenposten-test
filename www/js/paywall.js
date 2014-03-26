@@ -247,7 +247,7 @@ define('paywall', ['main'], function(app)
             this.$chrome.on('click', '.user-terms', function(e)
             {
                 var provider = $(this).data('provider');
-	            app.bridge.trigger('displayUserTerms', { provider: provider });
+                app.bridge.trigger('displayUserTerms', { provider: provider });
 
                 e.preventDefault();
             });
