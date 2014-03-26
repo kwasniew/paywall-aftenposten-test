@@ -132,6 +132,7 @@ body.android.light {
 	pointer-events: inherit;
 	position: relative;
 	width: 100%;
+	background: #eeeeee;
 }
 
 #paywall.android-beta h1 {
@@ -211,6 +212,22 @@ body.android.light {
 	margin: 0 0 1em;
 	font-weight: normal;
 	color: #333333;
+}
+
+#paywall small {
+	font-size: 12px;
+	line-height: 1.4em;
+}
+
+#paywall .terms {
+	margin: 7px 0 0;
+	color: #666666;
+	display: block;
+}
+
+#paywall .terms a {
+	color: #00aeef;
+	font-weight: normal;
 }
 
 #paywall .tooltip {

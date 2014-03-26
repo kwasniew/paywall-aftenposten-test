@@ -34,6 +34,7 @@ body {
     pointer-events: inherit;
     position: relative;
     width: 100%;
+background: #eee;
 
     &.android-beta {
         h1 { font-size: 28px; }
@@ -108,6 +109,19 @@ body {
             font-size: 14px;
             text-align: center;
         }
+    }
+    small {
+	    font-size: 12px;
+	    line-height: 1.4em;
+    }
+    .terms {
+	    margin: 7px 0 0;
+	    color: #666;
+	    display: block;
+	    a {
+		    color: #00aeef;
+		    font-weight: normal;
+	    }
     }
 
     .tooltip {
