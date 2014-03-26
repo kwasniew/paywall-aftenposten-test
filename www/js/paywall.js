@@ -243,6 +243,16 @@ define('paywall', ['main'], function(app)
 
                 e.preventDefault();
             });
+            
+            this.$chrome.on('click', '.user-terms', function(e)
+            {
+	            app.bridge.trigger('displayUserTerms',
+	            {
+	                provider: provider
+	            });
+
+                e.preventDefault();
+            });
 
             this.$chrome.on('click', '.tab-trigger', function(e)
             {
