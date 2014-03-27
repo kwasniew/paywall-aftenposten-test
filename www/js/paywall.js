@@ -244,14 +244,6 @@ define('paywall', ['main'], function(app)
                 e.preventDefault();
             });
 
-            this.$chrome.on('click', '.user-terms', function(e)
-            {
-                var provider = $(this).data('provider');
-                app.bridge.trigger('displayUserTerms', { provider: provider });
-
-                e.preventDefault();
-            });
-
             this.$chrome.on('click', '.tab-trigger', function(e)
             {
                 self.switchTab($(this).attr('internal'));
@@ -372,6 +364,26 @@ define('paywall', ['main'], function(app)
                     {
                         always();
                         self.logoutFail.apply(self, arguments);
+                    })
+                });
+
+                e.preventDefault();
+            });
+
+            this.tab.$login.on('click', '.user-terms', function(e)
+            {
+                var provider = $(this).data('provider');
+
+                app.bridge.trigger('displayUserTerms'
+                {
+                    provider: provider,
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        //self.displayUserTermsDone.call(self, provider);
+                    }),
+                    failEvent: app.callbackHelper.create(function()
+                    {
+                        //self.displayUserTermsFail.apply(self, arguments);
                     })
                 });
 
