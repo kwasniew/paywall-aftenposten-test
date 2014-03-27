@@ -374,7 +374,7 @@ define('paywall', ['main'], function(app)
             {
                 var provider = $(this).data('provider');
 
-                app.bridge.trigger('displayUserTerms'
+                app.bridge.trigger('displayUserTerms',
                 {
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function()
