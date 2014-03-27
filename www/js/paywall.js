@@ -276,6 +276,16 @@ define('paywall', ['main'], function(app)
             this.showTooltip($form, error.description);
         },
 
+        displayUserTermsDone: function(provider)
+        {
+
+        },
+
+        displayUserTermsFail: function(error, $button)
+        {
+            this.showTooltip($button, error.description);
+        },
+
         logoutDone: function(provider)
         {
             this.tab.$loggedIn.find('.spid-user-name')
@@ -333,6 +343,28 @@ define('paywall', ['main'], function(app)
                 e.preventDefault();
             });
 
+            // User terms
+            this.tab.$login.on('click', '.user-terms', function(e)
+            {
+                var $button = $(this);
+                var provider = $button.data('provider');
+
+                app.bridge.trigger('displayUserTerms',
+                {
+                    provider: provider,
+                    doneEvent: app.callbackHelper.create(function()
+                    {
+                        self.displayUserTermsDone.call(self, provider);
+                    }),
+                    failEvent: app.callbackHelper.create(function(data)
+                    {
+                        self.displayUserTermsFail.call(self, data.error, $button.closest('.button-wrap'));
+                    })
+                });
+
+                e.preventDefault();
+            });
+
             // Log out (not sure if this should be constrained to this tab only)
             this.tab.$loggedIn.on('click', '.logout', function(e)
             {
@@ -364,26 +396,6 @@ define('paywall', ['main'], function(app)
                     {
                         always();
                         self.logoutFail.apply(self, arguments);
-                    })
-                });
-
-                e.preventDefault();
-            });
-
-            this.tab.$login.on('click', '.user-terms', function(e)
-            {
-                var provider = $(this).data('provider');
-
-                app.bridge.trigger('displayUserTerms',
-                {
-                    provider: provider,
-                    doneEvent: app.callbackHelper.create(function()
-                    {
-                        //self.displayUserTermsDone.call(self, provider);
-                    }),
-                    failEvent: app.callbackHelper.create(function()
-                    {
-                        //self.displayUserTermsFail.apply(self, arguments);
                     })
                 });
 

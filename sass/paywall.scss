@@ -34,7 +34,7 @@ body {
     pointer-events: inherit;
     position: relative;
     width: 100%;
-background: #eee;
+    background: #eee;
 
     &.android-beta {
         h1 { font-size: 28px; }
@@ -111,17 +111,17 @@ background: #eee;
         }
     }
     small {
-	    font-size: 12px;
-	    line-height: 1.4em;
+        font-size: 12px;
+        line-height: 1.4em;
     }
     .terms {
-	    margin: 7px 0 0;
-	    color: #666;
-	    display: block;
-	    a {
-		    color: #00aeef;
-		    font-weight: normal;
-	    }
+        margin: 7px 0 0;
+        color: #666;
+        display: block;
+        a {
+            color: #00aeef;
+            font-weight: normal;
+        }
     }
 
     .tooltip {
@@ -190,6 +190,11 @@ background: #eee;
                 color: #fff;
             }
         }
+    }
+
+    .button-wrap {
+        display: inline-block;
+        position: relative;
     }
 
     .spid-user-name {
@@ -512,11 +517,6 @@ background: #eee;
                 text-align: center;
                 margin: 5px 10px !important;
             }
-        }
-
-        .button-wrap {
-            display: inline-block;
-            position: relative;
         }
 
         @media #{$screen-mobile-small} { text-align: center; }

@@ -308,6 +308,11 @@ body.android.light {
 	color: white;
 }
 
+#paywall .button-wrap {
+	display: inline-block;
+	position: relative;
+}
+
 #paywall .spid-user-name {
 	display: none;
 }
@@ -652,11 +657,6 @@ body.android.light {
 #paywall footer a.active .spinner {
 	left: 10px;
 	opacity: 1;
-}
-
-#paywall footer .button-wrap {
-	display: inline-block;
-	position: relative;
 }
 
 #paywall #content {
