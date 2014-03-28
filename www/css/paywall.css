@@ -935,6 +935,10 @@ body.android.light {
 	animation-delay: 1s;
 }
 
+button.active {
+	pointer-events: none;
+}
+
 button.active .spinner {
 	position: absolute;
 	top: 50%;

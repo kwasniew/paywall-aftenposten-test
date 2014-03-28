@@ -685,7 +685,6 @@ body {
     }
 
     @media #{$screen-mobile-small} {
-
         .focus {
             .hide-on-focus { display: none; }
             header { padding-top: 45px !important; }
@@ -704,8 +703,14 @@ body {
 }
 
 .spinner { @include spinner; }
-button.active .spinner {
-    @include spinner(4px, 1px, 6px, $color: #fff);
-    left: 16px;
-    opacity: 1;
+
+button.active
+{
+    pointer-events: none;
+
+    .spinner {
+        @include spinner(4px, 1px, 6px, $color: #fff);
+        left: 16px;
+        opacity: 1;
+    }
 }
