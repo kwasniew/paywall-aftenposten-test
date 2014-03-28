@@ -168,6 +168,14 @@ define('paywall', ['main'], function(app)
                 .text(message);
         },
 
+        hideAllTooltips: function()
+        {
+            $chrome.find('.tooltip')
+                .removeClass('visible')
+            .find('.message')
+                .text('');
+        },
+
         addRetryButton: function($context, provider, classes)
         {
             classes = (typeof classes === 'string') ? ' ' + classes : '';
@@ -331,6 +339,7 @@ define('paywall', ['main'], function(app)
                     doneEvent: app.callbackHelper.create(function()
                     {
                         always();
+                        self.hideAllTooltips.call(self);
                         self.loginDone.call(self, provider);
                     }),
                     failEvent: app.callbackHelper.create(function(data)
@@ -354,6 +363,7 @@ define('paywall', ['main'], function(app)
                     provider: provider,
                     doneEvent: app.callbackHelper.create(function()
                     {
+                        self.hideAllTooltips.call(self);
                         self.displayUserTermsDone.call(self, provider);
                     }),
                     failEvent: app.callbackHelper.create(function(data)
@@ -496,6 +506,7 @@ define('paywall', ['main'], function(app)
                     doneEvent: app.callbackHelper.create(function(data)
                     {
                         always();
+                        self.hideAllTooltips.call(self);
                         self.getPurchaseInfoDone.call(self, data, provider, $placeholder);
                     }),
                     failEvent: app.callbackHelper.create(function(data)
@@ -571,6 +582,7 @@ define('paywall', ['main'], function(app)
                     doneEvent: app.callbackHelper.create(function()
                     {
                         always();
+                        self.hideAllTooltips.call(self);
                         self.restorePurchasesDone.call(self, provider);
                     }),
                     failEvent: app.callbackHelper.create(function(data)
