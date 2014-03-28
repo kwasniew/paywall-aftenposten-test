@@ -170,7 +170,7 @@ define('paywall', ['main'], function(app)
 
         hideAllTooltips: function()
         {
-            $chrome.find('.tooltip')
+            this.$chrome.find('.tooltip')
                 .removeClass('visible')
             .find('.message')
                 .text('');
