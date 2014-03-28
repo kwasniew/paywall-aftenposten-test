@@ -401,6 +401,16 @@ define('paywall', ['main'], function(app)
 
                 e.preventDefault();
             });
+
+            app.event.on('loggedOut', function(provider)
+            {
+                self.logoutDone.call(self, provider)
+            });
+
+            app.event.on('loggedIn', function(provider)
+            {
+                self.loginDone.call(self, provider)
+            });
         },
 
         /*
