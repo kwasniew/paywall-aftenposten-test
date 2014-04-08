@@ -1,10 +1,11 @@
 CACHE MANIFEST
-# v8
+# v9
 
 CACHE:
 css/paywall.css
 gfx/colored_border.jpg
 gfx/paywall-sprite@2x.png
+gfx/retry.png
 js/callback-helper.js
 js/main.js
 js/paywall.js
@@ -19,15 +20,6 @@ http://lisa.aftenposten.no/aftenposten_pluss/fonts/ClanOT/ClanOT-Ultra.otf
 http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Bold.otf
 http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Medium.otf
 http://lisa.aftenposten.no/aftenposten_pluss/fonts/PublicoHeadline/PublicoHeadline-Light.otf
-
-http://hfossli.github.io/drmobile-integration/fonts/ClanOT/ClanOT-Book.otf
-http://hfossli.github.io/drmobile-integration/fonts/ClanOT/ClanOT-Medium.otf
-http://hfossli.github.io/drmobile-integration/fonts/ClanOT/ClanOT-Bold.otf
-http://hfossli.github.io/drmobile-integration/fonts/ClanOT/ClanOT-Ultra.otf
-http://hfossli.github.io/drmobile-integration/fonts/ClanOT/ClanOT-Thin.otf
-http://hfossli.github.io/drmobile-integration/fonts/PublicoHeadline/PublicoHeadline-Bold.otf
-http://hfossli.github.io/drmobile-integration/fonts/PublicoHeadline/PublicoHeadline-Medium.otf
-http://hfossli.github.io/drmobile-integration/fonts/PublicoHeadline/PublicoHeadline-Light.otf
 
 NETWORK:
 *
