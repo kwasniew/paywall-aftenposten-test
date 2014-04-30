@@ -113,7 +113,10 @@ define('main', ['alf', 'callback-helper'], function (Alf, CallbackHelper)
                     this.frameIndex = (this.frameIndex + 1) % this.eventFrames.length;
 
                     if(app.isEmbeddedInApp)
-                        this.eventFrames[this.frameIndex].src = 'event://' + escape(eventInfo);
+                    {
+                        var urlEncodedEventInfo = encodeURIComponent(eventInfo).replace(/'/g, '%27');
+                        this.eventFrames[this.frameIndex].src = 'event://' + urlEncodedEventInfo;
+                    }
                     else
                         app.logToConsole('Event: ' + eventInfo);
                 }
